@@ -1,8 +1,10 @@
-package com.example.c196aloufi;
+package com.example.c196aloufi.UserInterface;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
+
+import com.example.c196aloufi.R;
 
 public class CourseList extends AppCompatActivity {
 

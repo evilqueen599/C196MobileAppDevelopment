@@ -4,6 +4,8 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
 
+import com.example.c196aloufi.R;
+
 public class TermList extends AppCompatActivity {
 
     @Override
