@@ -15,7 +15,7 @@
         android:text="@string/term_scheduling_application"
         android:textAlignment="center"
         android:textAppearance="@style/TextAppearance.AppCompat.Body2"
-        android:textColor="#BA68C8"
+        android:textColor="#8346EF"
         android:textSize="20sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
