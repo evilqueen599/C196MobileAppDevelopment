@@ -2,9 +2,12 @@ package com.example.c196aloufi.UserInterface;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
 
 import com.example.c196aloufi.R;
+import com.example.c196aloufi.TermList;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -12,5 +15,10 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+    }
+
+    public void enterButton(View view) {
+        Intent intent = new Intent(MainActivity.this, TermList.class);
+        startActivity(intent);
     }
 }

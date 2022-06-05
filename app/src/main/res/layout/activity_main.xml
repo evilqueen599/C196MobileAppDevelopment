@@ -8,9 +8,10 @@
     tools:context=".UserInterface.MainActivity">
 
     <TextView
+        android:id="@+id/textView"
         android:layout_width="307dp"
         android:layout_height="50dp"
-        android:layout_marginBottom="100dp"
+        android:layout_marginBottom="64dp"
         android:backgroundTint="#F3F1F1"
         android:text="@string/term_scheduling_application"
         android:textAlignment="center"
@@ -19,24 +20,24 @@
         android:textSize="20sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.501"
+        app:layout_constraintHorizontal_bias="0.502"
         app:layout_constraintStart_toStartOf="parent" />
 
     <ImageView
-        android:id="@+id/gradCapIcon"
-        android:layout_width="167dp"
-        android:layout_height="162dp"
+        android:id="@+id/bookIcon"
+        android:layout_width="341dp"
+        android:layout_height="376dp"
         android:backgroundTint="#B19FD1"
         android:contentDescription="@string/gradcap"
         android:src="@drawable/ic_launcher_foreground"
         android:visibility="visible"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toBottomOf="@id/textView"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.502"
+        app:layout_constraintHorizontal_bias="0.503"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.228"
-        app:tint="#331F57"
+        app:layout_constraintVertical_bias="0.613"
+        app:tint="#5A3897"
         tools:ignore="ImageContrastCheck"
         tools:visibility="visible" />
 
@@ -44,10 +45,14 @@
         android:id="@+id/enterButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="16dp"
+        android:layout_marginTop="24dp"
+        android:onClick="enterButton"
         android:text="@string/enter"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintHorizontal_bias="0.525"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView"
+        app:layout_constraintVertical_bias="0.942" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
