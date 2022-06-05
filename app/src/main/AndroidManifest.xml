@@ -16,7 +16,7 @@
             android:name=".UserInterface.CourseList"
             android:exported="false" />
         <activity
-            android:name=".TermList"
+            android:name=".UserInterface.TermList"
             android:parentActivityName=".UserInterface.MainActivity"
             android:exported="false" />
         <activity

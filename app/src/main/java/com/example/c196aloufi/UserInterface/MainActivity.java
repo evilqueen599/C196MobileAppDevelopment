@@ -7,7 +7,6 @@ import android.os.Bundle;
 import android.view.View;
 
 import com.example.c196aloufi.R;
-import com.example.c196aloufi.TermList;
 
 public class MainActivity extends AppCompatActivity {
 
