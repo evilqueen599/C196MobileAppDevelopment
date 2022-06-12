@@ -22,12 +22,12 @@
     <ListView
         android:id="@+id/listView"
         android:layout_width="409dp"
-        android:layout_height="306dp"
+        android:layout_height="0dp"
         android:layout_marginTop="96dp"
-        app:layout_constraintBottom_toTopOf="@+id/floatingActionButton"
+        android:layout_marginBottom="272dp"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.224" />
 
     <TextView
@@ -69,6 +69,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="15dp"
         android:layout_marginBottom="3dp"
+        android:checked="true"
         android:text="Terms"
         android:textColor="#FFFFFF"
         app:layout_constraintBottom_toBottomOf="@+id/toolbar2"
@@ -79,6 +80,7 @@
         android:id="@+id/coursesRadBtn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="151dp"
         android:layout_marginTop="5dp"
         android:layout_marginEnd="175dp"
         android:layout_marginBottom="3dp"
@@ -86,6 +88,7 @@
         android:textColor="#FFFFFF"
         app:layout_constraintBottom_toBottomOf="@+id/toolbar2"
         app:layout_constraintEnd_toEndOf="@+id/toolbar2"
+        app:layout_constraintStart_toStartOf="@+id/toolbar2"
         app:layout_constraintTop_toTopOf="@+id/toolbar2" />
 
     <RadioButton
@@ -100,5 +103,17 @@
         app:layout_constraintBottom_toBottomOf="@+id/toolbar2"
         app:layout_constraintEnd_toEndOf="@+id/toolbar2"
         app:layout_constraintTop_toTopOf="@+id/toolbar2" />
+
+    <RadioGroup
+        android:layout_width="407dp"
+        android:layout_height="54dp"
+        android:layout_marginStart="4dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="669dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>
