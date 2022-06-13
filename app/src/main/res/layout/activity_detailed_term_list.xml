@@ -8,10 +8,11 @@
     tools:context=".UserInterface.DetailedTerm">
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/floatingActionButton2"
-        android:layout_width="0dp"
-        android:layout_height="56dp"
+        android:id="@+id/addNewTermBtn"
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
         android:layout_marginStart="334dp"
+        android:layout_marginTop="75dp"
         android:layout_marginEnd="21dp"
         android:layout_marginBottom="16dp"
         android:clickable="true"
@@ -20,21 +21,22 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/detailedTermListView"
+        app:layout_constraintVertical_bias="0.393"
         tools:ignore="SpeakableTextPresentCheck,ImageContrastCheck" />
 
     <ListView
         android:id="@+id/detailedTermListView"
         android:layout_width="412dp"
-        android:layout_height="0dp"
+        android:layout_height="473dp"
         android:layout_marginTop="87dp"
         android:layout_marginEnd="1dp"
         android:layout_marginBottom="228dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="1.0" />
+        app:layout_constraintVertical_bias="0.0" />
 
     <TextView
         android:id="@+id/detailedTermListTxt"
