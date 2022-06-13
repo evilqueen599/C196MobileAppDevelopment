@@ -16,6 +16,7 @@
         android:layout_marginEnd="21dp"
         android:layout_marginBottom="16dp"
         android:clickable="true"
+        android:onClick="onClickAddTerm"
         android:src="@drawable/ic_round_add_task_24"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
