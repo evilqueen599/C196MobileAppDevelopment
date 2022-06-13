@@ -29,4 +29,8 @@ public class TermList extends Activity {
         TextView myTextView = (TextView) findViewById(R.id.termListTxt);
         myTextView.setText("Assessment List");
     }
+
+    public void onClickMainAddBtn(View view) {
+        setContentView(R.layout.activity_detailed_term_list);
+    }
 }

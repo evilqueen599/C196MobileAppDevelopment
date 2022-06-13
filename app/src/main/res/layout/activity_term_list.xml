@@ -8,23 +8,25 @@
     tools:context=".UserInterface.TermList">
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/floatingActionButton"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
+        android:id="@+id/mainAddBtn"
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
         android:layout_marginStart="334dp"
         android:layout_marginEnd="21dp"
-        android:layout_marginBottom="19dp"
+        android:layout_marginBottom="16dp"
         android:clickable="true"
+        android:onClick="onClickMainAddBtn"
         android:src="@drawable/ic_round_add_task_24"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
         tools:ignore="SpeakableTextPresentCheck,ImageContrastCheck" />
 
     <TextView
         android:id="@+id/termListTxt"
-        android:layout_width="0dp"
-        android:layout_height="42dp"
+        android:layout_width="297dp"
+        android:layout_height="50dp"
         android:layout_marginStart="116dp"
         android:layout_marginEnd="116dp"
         android:text="Term List"
@@ -41,7 +43,7 @@
         android:layout_width="408dp"
         android:layout_height="430dp"
         android:layout_marginTop="202dp"
-        app:layout_constraintBottom_toTopOf="@+id/floatingActionButton"
+        app:layout_constraintBottom_toTopOf="@+id/mainAddBtn"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.333"
         app:layout_constraintStart_toStartOf="parent"
