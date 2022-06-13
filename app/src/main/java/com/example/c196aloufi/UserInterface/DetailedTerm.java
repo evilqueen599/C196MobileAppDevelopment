@@ -13,7 +13,6 @@ public class DetailedTerm extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_detailed_term_list);
     }
-
     public void onClickAddTerm(View view) {
         Intent intent = new Intent(DetailedTerm.this, AddTerm.class);
         startActivity(intent);
