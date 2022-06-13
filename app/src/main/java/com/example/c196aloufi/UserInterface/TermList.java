@@ -15,36 +15,24 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 
 public class TermList extends Activity {
-    private TextView termListTxt;
-    private RadioGroup radioGroup;
-    private RadioButton termRadBtn;
-    private RadioButton coursesRadBtn;
-    private RadioButton assessRadBtn;
-    private FloatingActionButton mainAddBtn;
 
-    @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_term_list);
+
         final RadioButton termRad = (RadioButton) findViewById(R.id.termRadBtn);
         final RadioButton courseRad = (RadioButton) findViewById(R.id.coursesRadBtn);
-        final RadioButton assessRad = (RadioButton) findViewById(R.id.assesRadBtn);
-
-        final Button go = findViewById(R.id.mainAddBtn);
+        final RadioButton assessRad = (RadioButton) findViewById(R.id.assessRadBtn);
+        final FloatingActionButton go = (FloatingActionButton) findViewById(R.id.mainAddBtn);
         go.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v) {
+            public void onClick(View view) {
                 if (termRad.isChecked()) {
-                    Intent intent = new Intent(TermList.this, DetailedTermList.class);
-                    startActivity(intent);
                     setContentView(R.layout.activity_detailed_term_list);
                 } else if (courseRad.isChecked()) {
-                    Intent intent1 = new Intent(getApplicationContext(), CourseList.class);
-                    startActivityForResult(intent1, 0);
-
+                    setContentView(R.layout.activity_course_list);
                 } else if (assessRad.isChecked()) {
-                    Intent intent2 = new Intent(getApplicationContext(), AssessmentList.class);
-                    startActivityForResult(intent2, 0);
+                    setContentView(R.layout.activity_assessments_list);
                 }
             }
         });

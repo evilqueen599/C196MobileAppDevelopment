@@ -15,7 +15,6 @@
         android:layout_marginEnd="21dp"
         android:layout_marginBottom="16dp"
         android:clickable="true"
-        android:onClick="onClickMainAddBtn"
         android:src="@drawable/ic_round_add_task_24"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -87,7 +86,7 @@
             android:textColor="#FFFFFF" />
 
         <RadioButton
-            android:id="@+id/assesRadBtn"
+            android:id="@+id/assessRadBtn"
             android:layout_width="131dp"
             android:layout_height="match_parent"
             android:onClick="onClickAssess"
