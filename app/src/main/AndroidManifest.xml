@@ -16,6 +16,15 @@
             android:name=".UserInterface.CourseList"
             android:exported="false" />
         <activity
+            android:name=".UserInterface.AddTerm"
+            android:exported="false" />
+        <activity
+            android:name=".UserInterface.AssessmentsList"
+            android:exported="false" />
+        <activity
+            android:name=".UserInterface.DetailedTerm"
+            android:exported="false" />
+        <activity
             android:name=".UserInterface.TermList"
             android:parentActivityName=".UserInterface.MainActivity"
             android:exported="false" />
