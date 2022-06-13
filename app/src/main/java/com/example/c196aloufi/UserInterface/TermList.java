@@ -28,7 +28,8 @@ public class TermList extends Activity {
             @Override
             public void onClick(View view) {
                 if (termRad.isChecked()) {
-                    setContentView(R.layout.activity_detailed_term_list);
+                    Intent intent = new Intent(TermList.this,DetailedTerm.class);
+                    startActivity(intent);
                 } else if (courseRad.isChecked()) {
                     setContentView(R.layout.activity_course_list);
                 } else if (assessRad.isChecked()) {
