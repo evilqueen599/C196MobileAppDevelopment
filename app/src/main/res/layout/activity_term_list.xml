@@ -19,22 +19,12 @@
         app:layout_constraintEnd_toEndOf="parent"
         tools:ignore="SpeakableTextPresentCheck,ImageContrastCheck" />
 
-    <ListView
-        android:id="@+id/listView"
-        android:layout_width="409dp"
-        android:layout_height="0dp"
-        android:layout_marginTop="96dp"
-        android:layout_marginBottom="272dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintVertical_bias="0.224" />
-
     <TextView
         android:id="@+id/termListTxt"
-        android:layout_width="189dp"
-        android:layout_height="41dp"
-        android:layout_marginTop="88dp"
+        android:layout_width="402dp"
+        android:layout_height="42dp"
+        android:layout_marginStart="116dp"
+        android:layout_marginEnd="116dp"
         android:text="Term List"
         android:textAlignment="center"
         android:textSize="34sp"
@@ -42,78 +32,70 @@
         app:layout_constraintBottom_toTopOf="@+id/listView"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.0" />
+        app:layout_constraintTop_toTopOf="parent" />
 
-    <androidx.appcompat.widget.Toolbar
-        android:id="@+id/toolbar2"
-        android:layout_width="409dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="1dp"
-        android:layout_marginTop="6dp"
-        android:layout_marginEnd="1dp"
-        android:layout_marginBottom="26dp"
-        android:background="?attr/colorPrimary"
-        android:minHeight="?attr/actionBarSize"
-        android:theme="?attr/actionBarTheme"
-        app:layout_constraintBottom_toTopOf="@+id/termListTxt"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.0" />
-
-    <RadioButton
-        android:id="@+id/termsRadBtn"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="15dp"
-        android:layout_marginBottom="3dp"
-        android:checked="true"
-        android:text="Terms"
-        android:textColor="#FFFFFF"
-        app:layout_constraintBottom_toBottomOf="@+id/toolbar2"
-        app:layout_constraintStart_toStartOf="@+id/toolbar2"
-        app:layout_constraintTop_toTopOf="@+id/toolbar2" />
-
-    <RadioButton
-        android:id="@+id/coursesRadBtn"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="151dp"
-        android:layout_marginTop="5dp"
-        android:layout_marginEnd="175dp"
-        android:layout_marginBottom="3dp"
-        android:text="Courses"
-        android:textColor="#FFFFFF"
-        app:layout_constraintBottom_toBottomOf="@+id/toolbar2"
-        app:layout_constraintEnd_toEndOf="@+id/toolbar2"
-        app:layout_constraintStart_toStartOf="@+id/toolbar2"
-        app:layout_constraintTop_toTopOf="@+id/toolbar2" />
-
-    <RadioButton
-        android:id="@+id/assesRadBtn"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="5dp"
-        android:layout_marginEnd="7dp"
-        android:layout_marginBottom="3dp"
-        android:text="Assessments"
-        android:textColor="#FFFFFF"
-        app:layout_constraintBottom_toBottomOf="@+id/toolbar2"
-        app:layout_constraintEnd_toEndOf="@+id/toolbar2"
-        app:layout_constraintTop_toTopOf="@+id/toolbar2" />
-
-    <RadioGroup
-        android:layout_width="407dp"
-        android:layout_height="54dp"
-        android:layout_marginStart="4dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginBottom="669dp"
-        app:layout_constraintBottom_toBottomOf="parent"
+    <ListView
+        android:id="@+id/listView"
+        android:layout_width="418dp"
+        android:layout_height="447dp"
+        android:layout_marginTop="202dp"
+        app:layout_constraintBottom_toTopOf="@+id/floatingActionButton"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
+    <RadioGroup
+        android:id="@+id/radioGroup"
+        android:layout_width="422dp"
+        android:layout_height="55dp"
+        android:layout_marginTop="5dp"
+        android:background="#673AB7"
+        android:baselineAligned="true"
+        android:checkedButton="@id/termRadBtn"
+        android:clipChildren="false"
+        android:clipToPadding="false"
+        android:gravity="center"
+        android:orientation="horizontal"
+        app:layout_constraintBottom_toTopOf="@+id/termListTxt"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.545"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0">
+
+        <RadioButton
+            android:id="@+id/termRadBtn"
+            android:layout_width="112dp"
+            android:layout_height="match_parent"
+            android:checked="true"
+            android:onClick="onClickTerms"
+            android:text="Terms"
+            android:textColor="#FFFFFF" />
+
+        <RadioButton
+            android:id="@+id/coursesRadBtn"
+            android:layout_width="128dp"
+            android:layout_height="match_parent"
+            android:onClick="onClickCourses"
+            android:text="Courses"
+            android:textColor="#FFFFFF" />
+
+        <RadioButton
+            android:id="@+id/assesRadBtn"
+            android:layout_width="131dp"
+            android:layout_height="match_parent"
+            android:onClick="onClickAssess"
+            android:text="Assessments"
+            android:textColor="#FFFFFF" />
+
+    </RadioGroup>
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_begin="20dp" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
+
