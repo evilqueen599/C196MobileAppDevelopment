@@ -43,6 +43,7 @@ public class AddTerm extends AppCompatActivity {
         DatePickerDialog.OnDateSetListener dateSetListener = new DatePickerDialog.OnDateSetListener() {
             @Override
             public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
+                month = month + 1;
                 String startDate = makeDateString(dayOfMonth, month, year);
                 startDateButton.setText(startDate);
             }
@@ -51,7 +52,7 @@ public class AddTerm extends AppCompatActivity {
         int year = calendar.get(Calendar.YEAR);
         int month = calendar.get(Calendar.MONTH);
         int day = calendar.get(Calendar.DAY_OF_MONTH);
-
+        month = month +1;
         int style = AlertDialog.THEME_HOLO_DARK;
         datePickerDialog = new DatePickerDialog(this, style, dateSetListener, year, month, day);
     }
