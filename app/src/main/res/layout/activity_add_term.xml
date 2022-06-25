@@ -9,18 +9,16 @@
         android:id="@+id/courseTitleTxt"
         android:layout_width="319dp"
         android:layout_height="51dp"
-        android:layout_marginStart="45dp"
-        android:layout_marginTop="20dp"
-        android:layout_marginEnd="47dp"
+        android:layout_marginBottom="240dp"
         android:ems="10"
         android:hint="Enter Term Title"
         android:inputType="textShortMessage"
         android:minHeight="48dp"
         android:textAlignment="center"
+        app:layout_constraintBottom_toTopOf="@+id/addCoursesBtn"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/addTermTxt" />
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent" />
 
     <TextView
         android:id="@+id/addTermTxt"
@@ -33,32 +31,37 @@
         android:textAlignment="center"
         android:textSize="20sp"
         android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@+id/courseTitleTxt"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0" />
 
     <Button
         android:id="@+id/addCoursesBtn"
         android:layout_width="139dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="136dp"
-        android:layout_marginTop="128dp"
         android:layout_marginEnd="136dp"
-        android:layout_marginBottom="12dp"
+        android:layout_marginBottom="13dp"
         android:text="Add Courses"
         app:layout_constraintBottom_toTopOf="@+id/addedCoursesList"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/endDatePicker"
-        app:layout_constraintVertical_bias="1.0" />
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent" />
 
     <ListView
         android:id="@+id/addedCoursesList"
         android:layout_width="409dp"
         android:layout_height="160dp"
-        tools:layout_editor_absoluteX="1dp"
-        tools:layout_editor_absoluteY="475dp" />
+        android:layout_marginStart="1dp"
+        android:layout_marginEnd="1dp"
+        android:layout_marginBottom="96dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent" />
 
     <Button
         android:id="@+id/assessBackBtn"
@@ -70,8 +73,8 @@
         android:text="Back"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/clearBtn"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/addedCoursesList" />
 
     <Button
         android:id="@+id/createBtn"
@@ -83,47 +86,48 @@
         android:text="Create"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toEndOf="@+id/clearBtn" />
+        app:layout_constraintTop_toBottomOf="@+id/addedCoursesList" />
 
     <Button
         android:id="@+id/clearBtn"
         android:layout_width="wrap_content"
         android:layout_height="48dp"
-        android:layout_marginStart="161dp"
-        android:layout_marginEnd="162dp"
+        android:layout_marginStart="24dp"
+        android:layout_marginEnd="24dp"
         android:layout_marginBottom="48dp"
         android:onClick="addTermClearBtn"
         android:text="Clear"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/endDatePicker"
-        app:layout_constraintVertical_bias="1.0" />
+        app:layout_constraintEnd_toStartOf="@+id/createBtn"
+        app:layout_constraintStart_toEndOf="@+id/assessBackBtn"
+        app:layout_constraintTop_toBottomOf="@+id/addedCoursesList"
+        app:layout_constraintVertical_bias="0.0" />
 
     <TextView
         android:id="@+id/termStart"
-        android:layout_width="185dp"
-        android:layout_height="35dp"
-        android:layout_marginStart="14dp"
-        android:layout_marginTop="72dp"
+        android:layout_width="172dp"
+        android:layout_height="31dp"
+        android:layout_marginStart="12dp"
+        android:layout_marginTop="64dp"
+        android:layout_marginEnd="2dp"
         android:text="Select Start Date"
         android:textAlignment="center"
         android:textSize="20sp"
         app:layout_constraintEnd_toStartOf="@+id/startDatePickerButton"
+        app:layout_constraintHorizontal_bias="0.23"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/courseTitleTxt" />
 
     <TextView
         android:id="@+id/termEnd"
-        android:layout_width="182dp"
-        android:layout_height="33dp"
-        android:layout_marginStart="17dp"
-        android:layout_marginTop="52dp"
+        android:layout_width="173dp"
+        android:layout_height="36dp"
+        android:layout_marginTop="72dp"
         android:text="Select End Date"
         android:textAlignment="center"
         android:textSize="20sp"
-        app:layout_constraintBottom_toTopOf="@+id/addCoursesBtn"
+        app:layout_constraintEnd_toStartOf="@+id/endDatePicker"
+        app:layout_constraintHorizontal_bias="0.538"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/termStart" />
 
@@ -132,30 +136,28 @@
         style="?android:spinnerStyle"
         android:layout_width="196dp"
         android:layout_height="49dp"
-        android:layout_marginTop="60dp"
+        android:layout_marginTop="36dp"
         android:layout_marginEnd="16dp"
         android:onClick="openStartDate"
         android:text="Jan 01 2022"
         android:textColor="@color/purple_700"
         android:textSize="18sp"
-        app:layout_constraintBottom_toTopOf="@+id/addedCoursesList"
+        app:layout_constraintBottom_toTopOf="@+id/addCoursesBtn"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/termEnd"
         app:layout_constraintTop_toBottomOf="@+id/startDatePickerButton"
-        app:layout_constraintVertical_bias="0.0" />
+        app:layout_constraintVertical_bias="0.3" />
 
     <Button
         android:id="@+id/startDatePickerButton"
         style="?android:spinnerStyle"
         android:layout_width="196dp"
         android:layout_height="49dp"
-        android:layout_marginTop="72dp"
+        android:layout_marginTop="56dp"
         android:layout_marginEnd="16dp"
         android:onClick="openStartDate"
         android:text="Jan 01 2022"
         android:textColor="@color/purple_700"
         android:textSize="18sp"
-        app:layout_constraintBottom_toBottomOf="@+id/termStart"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/courseTitleTxt" />
 
