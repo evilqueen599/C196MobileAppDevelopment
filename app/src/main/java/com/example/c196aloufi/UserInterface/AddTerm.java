@@ -113,6 +113,7 @@ public class AddTerm extends AppCompatActivity {
     }
 
     public void openStartDate(View view) {
+
         datePickerDialog.show();
     }
 }
