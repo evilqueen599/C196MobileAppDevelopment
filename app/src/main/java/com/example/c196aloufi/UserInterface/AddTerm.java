@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.DatePicker;
+import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.DialogFragment;
@@ -22,12 +23,20 @@ public class AddTerm extends AppCompatActivity {
 
     private Button startDateButton;
 
+    private Button endDatePicker;
+
+    private TextView courseTitleTxt;
+
+
+
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_term);
         initDatePicker();
         startDateButton = findViewById(R.id.startDatePickerButton);
         startDateButton.setText(getTodaysDate());
+        endDatePicker = findViewById(R.id.endDatePicker);
+        endDatePicker.setText(getTodaysDate());
     }
 
     private String getTodaysDate() {
@@ -94,13 +103,16 @@ public class AddTerm extends AppCompatActivity {
     }
 
     public void addTermClearBtn(View view) {
+        courseTitleTxt.setText(" ");
+        startDateButton.setText(getTodaysDate());
+        endDatePicker.setText(getTodaysDate());
     }
 
     public void addTermCreateBtn(View view) {
+
     }
 
     public void openStartDate(View view) {
         datePickerDialog.show();
-
     }
 }
