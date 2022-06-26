@@ -2,6 +2,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     package="com.example.c196aloufi">
+<uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
 
     <application
         android:allowBackup="true"
@@ -27,6 +28,8 @@
         <activity
             android:name=".UserInterface.TermList"
             android:parentActivityName=".UserInterface.MainActivity"
+            android:exported="false" />
+        <activity android:name=".UserInterface.AddCourse"
             android:exported="false" />
         <activity
             android:name=".UserInterface.MainActivity"
