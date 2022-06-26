@@ -28,13 +28,14 @@
             android:hint="Enter Course Length"
             android:inputType="text"
             android:minHeight="48dp"
-            app:layout_constraintBottom_toTopOf="@+id/courseName3"
+            android:textAlignment="center"
+            app:layout_constraintBottom_toTopOf="@+id/courseTrack"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/courseName" />
 
         <EditText
-            android:id="@+id/courseName3"
+            android:id="@+id/courseTrack"
             android:layout_width="392dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="10dp"
@@ -42,10 +43,11 @@
             android:layout_marginEnd="10dp"
             android:layout_marginBottom="30dp"
             android:ems="10"
-            android:hint="Enter Course Name"
+            android:hint="Enter Course Track"
             android:inputType="text"
             android:minHeight="48dp"
-            app:layout_constraintBottom_toTopOf="@+id/courseName4"
+            android:textAlignment="center"
+            app:layout_constraintBottom_toTopOf="@+id/courseDescription"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
@@ -64,7 +66,7 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/courseName4" />
+            app:layout_constraintTop_toBottomOf="@+id/courseDescription" />
 
         <TextView
             android:id="@+id/addCourseTxt"
@@ -97,13 +99,14 @@
             android:hint="Enter Course Name"
             android:inputType="text"
             android:minHeight="48dp"
+            android:textAlignment="center"
             app:layout_constraintBottom_toTopOf="@+id/courseDuration"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/addCourseTxt" />
 
         <EditText
-            android:id="@+id/courseName4"
+            android:id="@+id/courseDescription"
             android:layout_width="392dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="10dp"
@@ -111,12 +114,13 @@
             android:layout_marginEnd="10dp"
             android:layout_marginBottom="30dp"
             android:ems="10"
-            android:hint="Enter Course Name"
+            android:hint="Enter Course Description"
             android:inputType="text"
             android:minHeight="48dp"
+            android:textAlignment="center"
             app:layout_constraintBottom_toTopOf="@+id/addCourseButton"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/courseName3" />
+            app:layout_constraintTop_toBottomOf="@+id/courseTrack" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

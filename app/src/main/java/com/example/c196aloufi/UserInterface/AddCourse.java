@@ -23,7 +23,7 @@ public class AddCourse extends AppCompatActivity {
         setContentView(R.layout.activity_add_course);
 
         courseName = findViewById(R.id.courseName);
-        courseTrack = findViewById(R.id.courseTracks);
+        courseTrack = findViewById(R.id.courseTrack);
         courseDuration = findViewById(R.id.courseDuration);
         courseDescription = findViewById(R.id.courseDescription);
         addCourseBtn = findViewById(R.id.addCourseButton);
