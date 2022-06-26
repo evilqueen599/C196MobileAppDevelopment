@@ -8,7 +8,7 @@
     tools:context=".UserInterface.DetailedTerm">
 
     <ListView
-        android:id="@+id/detailedTermListView"
+        android:id="@+id/courseListView"
         android:layout_width="412dp"
         android:layout_height="473dp"
         android:layout_marginTop="87dp"
@@ -32,7 +32,7 @@
         android:textAllCaps="true"
         android:textSize="24sp"
         android:textStyle="bold"
-        app:layout_constraintBottom_toTopOf="@+id/detailedTermListView"
+        app:layout_constraintBottom_toTopOf="@+id/courseListView"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -49,7 +49,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/assNewTermButton"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/detailedTermListView" />
+        app:layout_constraintTop_toBottomOf="@+id/courseListView" />
 
     <Button
         android:id="@+id/assNewTermButton"
@@ -63,5 +63,5 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/backBtn"
-        app:layout_constraintTop_toBottomOf="@+id/detailedTermListView" />
+        app:layout_constraintTop_toBottomOf="@+id/courseListView" />
 </androidx.constraintlayout.widget.ConstraintLayout>
