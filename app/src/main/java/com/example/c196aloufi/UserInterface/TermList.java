@@ -23,7 +23,7 @@ public class TermList extends Activity {
         final RadioButton termRad = (RadioButton) findViewById(R.id.termRadBtn);
         final RadioButton courseRad = (RadioButton) findViewById(R.id.coursesRadBtn);
         final RadioButton assessRad = (RadioButton) findViewById(R.id.assessRadBtn);
-        final FloatingActionButton go = (FloatingActionButton) findViewById(R.id.mainAddBtn);
+        final Button go = (Button) findViewById(R.id.mainAddButton);
         go.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

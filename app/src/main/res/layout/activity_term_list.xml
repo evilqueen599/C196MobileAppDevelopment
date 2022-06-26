@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/addBtn"
@@ -8,53 +7,38 @@
     android:layout_height="match_parent"
     tools:context=".UserInterface.TermList">
 
-    <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/mainAddBtn"
-        android:layout_width="wrap_content"
-        android:layout_height="0dp"
-        android:layout_marginStart="334dp"
-        android:layout_marginEnd="21dp"
-        android:layout_marginBottom="16dp"
-        android:clickable="true"
-        android:src="@drawable/ic_round_add_task_24"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toStartOf="parent"
-        tools:ignore="SpeakableTextPresentCheck,ImageContrastCheck" />
-
     <TextView
         android:id="@+id/termListTxt"
         android:layout_width="297dp"
         android:layout_height="50dp"
-        android:layout_marginStart="116dp"
-        android:layout_marginEnd="116dp"
+        android:layout_marginStart="57dp"
+        android:layout_marginTop="15dp"
+        android:layout_marginEnd="57dp"
+        android:layout_marginBottom="44dp"
         android:text="Term List"
         android:textAlignment="center"
         android:textSize="34sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toTopOf="@+id/listView"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/radioGroup" />
 
     <ListView
         android:id="@+id/listView"
         android:layout_width="408dp"
         android:layout_height="430dp"
-        android:layout_marginTop="202dp"
-        app:layout_constraintBottom_toTopOf="@+id/mainAddBtn"
+        app:layout_constraintBottom_toTopOf="@+id/mainAddButton"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.333"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.0" />
+        app:layout_constraintTop_toBottomOf="@+id/termListTxt" />
 
     <RadioGroup
         android:id="@+id/radioGroup"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:layout_marginTop="5dp"
+        android:layout_width="411dp"
+        android:layout_height="77dp"
+        android:layout_marginBottom="20dp"
         android:background="#673AB7"
         android:baselineAligned="true"
         android:checkedButton="@id/termRadBtn"
@@ -64,10 +48,8 @@
         android:orientation="horizontal"
         app:layout_constraintBottom_toTopOf="@+id/termListTxt"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.545"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.0">
+        app:layout_constraintTop_toTopOf="parent">
 
         <RadioButton
             android:id="@+id/termRadBtn"
@@ -102,6 +84,20 @@
         android:layout_height="wrap_content"
         android:orientation="vertical"
         app:layout_constraintGuide_begin="20dp" />
+
+    <Button
+        android:id="@+id/mainAddButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="112dp"
+        android:layout_marginTop="4dp"
+        android:layout_marginEnd="112dp"
+        android:layout_marginBottom="32dp"
+        android:text="View Assessments"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/listView" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
 
