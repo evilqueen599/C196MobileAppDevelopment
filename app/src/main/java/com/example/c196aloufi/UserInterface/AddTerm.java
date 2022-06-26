@@ -25,7 +25,6 @@ public class AddTerm extends AppCompatActivity {
 
     private Button endDatePicker;
 
-    private TextView courseTitleTxt;
 
 
 
@@ -100,10 +99,6 @@ public class AddTerm extends AppCompatActivity {
     public void addTermBackBtn(View view) {
         Intent intent = new Intent(AddTerm.this, DetailedTerm.class);
         startActivity(intent);
-    }
-
-    public void addTermClearBtn(View view) {
-
     }
 
     public void addTermCreateBtn(View view) {
