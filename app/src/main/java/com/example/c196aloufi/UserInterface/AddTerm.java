@@ -103,9 +103,7 @@ public class AddTerm extends AppCompatActivity {
     }
 
     public void addTermClearBtn(View view) {
-        courseTitleTxt.setText(" ");
-        startDateButton.setText(getTodaysDate());
-        endDatePicker.setText(getTodaysDate());
+
     }
 
     public void addTermCreateBtn(View view) {
@@ -113,7 +111,6 @@ public class AddTerm extends AppCompatActivity {
     }
 
     public void openStartDate(View view) {
-
         datePickerDialog.show();
     }
 }

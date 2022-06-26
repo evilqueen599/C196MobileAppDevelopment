@@ -67,41 +67,27 @@
         android:id="@+id/assessBackBtn"
         android:layout_width="wrap_content"
         android:layout_height="48dp"
-        android:layout_marginStart="45dp"
+        android:layout_marginStart="48dp"
         android:layout_marginBottom="48dp"
         android:onClick="addTermBackBtn"
         android:text="Back"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/clearBtn"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/addedCoursesList" />
+        app:layout_constraintTop_toBottomOf="@+id/addedCoursesList"
+        app:layout_constraintVertical_bias="1.0" />
 
     <Button
         android:id="@+id/createBtn"
         android:layout_width="wrap_content"
         android:layout_height="48dp"
-        android:layout_marginEnd="45dp"
+        android:layout_marginEnd="48dp"
         android:layout_marginBottom="48dp"
         android:onClick="addTermCreateBtn"
         android:text="Create"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/addedCoursesList" />
-
-    <Button
-        android:id="@+id/clearBtn"
-        android:layout_width="wrap_content"
-        android:layout_height="48dp"
-        android:layout_marginStart="24dp"
-        android:layout_marginEnd="24dp"
-        android:layout_marginBottom="48dp"
-        android:onClick="addTermClearBtn"
-        android:text="Clear"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/createBtn"
-        app:layout_constraintStart_toEndOf="@+id/assessBackBtn"
         app:layout_constraintTop_toBottomOf="@+id/addedCoursesList"
-        app:layout_constraintVertical_bias="0.0" />
+        app:layout_constraintVertical_bias="1.0" />
 
     <TextView
         android:id="@+id/termStart"

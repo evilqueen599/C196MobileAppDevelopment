@@ -7,25 +7,6 @@
     android:layout_height="match_parent"
     tools:context=".UserInterface.DetailedTerm">
 
-    <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/addNewTermBtn"
-        android:layout_width="wrap_content"
-        android:layout_height="0dp"
-        android:layout_marginStart="334dp"
-        android:layout_marginTop="75dp"
-        android:layout_marginEnd="21dp"
-        android:layout_marginBottom="16dp"
-        android:clickable="true"
-        android:onClick="onClickAddTerm"
-        android:src="@drawable/ic_round_add_task_24"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/detailedTermListView"
-        app:layout_constraintVertical_bias="0.393"
-        tools:ignore="SpeakableTextPresentCheck,ImageContrastCheck" />
-
     <ListView
         android:id="@+id/detailedTermListView"
         android:layout_width="412dp"
@@ -55,4 +36,32 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/backBtn"
+        android:layout_width="146dp"
+        android:layout_height="48dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="107dp"
+        android:layout_marginEnd="13dp"
+        android:layout_marginBottom="16dp"
+        android:text="Back"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/assNewTermButton"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/detailedTermListView" />
+
+    <Button
+        android:id="@+id/assNewTermButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="83dp"
+        android:layout_marginTop="107dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="16dp"
+        android:text="Add New Term"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/backBtn"
+        app:layout_constraintTop_toBottomOf="@+id/detailedTermListView" />
 </androidx.constraintlayout.widget.ConstraintLayout>
