@@ -93,9 +93,10 @@
         android:layout_marginTop="4dp"
         android:layout_marginEnd="112dp"
         android:layout_marginBottom="32dp"
-        android:text="View Assessments"
+        android:text="View Terms"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.491"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/listView" />
 
