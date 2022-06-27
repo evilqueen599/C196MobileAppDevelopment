@@ -13,23 +13,28 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.C196Aloufi"
         tools:targetApi="31">
+
+        <activity
+            android:name=".UserInterface.AddCourse"
+            android:exported="false" />
+
         <activity
             android:name=".UserInterface.AddTerm"
             android:exported="false" />
+
         <activity
             android:name=".UserInterface.AssessmentsList"
             android:exported="false" />
+
         <activity
             android:name=".UserInterface.CourseList"
             android:exported="false" />
-        <activity
-            android:name=".UserInterface.DetailedTerm"
+
+        <activity android:name=".UserInterface.DetailedTerm"
             android:exported="false" />
         <activity
             android:name=".UserInterface.TermList"
             android:parentActivityName=".UserInterface.MainActivity"
-            android:exported="false" />
-        <activity android:name=".UserInterface.AddCourse"
             android:exported="false" />
         <activity
             android:name=".UserInterface.MainActivity"
