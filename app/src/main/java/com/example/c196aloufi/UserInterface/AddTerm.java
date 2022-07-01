@@ -2,16 +2,13 @@ package com.example.c196aloufi.UserInterface;
 
 import android.app.AlertDialog;
 import android.app.DatePickerDialog;
-import android.app.Dialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.DatePicker;
-import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.fragment.app.DialogFragment;
 
 import com.example.c196aloufi.R;
 
@@ -24,9 +21,6 @@ public class AddTerm extends AppCompatActivity {
     private Button startDateButton;
 
     private Button endDatePicker;
-
-
-
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -102,7 +96,8 @@ public class AddTerm extends AppCompatActivity {
     }
 
     public void addTermCreateBtn(View view) {
-
+        Intent intent = new Intent(AddTerm.this, DetailedTerm.class);
+        startActivity(intent);
     }
 
     public void openStartDate(View view) {

@@ -1,22 +1,16 @@
 package com.example.c196aloufi.UserInterface;
 
-import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.RadioButton;
-import android.widget.RadioGroup;
 import android.widget.TextView;
-
-import androidx.appcompat.widget.AppCompatButton$InspectionCompanion;
-
+import androidx.appcompat.app.AppCompatActivity;
 import com.example.c196aloufi.R;
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 
-public class TermList extends Activity {
+public class TermList extends AppCompatActivity {
 
     public Button mainAddButton;
 
@@ -35,9 +29,11 @@ public class TermList extends Activity {
                     Intent intent = new Intent(TermList.this,DetailedTerm.class);
                     startActivity(intent);
                 } else if (courseRad.isChecked()) {
-                    setContentView(R.layout.activity_course_list);
+                    Intent intent = new Intent(TermList.this,CourseList.class);
+                    startActivity(intent);
                 } else if (assessRad.isChecked()) {
-                    setContentView(R.layout.activity_assessments_list);
+                    Intent intent = new Intent(TermList.this,AssessmentsList.class);
+                    startActivity(intent);
                 }
             }
         });

@@ -15,6 +15,7 @@
         android:inputType="textShortMessage"
         android:minHeight="48dp"
         android:textAlignment="center"
+        android:textColorHint="#757575"
         app:layout_constraintBottom_toTopOf="@+id/addCoursesBtn"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
@@ -22,8 +23,8 @@
 
     <TextView
         android:id="@+id/addTermTxt"
-        android:layout_width="321dp"
-        android:layout_height="60dp"
+        android:layout_width="322dp"
+        android:layout_height="37dp"
         android:layout_marginStart="45dp"
         android:layout_marginTop="41dp"
         android:layout_marginEnd="45dp"
@@ -131,7 +132,8 @@
         app:layout_constraintBottom_toTopOf="@+id/addCoursesBtn"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/startDatePickerButton"
-        app:layout_constraintVertical_bias="0.3" />
+        app:layout_constraintVertical_bias="0.3"
+        tools:ignore="DuplicateSpeakableTextCheck" />
 
     <Button
         android:id="@+id/startDatePickerButton"
