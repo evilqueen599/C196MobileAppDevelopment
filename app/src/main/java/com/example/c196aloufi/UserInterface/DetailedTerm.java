@@ -20,4 +20,7 @@ public class DetailedTerm extends AppCompatActivity {
         Intent intent = new Intent(DetailedTerm.this, TermList.class);
         startActivity(intent);
     }
+
+    public void seeCoursesBtn(View view) {
+    }
 }

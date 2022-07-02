@@ -15,10 +15,11 @@
         android:layout_marginEnd="1dp"
         android:layout_marginBottom="228dp"
         app:layout_constraintBottom_toBottomOf="@id/guidelineBottom"
-        app:layout_constraintEnd_toEndOf="@id/guidelineLeft"
-        app:layout_constraintStart_toStartOf="@id/guidelineRight"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@id/guidelineTop"
-        app:layout_constraintVertical_bias="0.701" />
+        app:layout_constraintVertical_bias="0.537" />
 
     <TextView
         android:id="@+id/detailedTermListTxt"
@@ -54,6 +55,24 @@
         app:layout_constraintStart_toStartOf="@id/guidelineRight"
         app:layout_constraintTop_toBottomOf="@+id/guidelineTop"
         app:layout_constraintVertical_bias="0.956" />
+
+    <Button
+        android:id="@+id/viewAssociatedCourses"
+        android:layout_width="284dp"
+        android:layout_height="60dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="107dp"
+        android:layout_marginEnd="13dp"
+        android:layout_marginBottom="16dp"
+        android:onClick="seeCoursesBtn"
+        android:text="See Associated Courses"
+        app:layout_constraintBottom_toBottomOf="@id/guidelineBottom"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/guidelineLeft"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/guidelineTop"
+        app:layout_constraintVertical_bias="0.795" />
 
     <Button
         android:id="@+id/assNewTermButton"
