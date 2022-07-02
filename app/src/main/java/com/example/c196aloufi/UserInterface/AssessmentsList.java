@@ -14,6 +14,7 @@ public class AssessmentsList extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_assessments_list);
     }
+
     public void addAssessBackButton(View view) {
         Intent intent = new Intent(AssessmentsList.this, DetailedTerm.class);
         startActivity(intent);

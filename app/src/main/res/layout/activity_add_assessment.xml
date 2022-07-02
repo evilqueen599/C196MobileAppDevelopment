@@ -63,10 +63,10 @@
         android:text="Objective Assessment"
         app:layout_constraintBottom_toTopOf="@+id/guidelineBottom"
         app:layout_constraintEnd_toStartOf="@+id/guidelineRight"
-        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintHorizontal_bias="0.446"
         app:layout_constraintStart_toStartOf="@id/guidelineLeft"
         app:layout_constraintTop_toBottomOf="@+id/guidelineTop"
-        app:layout_constraintVertical_bias="0.086" />
+        app:layout_constraintVertical_bias="0.044" />
 
     <CheckBox
         android:id="@+id/paBtn"
@@ -79,10 +79,10 @@
         android:text="Performance Assessment"
         app:layout_constraintBottom_toTopOf="@+id/guidelineBottom"
         app:layout_constraintEnd_toEndOf="@id/guidelineRight"
-        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintHorizontal_bias="0.522"
         app:layout_constraintStart_toEndOf="@+id/guidelineLeft"
         app:layout_constraintTop_toBottomOf="@+id/guidelineTop"
-        app:layout_constraintVertical_bias="0.087" />
+        app:layout_constraintVertical_bias="0.164" />
 
     <EditText
         android:id="@+id/assessNameTxt"
@@ -95,12 +95,13 @@
         android:ems="10"
         android:inputType="text"
         android:textAlignment="center"
+        android:hint="Enter Assessment Title"
         app:layout_constraintBottom_toTopOf="@+id/guidelineBottom"
         app:layout_constraintEnd_toEndOf="@id/guidelineRight"
         app:layout_constraintStart_toStartOf="@id/guidelineLeft"
         app:layout_constraintTop_toBottomOf="@+id/guidelineTop"
         app:layout_constraintVertical_bias="0.295"
-        tools:text="Assessment Name" />
+         />
 
     <Button
         android:id="@+id/endDatePicker"
