@@ -51,10 +51,10 @@
         android:text="Back"
         app:layout_constraintBottom_toBottomOf="@id/guidelineBottom"
         app:layout_constraintEnd_toStartOf="@+id/assNewTermButton"
-        app:layout_constraintHorizontal_bias="0.183"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="@id/guidelineRight"
         app:layout_constraintTop_toBottomOf="@+id/guidelineTop"
-        app:layout_constraintVertical_bias="0.956" />
+        app:layout_constraintVertical_bias="1.0" />
 
     <Button
         android:id="@+id/viewAssociatedCourses"
@@ -86,10 +86,9 @@
         android:text="Add New Term"
         app:layout_constraintBottom_toBottomOf="@id/guidelineBottom"
         app:layout_constraintEnd_toEndOf="@id/backBtn"
-        app:layout_constraintHorizontal_bias="0.537"
         app:layout_constraintStart_toEndOf="@+id/guidelineLeft"
         app:layout_constraintTop_toBottomOf="@+id/guidelineTop"
-        app:layout_constraintVertical_bias="0.956" />
+        app:layout_constraintVertical_bias="1.0" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guidelineTop"
