@@ -89,12 +89,12 @@ public class AddCourse extends AppCompatActivity {
     }
 
     public void courseCreateBtn(View view) {
-        Intent intent = new Intent(AddCourse.this, TermList.class);
+        Intent intent = new Intent(AddCourse.this, mainScreen.class);
         startActivity(intent);
     }
 
     public void addCourseBackButton(View view) {
-        Intent intent = new Intent(AddCourse.this, TermList.class);
+        Intent intent = new Intent(AddCourse.this, mainScreen.class);
         startActivity(intent);
     }
 }

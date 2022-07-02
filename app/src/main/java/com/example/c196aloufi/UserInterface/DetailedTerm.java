@@ -17,7 +17,7 @@ public class DetailedTerm extends AppCompatActivity {
     }
 
     public void backBtn(View view) {
-        Intent intent = new Intent(DetailedTerm.this, TermList.class);
+        Intent intent = new Intent(DetailedTerm.this, mainScreen.class);
         startActivity(intent);
     }
 

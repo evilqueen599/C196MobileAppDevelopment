@@ -22,7 +22,7 @@ public class CourseList extends AppCompatActivity {
     }
 
     public void addCourseBackButton(View view) {
-        Intent intent = new Intent(CourseList.this, TermList.class);
+        Intent intent = new Intent(CourseList.this, mainScreen.class);
         startActivity(intent);
     }
 }

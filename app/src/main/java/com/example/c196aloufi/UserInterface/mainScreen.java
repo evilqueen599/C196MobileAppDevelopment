@@ -10,13 +10,13 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.example.c196aloufi.R;
 
 
-public class TermList extends AppCompatActivity {
+public class mainScreen extends AppCompatActivity {
 
     public Button mainAddButton;
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_term_list);
+        setContentView(R.layout.activity_main_screen);
 
         final RadioButton termRad = (RadioButton) findViewById(R.id.termRadBtn);
         final RadioButton courseRad = (RadioButton) findViewById(R.id.coursesRadBtn);
@@ -26,13 +26,13 @@ public class TermList extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 if (termRad.isChecked()) {
-                    Intent intent = new Intent(TermList.this,DetailedTerm.class);
+                    Intent intent = new Intent(mainScreen.this,DetailedTerm.class);
                     startActivity(intent);
                 } else if (courseRad.isChecked()) {
-                    Intent intent = new Intent(TermList.this,CourseList.class);
+                    Intent intent = new Intent(mainScreen.this,CourseList.class);
                     startActivity(intent);
                 } else if (assessRad.isChecked()) {
-                    Intent intent = new Intent(TermList.this,AssessmentsList.class);
+                    Intent intent = new Intent(mainScreen.this,AssessmentsList.class);
                     startActivity(intent);
                 }
             }

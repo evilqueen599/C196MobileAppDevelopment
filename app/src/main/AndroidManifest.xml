@@ -36,7 +36,7 @@
         <activity android:name=".UserInterface.DetailedTerm"
             android:exported="false" />
         <activity
-            android:name=".UserInterface.TermList"
+            android:name=".UserInterface.mainScreen"
             android:parentActivityName=".UserInterface.MainActivity"
             android:exported="false" />
         <activity

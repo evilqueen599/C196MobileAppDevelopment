@@ -9,8 +9,8 @@
 
     <ListView
         android:id="@+id/courseListView"
-        android:layout_width="412dp"
-        android:layout_height="473dp"
+        android:layout_width="406dp"
+        android:layout_height="412dp"
         android:layout_marginTop="87dp"
         android:layout_marginEnd="1dp"
         android:layout_marginBottom="228dp"
@@ -19,7 +19,7 @@
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@id/guidelineTop"
-        app:layout_constraintVertical_bias="0.537" />
+        app:layout_constraintVertical_bias="0.179" />
 
     <TextView
         android:id="@+id/detailedTermListTxt"
@@ -66,13 +66,29 @@
         android:layout_marginBottom="16dp"
         android:onClick="seeCoursesBtn"
         android:text="See Associated Courses"
-        app:layout_constraintBottom_toBottomOf="@id/guidelineBottom"
+        app:layout_constraintBottom_toTopOf="@+id/guidelineBottom"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/guidelineLeft"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/guidelineTop"
-        app:layout_constraintVertical_bias="0.795" />
+        app:layout_constraintTop_toTopOf="@id/guidelineTop"
+        app:layout_constraintVertical_bias="0.711" />
+
+    <Button
+        android:id="@+id/editTermButton"
+        android:layout_width="284dp"
+        android:layout_height="60dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="107dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="16dp"
+        android:onClick="seeCoursesBtn"
+        android:text="Edit Existing Term"
+        app:layout_constraintBottom_toTopOf="@+id/guidelineBottom"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@id/guidelineTop"
+        app:layout_constraintVertical_bias="0.83" />
 
     <Button
         android:id="@+id/assNewTermButton"

@@ -5,7 +5,7 @@
     android:id="@+id/addBtn"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".UserInterface.TermList">
+    tools:context=".UserInterface.mainScreen">
 
     <TextView
         android:id="@+id/termListTxt"
