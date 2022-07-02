@@ -13,29 +13,16 @@
         android:layout_marginTop="87dp"
         android:layout_marginEnd="1dp"
         android:layout_marginBottom="228dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.0" >
-
-        <androidx.constraintlayout.widget.Guideline
-            android:id="@+id/guideline5"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="vertical" />
-
-        <androidx.constraintlayout.widget.Guideline
-            android:id="@+id/guideline6"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="vertical" />
-    </ListView>
+        app:layout_constraintBottom_toBottomOf="@id/guidelineBottom"
+        app:layout_constraintEnd_toEndOf="@id/guidelineLeft"
+        app:layout_constraintStart_toStartOf="@id/guidelineRight"
+        app:layout_constraintTop_toTopOf="@id/guidelineTop"
+        app:layout_constraintVertical_bias="0.701" />
 
     <TextView
         android:id="@+id/detailedTermListTxt"
-        android:layout_width="283dp"
-        android:layout_height="0dp"
+        android:layout_width="278dp"
+        android:layout_height="53dp"
         android:layout_marginStart="130dp"
         android:layout_marginTop="28dp"
         android:layout_marginEnd="131dp"
@@ -44,10 +31,11 @@
         android:textAllCaps="true"
         android:textSize="24sp"
         android:textStyle="bold"
-        app:layout_constraintBottom_toTopOf="@+id/courseListView"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintBottom_toTopOf="@+id/guidelineBottom"
+        app:layout_constraintEnd_toEndOf="@id/guidelineLeft"
+        app:layout_constraintStart_toStartOf="@id/guidelineRight"
+        app:layout_constraintTop_toTopOf="@id/guidelineTop"
+        app:layout_constraintVertical_bias="0.0" />
 
     <Button
         android:id="@+id/backBtn"
@@ -58,10 +46,12 @@
         android:layout_marginEnd="13dp"
         android:layout_marginBottom="16dp"
         android:text="Back"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toBottomOf="@id/guidelineBottom"
         app:layout_constraintEnd_toStartOf="@+id/assNewTermButton"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/courseListView" />
+        app:layout_constraintHorizontal_bias="0.183"
+        app:layout_constraintStart_toStartOf="@id/guidelineRight"
+        app:layout_constraintTop_toBottomOf="@+id/guidelineTop"
+        app:layout_constraintVertical_bias="0.956" />
 
     <Button
         android:id="@+id/assNewTermButton"
@@ -72,22 +62,40 @@
         android:layout_marginEnd="16dp"
         android:layout_marginBottom="16dp"
         android:text="Add New Term"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/backBtn"
-        app:layout_constraintTop_toBottomOf="@+id/courseListView" />
+        app:layout_constraintBottom_toBottomOf="@id/guidelineBottom"
+        app:layout_constraintEnd_toEndOf="@id/backBtn"
+        app:layout_constraintHorizontal_bias="0.537"
+        app:layout_constraintStart_toEndOf="@+id/guidelineLeft"
+        app:layout_constraintTop_toBottomOf="@+id/guidelineTop"
+        app:layout_constraintVertical_bias="0.956" />
 
     <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/guideline3"
+        android:id="@+id/guidelineTop"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintGuide_begin="8dp" />
+        app:layout_constraintGuide_percent="0.02
+" />
 
     <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/guideline4"
+        android:id="@+id/guidelineBottom"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintGuide_begin="726dp" />
+        app:layout_constraintGuide_percent="0.98" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guidelineLeft"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.98" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guidelineRight"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.02" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
