@@ -6,7 +6,6 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
-import android.widget.DatePicker;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -20,15 +19,13 @@ public class AddCourse extends AppCompatActivity {
 
     private Button startDateButton;
 
-    private Button endDatePicker;
-
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_course);
         initDatePicker();
         startDateButton = findViewById(R.id.startDatePickerButton);
         startDateButton.setText(getTodaysDate());
-        endDatePicker = findViewById(R.id.endDatePicker);
+        Button endDatePicker = findViewById(R.id.endDatePicker);
         endDatePicker.setText(getTodaysDate());
     }
 
@@ -42,13 +39,10 @@ public class AddCourse extends AppCompatActivity {
     }
 
     private void initDatePicker() {
-        DatePickerDialog.OnDateSetListener dateSetListener = new DatePickerDialog.OnDateSetListener() {
-            @Override
-            public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
-                month = month + 1;
-                String startDate = makeDateString(dayOfMonth, month, year);
-                startDateButton.setText(startDate);
-            }
+        DatePickerDialog.OnDateSetListener dateSetListener = (view, year, month, dayOfMonth) -> {
+            month = month + 1;
+            String startDate = makeDateString(dayOfMonth, month, year);
+            startDateButton.setText(startDate);
         };
         Calendar calendar = Calendar.getInstance();
         int year = calendar.get(Calendar.YEAR);
