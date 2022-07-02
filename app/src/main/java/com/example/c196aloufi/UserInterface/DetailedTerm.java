@@ -3,10 +3,7 @@ package com.example.c196aloufi.UserInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
-
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.fragment.app.DialogFragment;
-
 import com.example.c196aloufi.R;
 
 public class DetailedTerm extends AppCompatActivity {
