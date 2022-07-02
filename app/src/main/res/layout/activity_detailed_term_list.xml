@@ -45,7 +45,7 @@
         android:layout_height="48dp"
         android:layout_marginStart="16dp"
         android:layout_marginTop="107dp"
-        android:layout_marginEnd="13dp"
+        android:layout_marginEnd="83dp"
         android:layout_marginBottom="16dp"
         android:onClick="backBtn"
         android:text="Back"
@@ -86,6 +86,7 @@
         android:text="Add New Term"
         app:layout_constraintBottom_toBottomOf="@id/guidelineBottom"
         app:layout_constraintEnd_toEndOf="@id/backBtn"
+        app:layout_constraintHorizontal_bias="0.535"
         app:layout_constraintStart_toEndOf="@+id/guidelineLeft"
         app:layout_constraintTop_toBottomOf="@+id/guidelineTop"
         app:layout_constraintVertical_bias="1.0" />
