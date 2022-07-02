@@ -16,7 +16,7 @@ public class AssessmentsList extends AppCompatActivity {
     }
 
     public void addAssessBackButton(View view) {
-        Intent intent = new Intent(AssessmentsList.this, DetailedTerm.class);
+        Intent intent = new Intent(AssessmentsList.this, TermList.class);
         startActivity(intent);
     }
 
