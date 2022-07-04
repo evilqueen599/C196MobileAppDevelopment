@@ -9,7 +9,6 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
-        android:layout_gravity="top"
         tools:context=".UserInterface.AddCourse">
 
         <EditText
@@ -76,6 +75,7 @@
             android:layout_marginStart="45dp"
             android:layout_marginTop="20dp"
             android:layout_marginEnd="45dp"
+            android:focusedByDefault="true"
             android:text="Add A New Course"
             android:textAlignment="center"
             android:textSize="20sp"
@@ -239,7 +239,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            app:layout_constraintGuide_percent="0.0" />
+            app:layout_constraintGuide_percent="0.02" />
 
         <androidx.constraintlayout.widget.Guideline
             android:id="@+id/guidelineBottom"
