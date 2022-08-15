@@ -17,16 +17,21 @@ public class AddCourse extends AppCompatActivity {
 
     private DatePickerDialog datePickerDialog;
 
+    private DatePickerDialog endDatePickerDialog;
+
     private Button startDateButton;
+
+    private Button endDateButton;
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_course);
         initDatePicker();
-        startDateButton = findViewById(R.id.startDatePickerButton);
+        startDateButton = findViewById(R.id.startDateButton);
         startDateButton.setText(getTodaysDate());
-        Button endDatePicker = findViewById(R.id.endDatePicker);
-        endDatePicker.setText(getTodaysDate());
+        initEndDatePicker();
+        endDateButton = findViewById(R.id.endDateButton);
+        endDateButton.setText(getEndDate());
     }
 
     private String getTodaysDate() {
@@ -34,13 +39,22 @@ public class AddCourse extends AppCompatActivity {
         int year = calendar.get(Calendar.YEAR);
         int month = calendar.get(Calendar.MONTH);
         int day = calendar.get(Calendar.DAY_OF_MONTH);
+        makeDateString(day, month, year);
         return makeDateString(day, month, year);
 
     }
 
+    private String getEndDate()  {
+        Calendar cal = Calendar.getInstance();
+        int year = cal.get(Calendar.YEAR);
+        int month = cal.get(Calendar.MONTH);
+        int day = cal.get(Calendar.DAY_OF_MONTH);
+        endDateString(day, month, year);
+        return endDateString(day, month, year);
+    }
+
     private void initDatePicker() {
         DatePickerDialog.OnDateSetListener dateSetListener = (view, year, month, dayOfMonth) -> {
-            month = month + 1;
             String startDate = makeDateString(dayOfMonth, month, year);
             startDateButton.setText(startDate);
         };
@@ -48,12 +62,29 @@ public class AddCourse extends AppCompatActivity {
         int year = calendar.get(Calendar.YEAR);
         int month = calendar.get(Calendar.MONTH);
         int day = calendar.get(Calendar.DAY_OF_MONTH);
-        month = month +1;
         int style = AlertDialog.THEME_HOLO_DARK;
         datePickerDialog = new DatePickerDialog(this, style, dateSetListener, year, month, day);
     }
 
+    private void initEndDatePicker() {
+        DatePickerDialog.OnDateSetListener dateSetListener = (view, year, month, dayOfMonth) -> {
+            String endDate = endDateString(dayOfMonth, month, year);
+            endDateButton.setText(endDate);
+        };
+        Calendar calendar = Calendar.getInstance();
+        int year = calendar.get(Calendar.YEAR);
+        int month = calendar.get(Calendar.MONTH);
+        int day = calendar.get(Calendar.DAY_OF_MONTH);
+        int style = AlertDialog.THEME_HOLO_DARK;
+        endDatePickerDialog = new DatePickerDialog(this, style, dateSetListener, year, month, day);
+    }
     private String makeDateString(int dayOfMonth, int month, int year) {
+        month = month + 1;
+        return getDateFormat(month) + " " + dayOfMonth + " " + year;
+    }
+
+    private String endDateString (int dayOfMonth, int month, int year) {
+        month = month + 1;
         return getDateFormat(month) + " " + dayOfMonth + " " + year;
     }
     private String getDateFormat(int month) {
@@ -87,6 +118,11 @@ public class AddCourse extends AppCompatActivity {
     public void openStartDate(View view) {
         datePickerDialog.show();
     }
+
+    public void openEndDate(View view) {
+        endDatePickerDialog.show();
+    }
+
 
     public void courseCreateBtn(View view) {
         Intent intent = new Intent(AddCourse.this, mainScreen.class);
