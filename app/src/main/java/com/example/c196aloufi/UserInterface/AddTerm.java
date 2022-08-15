@@ -13,22 +13,28 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.example.c196aloufi.R;
 
 import java.util.Calendar;
+import java.util.concurrent.Callable;
 
 public class AddTerm extends AppCompatActivity {
 
     private DatePickerDialog datePickerDialog;
 
-    private Button startDateButton;
+    private DatePickerDialog endDatePickerDialog;
+
+    private Button startDatePickerButton;
+
+    private Button endDateButton;
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_term);
 
         initDatePicker();
-        startDateButton = findViewById(R.id.startDatePickerButton);
-        startDateButton.setText(getTodaysDate());
-        Button endDatePicker = findViewById(R.id.endDatePicker);
-        endDatePicker.setText(getTodaysDate());
+        startDatePickerButton = findViewById(R.id.startDatePickerButton);
+        startDatePickerButton.setText(getTodaysDate());
+        initEndDatePicker();
+        endDateButton = findViewById(R.id.endDatePicker);
+        endDateButton.setText(getEndDate());
     }
 
     private String getTodaysDate() {
@@ -40,11 +46,20 @@ public class AddTerm extends AppCompatActivity {
 
     }
 
+    private String getEndDate() {
+        Calendar cal = Calendar.getInstance();
+        int year = cal.get(Calendar.YEAR);
+        int month = cal.get(Calendar.MONTH);
+        int day = cal.get(Calendar.DAY_OF_MONTH);
+        endDateString(day, month, day);
+        return endDateString(day, month, year);
+    }
+
     private void initDatePicker() {
         DatePickerDialog.OnDateSetListener dateSetListener = (view, year, month, dayOfMonth) -> {
             month = month + 1;
             String startDate = makeDateString(dayOfMonth, month, year);
-            startDateButton.setText(startDate);
+            startDatePickerButton.setText(startDate);
         };
         Calendar calendar = Calendar.getInstance();
         int year = calendar.get(Calendar.YEAR);
@@ -55,7 +70,25 @@ public class AddTerm extends AppCompatActivity {
         datePickerDialog = new DatePickerDialog(this, style, dateSetListener, year, month, day);
     }
 
+    private void initEndDatePicker() {
+        DatePickerDialog.OnDateSetListener dateSetListener = (view, year, month, dayOfMonth) -> {
+            month = month + 1;
+            String endDate = endDateString(dayOfMonth, month, year);
+            endDateButton.setText(endDate);
+        };
+        Calendar calendar = Calendar.getInstance();
+        int year = calendar.get(Calendar.YEAR);
+        int month = calendar.get(Calendar.MONTH);
+        int day = calendar.get(Calendar.DAY_OF_MONTH);
+        month = month +1;
+        int style = AlertDialog.THEME_HOLO_DARK;
+        endDatePickerDialog = new DatePickerDialog(this, style, dateSetListener, year, month, day);
+    }
     private String makeDateString(int dayOfMonth, int month, int year) {
+        return getDateFormat(month) + " " + dayOfMonth + " " + year;
+    }
+
+    private String endDateString (int dayOfMonth, int month, int year) {
         return getDateFormat(month) + " " + dayOfMonth + " " + year;
     }
     private String getDateFormat(int month) {
@@ -98,5 +131,9 @@ public class AddTerm extends AppCompatActivity {
 
     public void openStartDate(View view) {
         datePickerDialog.show();
+    }
+
+    public void openEndDate(View view) {
+        endDatePickerDialog.show();
     }
 }
