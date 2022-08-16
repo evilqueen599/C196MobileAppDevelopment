@@ -150,7 +150,7 @@
             app:layout_constraintVertical_bias="0.992" />
 
         <TextView
-            android:id="@+id/termStart"
+            android:id="@+id/dueDate"
             android:layout_width="172dp"
             android:layout_height="31dp"
             android:layout_marginStart="12dp"
@@ -216,7 +216,7 @@
             android:textSize="18sp"
             app:layout_constraintBottom_toTopOf="@+id/guidelineBottom"
             app:layout_constraintEnd_toEndOf="@id/guidelineRight"
-            app:layout_constraintStart_toEndOf="@+id/termStart"
+            app:layout_constraintStart_toEndOf="@+id/dueDate"
             app:layout_constraintTop_toBottomOf="@+id/guidelineTop"
             app:layout_constraintVertical_bias="0.473" />
 
