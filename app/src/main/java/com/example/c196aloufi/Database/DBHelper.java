@@ -25,35 +25,4 @@ public class DBHelper extends SQLiteOpenHelper {
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
     }
 
-    public void createDatabase() {
-        this.getWritableDatabase().execSQL("CREATE TABLE IF NOT EXISTS terms (id INTEGER PRIMARY KEY " +
-                "AUTOINCREMENT, title TEXT, start_date DATE, end_date DATE)");
-    }
-
-    public TermDAO getTermByID (String id) {
-        Cursor cursor = this.getWritableDatabase().rawQuery("SELECT * FROM terms WHERE id = "+ id, null);
-        TermDAO term = null;
-        while(cursor.moveToNext()) {
-            Date startDate = Date.valueOf(cursor.getString(cursor.getColumnIndex("start_date")));
-            Date endDate = Date.valueOf(cursor.getString(cursor.getColumnIndex("end_date")));
-            term = new TermDAO(cursor.getInt(cursor.getColumnIndex("id")),
-                    cursor.getString(cursor.getColumnIndex("title")), startDate, endDate);
-        }
-        return term;
-    }
-
-    public void addTerm(String title, Date startDate, Date endDate) {
-        this.getWritableDatabase().execSQL("INSERT INTO terms (title, start_date, end_date) VALUES ('"+ title +"', '"+ startDate +"', '"+ endDate +"')");
-    }
-
-    public void updateTerm(TermDAO term) {
-        this.getWritableDatabase().execSQL("UPDATE terms SET title = '"+ term.getTitle() +"', start_date = '"+ term.getStartDate() +
-                "', end_date = '"+ term.getEndDate() +"' WHERE id = "+ term.getId());
-    }
-    public void populateDatabase() {
-        addTerm("Electives Term", Date.valueOf("2022-01-01"), Date.valueOf("2022-06-30"));
-        addTerm("General Ed Term", Date.valueOf("2022-07-01"), Date.valueOf("2022-12-31"));
-
-    }
-
 }
