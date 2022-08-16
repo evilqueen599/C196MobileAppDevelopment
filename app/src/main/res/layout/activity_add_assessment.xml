@@ -66,7 +66,7 @@
         app:layout_constraintHorizontal_bias="0.446"
         app:layout_constraintStart_toStartOf="@id/guidelineLeft"
         app:layout_constraintTop_toBottomOf="@+id/guidelineTop"
-        app:layout_constraintVertical_bias="0.044" />
+        app:layout_constraintVertical_bias="0.06" />
 
     <CheckBox
         android:id="@+id/paBtn"
@@ -82,7 +82,7 @@
         app:layout_constraintHorizontal_bias="0.522"
         app:layout_constraintStart_toEndOf="@+id/guidelineLeft"
         app:layout_constraintTop_toBottomOf="@+id/guidelineTop"
-        app:layout_constraintVertical_bias="0.164" />
+        app:layout_constraintVertical_bias="0.188" />
 
     <EditText
         android:id="@+id/assessNameTxt"
@@ -93,15 +93,14 @@
         android:layout_marginEnd="19dp"
         android:layout_marginBottom="85dp"
         android:ems="10"
+        android:hint="Enter Assessment Title"
         android:inputType="text"
         android:textAlignment="center"
-        android:hint="Enter Assessment Title"
         app:layout_constraintBottom_toTopOf="@+id/guidelineBottom"
         app:layout_constraintEnd_toEndOf="@id/guidelineRight"
         app:layout_constraintStart_toStartOf="@id/guidelineLeft"
         app:layout_constraintTop_toBottomOf="@+id/guidelineTop"
-        app:layout_constraintVertical_bias="0.295"
-         />
+        app:layout_constraintVertical_bias="0.346" />
 
     <Button
         android:id="@+id/endDatePicker"
@@ -120,7 +119,7 @@
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toEndOf="@+id/guidelineLeft"
         app:layout_constraintTop_toBottomOf="@+id/guidelineTop"
-        app:layout_constraintVertical_bias="0.794"
+        app:layout_constraintVertical_bias="0.672"
         tools:ignore="DuplicateSpeakableTextCheck" />
 
     <Button
@@ -138,15 +137,15 @@
         android:textSize="18sp"
         app:layout_constraintBottom_toTopOf="@+id/guidelineBottom"
         app:layout_constraintEnd_toEndOf="@id/guidelineRight"
-        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintHorizontal_bias="0.933"
         app:layout_constraintStart_toEndOf="@+id/guidelineLeft"
         app:layout_constraintTop_toBottomOf="@+id/guidelineTop"
-        app:layout_constraintVertical_bias="0.517" />
+        app:layout_constraintVertical_bias="0.527" />
 
     <TextView
         android:id="@+id/termStart"
-        android:layout_width="172dp"
-        android:layout_height="31dp"
+        android:layout_width="150dp"
+        android:layout_height="50dp"
         android:layout_marginStart="16dp"
         android:layout_marginTop="82dp"
         android:layout_marginEnd="1dp"
@@ -159,12 +158,12 @@
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="@id/guidelineLeft"
         app:layout_constraintTop_toBottomOf="@+id/guidelineTop"
-        app:layout_constraintVertical_bias="0.531" />
+        app:layout_constraintVertical_bias="0.54" />
 
     <TextView
         android:id="@+id/termEnd"
-        android:layout_width="173dp"
-        android:layout_height="36dp"
+        android:layout_width="147dp"
+        android:layout_height="52dp"
         android:layout_marginStart="14dp"
         android:layout_marginTop="112dp"
         android:layout_marginBottom="91dp"
@@ -173,15 +172,15 @@
         android:textSize="20sp"
         app:layout_constraintBottom_toTopOf="@+id/guidelineBottom"
         app:layout_constraintEnd_toStartOf="@+id/guidelineRight"
-        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintHorizontal_bias="0.008"
         app:layout_constraintStart_toStartOf="@id/guidelineLeft"
         app:layout_constraintTop_toBottomOf="@+id/guidelineTop"
-        app:layout_constraintVertical_bias="0.79" />
+        app:layout_constraintVertical_bias="0.663" />
 
     <Button
         android:id="@+id/addAssessmentBtn"
-        android:layout_width="176dp"
-        android:layout_height="52dp"
+        android:layout_width="172dp"
+        android:layout_height="73dp"
         android:layout_marginStart="117dp"
         android:layout_marginTop="91dp"
         android:layout_marginEnd="118dp"
