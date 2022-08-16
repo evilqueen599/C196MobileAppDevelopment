@@ -17,22 +17,17 @@ import java.util.Calendar;
 public class AddAssessment extends AppCompatActivity {
         private DatePickerDialog datePickerDialog;
 
-        private DatePickerDialog endDatePickerDialog;
 
-        private Button startDateButton;
+        private Button dueDateButton;
 
-        private Button endDatePicker;
 
         @Override
         protected void onCreate(Bundle savedInstanceState) {
                 super.onCreate(savedInstanceState);
                 setContentView(R.layout.activity_add_assessment);
                 initDatePicker();
-                startDateButton = findViewById(R.id.startDatePickerButton);
-                startDateButton.setText(getTodaysDate());
-                initEndDatePicker();
-                endDatePicker = findViewById(R.id.endDatePicker);
-                endDatePicker.setText(getEndDate());
+                dueDateButton = findViewById(R.id.startDatePickerButton);
+                dueDateButton.setText(getTodaysDate());
         }
 
         private String getTodaysDate() {
@@ -45,19 +40,10 @@ public class AddAssessment extends AppCompatActivity {
 
         }
 
-        private String getEndDate()  {
-                Calendar cal = Calendar.getInstance();
-                int year = cal.get(Calendar.YEAR);
-                int month = cal.get(Calendar.MONTH);
-                int day = cal.get(Calendar.DAY_OF_MONTH);
-                endDateString(day, month, year);
-                return endDateString(day, month, year);
-        }
-
         private void initDatePicker() {
                 DatePickerDialog.OnDateSetListener dateSetListener = (view, year, month, dayOfMonth) -> {
-                        String startDate = makeDateString(dayOfMonth, month, year);
-                        startDateButton.setText(startDate);
+                        String dueDate = makeDateString(dayOfMonth, month, year);
+                        dueDateButton.setText(dueDate);
                 };
                 Calendar calendar = Calendar.getInstance();
                 int year = calendar.get(Calendar.YEAR);
@@ -67,27 +53,11 @@ public class AddAssessment extends AppCompatActivity {
                 datePickerDialog = new DatePickerDialog(this, style, dateSetListener, year, month, day);
         }
 
-        private void initEndDatePicker() {
-                DatePickerDialog.OnDateSetListener dateSetListener = (view, year, month, dayOfMonth) -> {
-                        String endDate = endDateString(dayOfMonth, month, year);
-                        endDatePicker.setText(endDate);
-                };
-                Calendar calendar = Calendar.getInstance();
-                int year = calendar.get(Calendar.YEAR);
-                int month = calendar.get(Calendar.MONTH);
-                int day = calendar.get(Calendar.DAY_OF_MONTH);
-                int style = AlertDialog.THEME_HOLO_DARK;
-                endDatePickerDialog = new DatePickerDialog(this, style, dateSetListener, year, month, day);
-        }
         private String makeDateString(int dayOfMonth, int month, int year) {
                 month = month + 1;
                 return getDateFormat(month) + " " + dayOfMonth + " " + year;
         }
 
-        private String endDateString (int dayOfMonth, int month, int year) {
-                month = month + 1;
-                return getDateFormat(month) + " " + dayOfMonth + " " + year;
-        }
         private String getDateFormat(int month) {
                 if (month == 1)
                         return "Jan";
@@ -116,12 +86,8 @@ public class AddAssessment extends AppCompatActivity {
                 return "Jan";
         }
 
-        public void openStartDate(View view) {
+        public void openDueDate(View view) {
                 datePickerDialog.show();
-        }
-
-        public void openEndDate(View view) {
-                endDatePickerDialog.show();
         }
 }
 
