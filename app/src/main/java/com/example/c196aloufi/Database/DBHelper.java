@@ -5,8 +5,6 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
-import androidx.annotation.Nullable;
-
 import java.sql.Date;
 
 public class DBHelper extends SQLiteOpenHelper {
@@ -27,18 +25,13 @@ public class DBHelper extends SQLiteOpenHelper {
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
     }
 
-    public void createDatabase () {
+    public void createDatabase() {
         this.getWritableDatabase().execSQL("CREATE TABLE IF NOT EXISTS terms (id INTEGER PRIMARY KEY " +
                 "AUTOINCREMENT, title TEXT, start_date DATE, end_date DATE)");
-        this.getWritableDatabase().execSQL("CREATE TABLE IF NOT EXISTS courses (id INTEGER PRIMARY KEY " +
-                "AUTOINCREMENT, title TEXT, instructorName Text, instructorEmail TEXT, instructorPhone TEXT," +
-                "courseStatus Text, start_date DATE, end_date DATE, courseNotes TEXT, assocTerm INTEGER)");
-        this.getWritableDatabase().execSQL("CREATE TABLE IF NOT EXISTS assessments (id INTEGER PRIMARY KEY " +
-                "AUTOINCREMENT,  title TEXT, due_date DATE, performanceAssess BOOLEAN, objectiveAssess BOOLEAN, assoc_Course INTEGER)");
     }
 
     public TermDAO getTermByID (String id) {
-        Cursor cursor = this.getWritableDatabase().rawQuery("SELECT * FROM terms WHERE id =" + id, null);
+        Cursor cursor = this.getWritableDatabase().rawQuery("SELECT * FROM terms WHERE id = "+ id, null);
         TermDAO term = null;
         while(cursor.moveToNext()) {
             Date startDate = Date.valueOf(cursor.getString(cursor.getColumnIndex("start_date")));
@@ -58,8 +51,8 @@ public class DBHelper extends SQLiteOpenHelper {
                 "', end_date = '"+ term.getEndDate() +"' WHERE id = "+ term.getId());
     }
     public void populateDatabase() {
-        addTerm("Science Term", Date.valueOf("2020-01-01"), Date.valueOf("2020-06-30"));
-        addTerm("Arts Term", Date.valueOf("2020-07-01"), Date.valueOf("2021-12-31"));
+        addTerm("Electives Term", Date.valueOf("2022-01-01"), Date.valueOf("2022-06-30"));
+        addTerm("General Ed Term", Date.valueOf("2022-07-01"), Date.valueOf("2022-12-31"));
 
     }
 
