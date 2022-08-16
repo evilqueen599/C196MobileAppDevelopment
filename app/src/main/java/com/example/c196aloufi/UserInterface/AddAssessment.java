@@ -89,6 +89,11 @@ public class AddAssessment extends AppCompatActivity {
         public void openDueDate(View view) {
                 datePickerDialog.show();
         }
+
+        public void onClickBack(View view) {
+                Intent intent = new Intent(AddAssessment.this, AssessmentsList.class);
+                startActivity(intent);
+        }
 }
 
 
