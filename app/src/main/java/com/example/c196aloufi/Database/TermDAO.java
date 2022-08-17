@@ -1,50 +1,28 @@
 package com.example.c196aloufi.Database;
 
-import java.util.Date;
+import androidx.lifecycle.LiveData;
+import androidx.room.Delete;
+import androidx.room.Insert;
+import androidx.room.Query;
+import androidx.room.Update;
 
-public class TermDAO {
+import com.example.c196aloufi.Model.Terms;
 
-    private int id;
+@androidx.room.Dao
+public interface TermDAO {
 
-    private String title;
+    @Insert
+    void insert (Terms terms);
 
-    private Date startDate;
+    @Update
+    void update (Terms terms);
 
-    private Date endDate;
+    @Delete
+    void delete (Terms terms);
 
-    public TermDAO (int id, String title, Date startDate, Date endDate) {
-        this.id = id;
-        this.title = title;
-        this.startDate = startDate;
-        this.endDate = endDate;
-    }
+    @Query("DELETE * FROM terms")
+    void deleteAllTerms();
 
-    public int getId(){
-        return id;
-    }
-
-    public void setId(){
-        this.id = id;
-    }
-
-    public String getTitle(){
-        return title;
-    }
-
-    public void setTitle(){
-        this.title = title;
-    }
-
-    public Date getStartDate(){ return startDate;
-    }
-
-    public void setStartDate() { this.startDate = startDate;
-    }
-
-    public Date getEndDate(){ return getEndDate();
-    }
-
-    public void setEndDate(){
-        this.endDate = endDate;
-    }
+    @Query("SELECT * FROM terms")
+    void selectAllTerms();
 }
