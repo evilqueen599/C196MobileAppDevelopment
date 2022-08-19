@@ -1,28 +1,37 @@
 package com.example.c196aloufi.Database;
 
 import androidx.lifecycle.LiveData;
+import androidx.room.Dao;
 import androidx.room.Delete;
 import androidx.room.Insert;
+import androidx.room.OnConflictStrategy;
 import androidx.room.Query;
-import androidx.room.Update;
+
 
 import com.example.c196aloufi.Model.Terms;
 
-@androidx.room.Dao
+import java.util.List;
+
+@Dao
 public interface TermDAO {
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    void insertTerm(Terms term);
 
-    @Insert
-    void insert (Terms terms);
-
-    @Update
-    void update (Terms terms);
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    void insertAll(List<Terms> terms);
 
     @Delete
-    void delete (Terms terms);
+    void deleteTerm(Terms term);
 
-    @Query("DELETE * FROM terms")
-    void deleteAllTerms();
+    @Query("SELECT * FROM terms WHERE id = :id")
+    Terms getTermById(int id);
 
-    @Query("SELECT * FROM terms")
-    void selectAllTerms();
+    @Query("SELECT * FROM terms ORDER BY startDate DESC")
+    LiveData<List<Terms>> getAll();
+
+    @Query("DELETE FROM terms")
+    int deleteAll();
+
+    @Query("SELECT COUNT(*) FROM terms")
+    int getCount();
 }

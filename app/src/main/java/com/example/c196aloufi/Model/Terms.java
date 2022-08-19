@@ -18,6 +18,7 @@ public class Terms {
     public Terms() {
     }
 
+    
     @Ignore
     public Terms(int id, String title, Date startDate, Date endDate) {
         this.id = id;
