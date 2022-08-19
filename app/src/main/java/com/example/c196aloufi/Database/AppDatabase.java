@@ -11,7 +11,7 @@ import androidx.room.TypeConverters;
 import com.example.c196aloufi.Model.Terms;
 
 @Database(entities = {Terms.class}, version = 8)
-@TypeConverters({})
+@TypeConverters({DateConverter.class})
 abstract class AppDatabase extends RoomDatabase {
     private static final String DATABASE_NAME = "AppDatabase.db";
     private static volatile AppDatabase instance;

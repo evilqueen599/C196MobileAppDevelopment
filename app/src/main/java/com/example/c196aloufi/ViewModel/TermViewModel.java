@@ -11,15 +11,15 @@ import com.example.c196aloufi.Model.Terms;
 
 import java.util.List;
 
-    public class TermViewModel extends AndroidViewModel {
+public class TermViewModel extends AndroidViewModel {
 
-        public LiveData<List<Terms>> mTerms;
-        private AppRepo mRepository;
+    public LiveData<List<Terms>> mTerms;
+    private AppRepo mRepository;
 
-        public TermViewModel(@NonNull Application application) {
-            super(application);
+    public TermViewModel(@NonNull Application application) {
+        super(application);
 
-            mRepository = AppRepo.getInstance(application.getApplicationContext());
-            mTerms = mRepository.mTerms;
+        mRepository = AppRepo.getInstance(application.getApplicationContext());
+        mTerms = mRepository.mTerms;
         }
 }
