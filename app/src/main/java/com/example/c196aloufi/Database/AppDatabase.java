@@ -2,16 +2,24 @@ package com.example.c196aloufi.Database;
 
 import android.content.Context;
 
+import androidx.annotation.NonNull;
 import androidx.room.Database;
+import androidx.room.DatabaseConfiguration;
+import androidx.room.InvalidationTracker;
 import androidx.room.Room;
 import androidx.room.RoomDatabase;
+import androidx.room.TypeConverter;
+import androidx.room.TypeConverters;
+import androidx.sqlite.db.SupportSQLiteOpenHelper;
 
 import com.example.c196aloufi.Model.Assessments;
 import com.example.c196aloufi.Model.Courses;
 import com.example.c196aloufi.Model.Terms;
 
-@Database(entities={Terms.class, Assessments.class, Courses.class}, version = 1, exportSchema = false)
-public class AppDatabase extends RoomDatabase {
+@Database(entities={Terms.class, Assessments.class, Courses.class}, version = 2, exportSchema = false)
+@TypeConverters({DateConverter.class})
+public abstract class AppDatabase extends RoomDatabase {
+
     public abstract TermDAO termDAO();
 
     public abstract AssessmentDAO assessmentDAO();

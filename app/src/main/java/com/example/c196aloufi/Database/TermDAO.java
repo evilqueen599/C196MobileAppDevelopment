@@ -1,6 +1,5 @@
 package com.example.c196aloufi.Database;
 
-import androidx.lifecycle.LiveData;
 import androidx.room.Dao;
 import androidx.room.Delete;
 import androidx.room.Insert;
@@ -17,6 +16,9 @@ import java.util.List;
 public interface TermDAO {
     @Insert (onConflict = OnConflictStrategy.IGNORE)
     void insert(Terms terms);
+
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    void insertAll(List<Terms> terms);
 
     @Update
     void update(Terms terms);

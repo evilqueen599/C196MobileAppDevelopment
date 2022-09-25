@@ -11,9 +11,10 @@ import android.widget.TextView;
 import androidx.appcompat.app.AppCompatActivity;
 
 
+import com.example.c196aloufi.Database.AppRepo;
 import com.example.c196aloufi.Model.Terms;
 import com.example.c196aloufi.R;
-import com.example.c196aloufi.ViewModel.TermViewModel;
+import com.example.c196aloufi.Utility.TestData;
 
 import java.util.ArrayList;
 import java.util.List;
