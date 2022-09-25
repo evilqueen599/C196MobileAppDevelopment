@@ -21,7 +21,7 @@ public class AppRepo {
     private List<Assessments> mAllAssessments;
 
 
-    private static int NUMBER_OF_THREADS=6;
+    private static int NUMBER_OF_THREADS = 6;
     static final ExecutorService databaseExecutor = Executors.newFixedThreadPool(NUMBER_OF_THREADS);
 
     public AppRepo(Application application) {
@@ -31,27 +31,48 @@ public class AppRepo {
         mAssessmentDAO = db.assessmentDAO();
     }
 
-    public List<Terms>getAllTerms() {
+    public List<Terms> getAllTerms() {
         databaseExecutor.execute(() -> {
             mAllTerms = mTermDAO.getAllTerms();
         });
         try {
             Thread.sleep(1000);
-        }catch (InterruptedException e) {
+        } catch (InterruptedException e) {
             e.printStackTrace();
         }
         return mAllTerms;
     }
-    public void insert (Terms terms) {
-        databaseExecutor.execute(()->{
+
+    public void insert(Terms terms) {
+        databaseExecutor.execute(() -> {
             mTermDAO.insert(terms);
         });
         try {
             Thread.sleep(1000);
-        }
-        catch (InterruptedException e) {
+        } catch (InterruptedException e) {
             e.printStackTrace();
         }
+    }
 
+    public void update(Terms terms) {
+        databaseExecutor.execute(() -> {
+            mTermDAO.update(terms);
+        });
+        try {
+            Thread.sleep(1000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
     }
+
+    public void delete(Terms terms) {
+        databaseExecutor.execute(() -> {
+            mTermDAO.delete(terms);
+        });
+        try {
+            Thread.sleep(1000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
     }
+}
