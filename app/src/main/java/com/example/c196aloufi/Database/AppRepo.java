@@ -20,7 +20,6 @@ public class AppRepo {
     private List<Courses> mAllCourses;
     private List<Assessments> mAllAssessments;
 
-    private AppDatabase mDb;
 
     private static int NUMBER_OF_THREADS=6;
     static final ExecutorService databaseExecutor = Executors.newFixedThreadPool(NUMBER_OF_THREADS);
@@ -32,10 +31,17 @@ public class AppRepo {
         mAssessmentDAO = db.assessmentDAO();
     }
 
-    public void addSampleData() {
-        databaseExecutor.execute(() -> mDb.termDAO().insertAll(TestData.getTerms()));
+    public List<Terms>getAllTerms() {
+        databaseExecutor.execute(() -> {
+            mAllTerms = mTermDAO.getAllTerms();
+        });
+        try {
+            Thread.sleep(1000);
+        }catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        return mAllTerms;
     }
-
     public void insert (Terms terms) {
         databaseExecutor.execute(()->{
             mTermDAO.insert(terms);
