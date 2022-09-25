@@ -3,16 +3,28 @@ package com.example.c196aloufi.UserInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.ListView;
 import android.widget.RadioButton;
 import android.widget.TextView;
 import androidx.appcompat.app.AppCompatActivity;
+
+
+import com.example.c196aloufi.Model.Terms;
 import com.example.c196aloufi.R;
+import com.example.c196aloufi.ViewModel.TermViewModel;
+
+import java.util.ArrayList;
+import java.util.List;
 
 
 public class mainScreen extends AppCompatActivity {
 
     public Button mainAddButton;
+
+    private ListView listView;
+
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -22,6 +34,10 @@ public class mainScreen extends AppCompatActivity {
         final RadioButton courseRad = (RadioButton) findViewById(R.id.coursesRadBtn);
         final RadioButton assessRad = (RadioButton) findViewById(R.id.assessRadBtn);
         final Button go = (Button) findViewById(R.id.mainAddButton);
+
+
+        List<Terms> termData = new ArrayList<>();
+
         go.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -59,5 +75,7 @@ public class mainScreen extends AppCompatActivity {
         Button mainAddButton = (Button) findViewById(R.id.mainAddButton);
         mainAddButton.setText("View Assessments");
     }
+
+
 }
 

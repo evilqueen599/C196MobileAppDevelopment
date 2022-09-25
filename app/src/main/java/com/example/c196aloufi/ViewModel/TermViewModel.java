@@ -13,13 +13,9 @@ import java.util.List;
 
 public class TermViewModel extends AndroidViewModel {
 
-    public LiveData<List<Terms>> mTerms;
-    private AppRepo mRepository;
 
     public TermViewModel(@NonNull Application application) {
         super(application);
-
-        mRepository = AppRepo.getInstance(application.getApplicationContext());
-        mTerms = mRepository.mTerms;
-        }
+    }
 }
+

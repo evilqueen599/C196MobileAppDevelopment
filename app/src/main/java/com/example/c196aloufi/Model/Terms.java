@@ -8,26 +8,26 @@ import androidx.room.PrimaryKey;
 
 @Entity(tableName = "terms")
 public class Terms {
+
     @PrimaryKey(autoGenerate = true)
     private int id;
     private String title;
     private Date startDate;
     private Date endDate;
 
-    @Ignore
-    public Terms() {
+
+    @Override
+    public String toString() {
+        return "Terms{" +
+                "id=" + id +
+                ", title='" + title + '\'' +
+                ", startDate=" + startDate +
+                ", endDate=" + endDate +
+                '}';
     }
 
-    
-    @Ignore
     public Terms(int id, String title, Date startDate, Date endDate) {
         this.id = id;
-        this.title = title;
-        this.startDate = startDate;
-        this.endDate = endDate;
-    }
-
-    public Terms(String title, Date startDate, Date endDate) {
         this.title = title;
         this.startDate = startDate;
         this.endDate = endDate;
