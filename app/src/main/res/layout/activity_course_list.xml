@@ -23,19 +23,34 @@
         app:layout_constraintTop_toBottomOf="@+id/guidelineTop"
         app:layout_constraintVertical_bias="1.0" />
 
-    <ListView
-        android:id="@+id/courseListView"
-        android:layout_width="412dp"
-        android:layout_height="473dp"
-        android:layout_marginBottom="107dp"
-        app:layout_constraintBottom_toTopOf="@+id/guidelineBottom"
+    <androidx.cardview.widget.CardView
+        android:id="@+id/courseCardView"
+        android:layout_width="409dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="1dp"
+        android:layout_marginEnd="1dp"
+        app:cardBackgroundColor="@color/cardview_light_background"
+        app:cardCornerRadius="20dp"
+        app:cardElevation="10dp"
+        app:cardMaxElevation="12dp"
+        app:cardPreventCornerOverlap="true"
+        app:cardUseCompatPadding="true"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/guidelineTop"
-        app:layout_constraintVertical_bias="0.934">
+        app:layout_constraintTop_toBottomOf="@+id/courseList">
 
-    </ListView>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom|center_horizontal"
+            android:layout_marginTop="20dp"
+            android:layout_marginBottom="20dp"
+            android:text="@string/app_name"
+            android:textColor="@color/purple_700"
+            android:textSize="20sp"
+            android:textStyle="bold" />
+    </androidx.cardview.widget.CardView>
 
     <Button
         android:id="@+id/addNewCourseButton"
