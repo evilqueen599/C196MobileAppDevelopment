@@ -5,7 +5,6 @@ import android.app.Application;
 import com.example.c196aloufi.Model.Assessments;
 import com.example.c196aloufi.Model.Courses;
 import com.example.c196aloufi.Model.Terms;
-import com.example.c196aloufi.Utility.TestData;
 
 import java.util.List;
 import java.util.concurrent.ExecutorService;
