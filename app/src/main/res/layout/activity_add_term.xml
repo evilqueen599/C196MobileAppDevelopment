@@ -58,19 +58,34 @@
         app:layout_constraintTop_toBottomOf="@+id/guidelineTop"
         app:layout_constraintVertical_bias="0.597" />
 
-    <ListView
-        android:id="@+id/addedCoursesList"
+    <androidx.cardview.widget.CardView
+        android:id="@+id/addTermCardView"
         android:layout_width="409dp"
-        android:layout_height="160dp"
+        android:layout_height="wrap_content"
         android:layout_marginStart="1dp"
-        android:layout_marginTop="17dp"
         android:layout_marginEnd="1dp"
-        android:layout_marginBottom="96dp"
-        app:layout_constraintBottom_toBottomOf="@id/guidelineBottom"
-        app:layout_constraintEnd_toEndOf="@id/guidelineRight"
-        app:layout_constraintStart_toStartOf="@id/guidelineLeft"
-        app:layout_constraintTop_toBottomOf="@+id/guidelineTop"
-        app:layout_constraintVertical_bias="0.943" />
+        app:cardBackgroundColor="@color/cardview_light_background"
+        app:cardCornerRadius="20dp"
+        app:cardElevation="10dp"
+        app:cardMaxElevation="12dp"
+        app:cardPreventCornerOverlap="true"
+        app:cardUseCompatPadding="true"
+        app:layout_constraintTop_toBottomOf="@id/addCoursesBtn"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/assessBackBtn">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom|center_horizontal"
+            android:layout_marginTop="20dp"
+            android:layout_marginBottom="20dp"
+            android:text="@string/app_name"
+            android:textColor="@color/purple_700"
+            android:textSize="20sp"
+            android:textStyle="bold" />
+    </androidx.cardview.widget.CardView>
 
     <Button
         android:id="@+id/assessBackBtn"
