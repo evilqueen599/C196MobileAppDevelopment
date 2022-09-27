@@ -7,10 +7,16 @@
     android:onClick="onClickAddTerm"
     tools:context=".UserInterface.DetailedTerm">
 
-    <androidx.cardview.widget.CardView
-        android:id="@+id/assessmentsCardView"
-        android:layout_width="409dp"
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/termRecyclerView"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        />
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/termsCardView"
+        android:layout_width="414dp"
+        android:layout_height="150dp"
         android:layout_marginStart="1dp"
         android:layout_marginEnd="1dp"
         app:cardBackgroundColor="@color/cardview_light_background"
@@ -19,18 +25,21 @@
         app:cardMaxElevation="12dp"
         app:cardPreventCornerOverlap="true"
         app:cardUseCompatPadding="true"
-        app:layout_constraintBottom_toTopOf="@+id/viewAssociatedCoursesBtn"
+        app:layout_constraintBottom_toTopOf="@id/viewAssociatedCoursesBtn"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/detailedTermListTxt">
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="@+id/termRecyclerView"
+        app:layout_constraintTop_toBottomOf="@id/termRecyclerView"
+        app:layout_constraintVertical_bias="0.0">
+
 
         <TextView
+            android:id="@+id/termsCardViewTxt"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="bottom|center_horizontal"
             android:layout_marginTop="20dp"
             android:layout_marginBottom="20dp"
-            android:text="@string/app_name"
             android:textColor="@color/purple_700"
             android:textSize="20sp"
             android:textStyle="bold" />
@@ -122,6 +131,7 @@
         app:layout_constraintTop_toBottomOf="@+id/guidelineTop"
         app:layout_constraintVertical_bias="1.0" />
 
+
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guidelineTop"
         android:layout_width="wrap_content"
@@ -150,5 +160,6 @@
         android:layout_height="wrap_content"
         android:orientation="vertical"
         app:layout_constraintGuide_percent="0.02" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>
