@@ -19,6 +19,7 @@ import com.example.c196aloufi.UserInterface.DetailedTerm;
 
 import java.sql.Time;
 import java.sql.Timestamp;
+import java.text.SimpleDateFormat;
 import java.util.ConcurrentModificationException;
 import java.util.Date;
 import java.util.List;
@@ -72,10 +73,11 @@ public class TermAdapter extends RecyclerView.Adapter<TermAdapter.TermViewHolder
             Terms current = mterms.get(position);
             String name = current.getTermName();
             holder.termCardViewTxt.setText(name);
-            String start = current.getStartDate().toString();
-            holder.termCardViewTxt2.setText(start);
-            String end = current.getEndDate().toString();
-            holder.termCardViewTxt3.setText(end);
+            Date startDate = current.getStartDate();
+            SimpleDateFormat dt = new SimpleDateFormat("MM-dd-yyyy");
+            holder.termCardViewTxt2.setText(dt.format(startDate));
+            Date endDate = current.getEndDate();
+            holder.termCardViewTxt3.setText(dt.format(endDate));
         } else {
             holder.termCardViewTxt.setText(" ");
             holder.termCardViewTxt2.setText(" ");
