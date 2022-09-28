@@ -25,6 +25,10 @@ public class MainActivity extends AppCompatActivity {
         AppRepo appRepo = new AppRepo(getApplication());
         Terms terms = new Terms(1, "Final Term" , getDate(0), getDate(10));
         appRepo.insert(terms);
+        Terms terms1 = new Terms(2, "Term 2" , getDate(5), getDate(15));
+        appRepo.insert(terms1);
+        Terms terms2 = new Terms(3, "Term 1" , getDate(10), getDate(20));
+        appRepo.insert(terms2);
         Courses courses = new Courses(1, "Application Development", "Test Instructor",
                 "testemail@test.com", "954-778-9008", "InProgress", getDate(0), getDate(10),"Finish this class ASAP");
         appRepo.insert(courses);

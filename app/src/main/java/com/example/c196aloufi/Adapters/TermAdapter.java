@@ -17,17 +17,24 @@ import com.example.c196aloufi.Model.Terms;
 import com.example.c196aloufi.R;
 import com.example.c196aloufi.UserInterface.DetailedTerm;
 
+import java.sql.Time;
+import java.sql.Timestamp;
 import java.util.ConcurrentModificationException;
+import java.util.Date;
 import java.util.List;
 
 public class TermAdapter extends RecyclerView.Adapter<TermAdapter.TermViewHolder> {
 
     class TermViewHolder extends RecyclerView.ViewHolder {
         private final TextView termCardViewTxt;
+        private final TextView termCardViewTxt2;
+        private final TextView termCardViewTxt3;
 
         private TermViewHolder(View termView) {
             super(termView);
             termCardViewTxt= termView.findViewById(R.id.termsCardViewTxt);
+            termCardViewTxt2 = termView.findViewById(R.id.termsCardViewTxt2);
+            termCardViewTxt3 = termView.findViewById(R.id.termsCardViewTxt3);
             termView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
@@ -65,8 +72,14 @@ public class TermAdapter extends RecyclerView.Adapter<TermAdapter.TermViewHolder
             Terms current = mterms.get(position);
             String name = current.getTermName();
             holder.termCardViewTxt.setText(name);
+            String start = current.getStartDate().toString();
+            holder.termCardViewTxt2.setText(start);
+            String end = current.getEndDate().toString();
+            holder.termCardViewTxt3.setText(end);
         } else {
             holder.termCardViewTxt.setText(" ");
+            holder.termCardViewTxt2.setText(" ");
+            holder.termCardViewTxt3.setText(" ");
         }
     }
 
