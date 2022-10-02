@@ -11,9 +11,11 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.c196aloufi.Adapters.MainScreenCourseAdapter;
 import com.example.c196aloufi.Adapters.MainScreenTermAdapter;
 import com.example.c196aloufi.Adapters.TermAdapter;
 import com.example.c196aloufi.Database.AppRepo;
+import com.example.c196aloufi.Model.Courses;
 import com.example.c196aloufi.Model.Terms;
 import com.example.c196aloufi.R;
 
@@ -78,6 +80,14 @@ public class mainScreen extends AppCompatActivity {
         myTextView.setText("Course List");
         Button mainAddButton = (Button) findViewById(R.id.mainAddButton);
         mainAddButton.setText("View Courses");
+
+        RecyclerView recyclerView = findViewById(R.id.mainRecyclerView);
+        AppRepo appRepo = new AppRepo(getApplication());
+        List<Courses> courses = appRepo.getAllCourses();
+        final MainScreenCourseAdapter mainScreenCourseAdapter = new MainScreenCourseAdapter(this);
+        recyclerView.setAdapter(mainScreenCourseAdapter);
+        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+        mainScreenCourseAdapter.setCourses(courses);
     }
 
     public void onClickAssess(View view) {
