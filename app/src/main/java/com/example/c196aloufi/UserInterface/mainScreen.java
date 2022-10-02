@@ -11,10 +11,12 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.c196aloufi.Adapters.MainScreenAssessmentAdapter;
 import com.example.c196aloufi.Adapters.MainScreenCourseAdapter;
 import com.example.c196aloufi.Adapters.MainScreenTermAdapter;
 import com.example.c196aloufi.Adapters.TermAdapter;
 import com.example.c196aloufi.Database.AppRepo;
+import com.example.c196aloufi.Model.Assessments;
 import com.example.c196aloufi.Model.Courses;
 import com.example.c196aloufi.Model.Terms;
 import com.example.c196aloufi.R;
@@ -95,6 +97,14 @@ public class mainScreen extends AppCompatActivity {
         myTextView.setText("Assessment List");
         Button mainAddButton = (Button) findViewById(R.id.mainAddButton);
         mainAddButton.setText("View Assessments");
+
+        RecyclerView recyclerView = findViewById(R.id.mainRecyclerView);
+        AppRepo appRepo = new AppRepo(getApplication());
+        List<Assessments> assessments = appRepo.getAllAssessments();
+        final MainScreenAssessmentAdapter mainScreenAssessmentAdapter = new MainScreenAssessmentAdapter(this);
+        recyclerView.setAdapter(mainScreenAssessmentAdapter);
+        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+        mainScreenAssessmentAdapter.setAssessments(assessments);
     }
 }
 
