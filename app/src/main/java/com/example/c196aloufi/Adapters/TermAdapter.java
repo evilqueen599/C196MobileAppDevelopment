@@ -2,40 +2,35 @@ package com.example.c196aloufi.Adapters;
 
 import android.content.Context;
 import android.content.Intent;
-import android.util.SparseArray;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.autofill.AutofillValue;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
-import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.c196aloufi.Model.Terms;
 import com.example.c196aloufi.R;
 import com.example.c196aloufi.UserInterface.DetailedTerm;
 
-import java.sql.Time;
-import java.sql.Timestamp;
+
 import java.text.SimpleDateFormat;
-import java.util.ConcurrentModificationException;
 import java.util.Date;
 import java.util.List;
 
 public class TermAdapter extends RecyclerView.Adapter<TermAdapter.TermViewHolder> {
 
     class TermViewHolder extends RecyclerView.ViewHolder {
-        private final TextView termCardViewTxt;
-        private final TextView termCardViewTxt2;
-        private final TextView termCardViewTxt3;
+        private final TextView termTxt;
+        private final TextView termTxt2;
+
 
         private TermViewHolder(View termView) {
             super(termView);
-            termCardViewTxt= termView.findViewById(R.id.termsCardViewTxt);
-            termCardViewTxt2 = termView.findViewById(R.id.termsCardViewTxt2);
-            termCardViewTxt3 = termView.findViewById(R.id.termsCardViewTxt3);
+            termTxt= termView.findViewById(R.id.termTxt);
+            termTxt2 = termView.findViewById(R.id.termTxt2);
+
             termView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
@@ -63,7 +58,7 @@ public class TermAdapter extends RecyclerView.Adapter<TermAdapter.TermViewHolder
     @NonNull
     @Override
     public TermAdapter.TermViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View termView = mInflator.inflate(R.layout.activity_detailed_term_list,parent, false);
+        View termView = mInflator.inflate(R.layout.term_item,parent, false);
         return new TermViewHolder(termView);
         }
 
@@ -72,19 +67,17 @@ public class TermAdapter extends RecyclerView.Adapter<TermAdapter.TermViewHolder
         if (mterms != null) {
             Terms current = mterms.get(position);
             String name = current.getTermName();
-            holder.termCardViewTxt.setText(name);
+            holder.termTxt.setText(name);
             Date startDate = current.getStartDate();
-            SimpleDateFormat dt = new SimpleDateFormat("MM-dd-yyyy");
-            holder.termCardViewTxt2.setText(dt.format(startDate));
             Date endDate = current.getEndDate();
-            holder.termCardViewTxt3.setText(dt.format(endDate));
+            SimpleDateFormat dt = new SimpleDateFormat("MM/dd/yyyy");
+            holder.termTxt2.setText(dt.format(startDate) + " - " +dt.format(endDate));
+
         } else {
-            holder.termCardViewTxt.setText(" ");
-            holder.termCardViewTxt2.setText(" ");
-            holder.termCardViewTxt3.setText(" ");
+            holder.termTxt.setText("No Terms Exist");
+            holder.termTxt2.setText("No Terms Exist ");
         }
     }
-
     public void setTerms(List<Terms> terms) {
         mterms = terms;
         notifyDataSetChanged();

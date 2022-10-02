@@ -2,7 +2,6 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/addBtn"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".UserInterface.mainScreen">
@@ -116,34 +115,25 @@
         app:layout_constraintGuide_percent="0.98" />
 
     <androidx.cardview.widget.CardView
-        android:id="@+id/assessmentsCardView"
+        android:id="@+id/mainScreenCardView"
         android:layout_width="409dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="1dp"
         android:layout_marginEnd="1dp"
-        app:cardElevation="10dp"
-        app:cardCornerRadius="20dp"
         app:cardBackgroundColor="@color/cardview_light_background"
+        app:cardCornerRadius="20dp"
+        app:cardElevation="10dp"
         app:cardMaxElevation="12dp"
         app:cardPreventCornerOverlap="true"
         app:cardUseCompatPadding="true"
         app:layout_constraintBottom_toTopOf="@+id/mainAddButton"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/termListTxt"
-        >
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/app_name"
-        android:textColor="@color/purple_700"
-        android:layout_gravity="bottom|center_horizontal"
-        android:layout_marginTop="20dp"
-        android:layout_marginBottom="20dp"
-        android:textSize="20sp"
-        android:textStyle="bold"
-        />
+        app:layout_constraintTop_toBottomOf="@id/termListTxt">
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/termRecyclerView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
     </androidx.cardview.widget.CardView>
 </androidx.constraintlayout.widget.ConstraintLayout>
 
