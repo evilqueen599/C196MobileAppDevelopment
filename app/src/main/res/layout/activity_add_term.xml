@@ -7,7 +7,7 @@
     tools:context=".UserInterface.AddTerm" >
 
     <EditText
-        android:id="@+id/courseTitleTxt"
+        android:id="@+id/termTitleTxt"
         android:layout_width="319dp"
         android:layout_height="51dp"
         android:layout_marginTop="30dp"
@@ -170,7 +170,7 @@
         app:layout_constraintStart_toEndOf="@+id/termEnd"
         app:layout_constraintTop_toBottomOf="@+id/guidelineTop"
         app:layout_constraintVertical_bias="0.459"
-        tools:ignore="DuplicateSpeakableTextCheck" />
+        tools:ignore="DuplicateSpeakableTextCheck"/>
 
     <Button
         android:id="@+id/startDatePickerButton"
@@ -190,7 +190,7 @@
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toEndOf="@+id/dueDate"
         app:layout_constraintTop_toBottomOf="@+id/guidelineTop"
-        app:layout_constraintVertical_bias="0.313" />
+        app:layout_constraintVertical_bias="0.313"/>
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guidelineLeft"

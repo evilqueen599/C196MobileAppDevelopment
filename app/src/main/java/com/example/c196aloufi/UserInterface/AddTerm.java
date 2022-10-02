@@ -1,5 +1,6 @@
 package com.example.c196aloufi.UserInterface;
 
+
 import android.app.AlertDialog;
 import android.app.DatePickerDialog;
 import android.content.Intent;
@@ -13,18 +14,19 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.example.c196aloufi.R;
 
 import java.util.Calendar;
-import java.util.concurrent.Callable;
 
 public class AddTerm extends AppCompatActivity {
 
-    private DatePickerDialog datePickerDialog;
+    DatePickerDialog datePickerDialog;
 
-    private DatePickerDialog endDatePickerDialog;
+    DatePickerDialog endDatePickerDialog;
 
-    private Button startDatePickerButton;
+    Button startDatePickerButton;
 
-    private Button endDateButton;
+    Button endDatePicker;
 
+
+    @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_term);
@@ -33,8 +35,8 @@ public class AddTerm extends AppCompatActivity {
         startDatePickerButton = findViewById(R.id.startDatePickerButton);
         startDatePickerButton.setText(getTodaysDate());
         initEndDatePicker();
-        endDateButton = findViewById(R.id.endDatePicker);
-        endDateButton.setText(getEndDate());
+        endDatePicker = findViewById(R.id.endDatePicker);
+        endDatePicker.setText(getEndDate());
     }
 
     private String getTodaysDate() {
@@ -72,7 +74,7 @@ public class AddTerm extends AppCompatActivity {
     private void initEndDatePicker() {
         DatePickerDialog.OnDateSetListener dateSetListener = (view, year, month, dayOfMonth) -> {
             String endDate = endDateString(dayOfMonth, month, year);
-            endDateButton.setText(endDate);
+            endDatePicker.setText(endDate);
         };
         Calendar calendar = Calendar.getInstance();
         int year = calendar.get(Calendar.YEAR);
@@ -135,6 +137,4 @@ public class AddTerm extends AppCompatActivity {
     public void openEndDate(View view) {
         endDatePickerDialog.show();
     }
-
-
 }

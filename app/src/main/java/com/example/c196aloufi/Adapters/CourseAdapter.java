@@ -32,7 +32,7 @@ public class CourseAdapter extends RecyclerView.Adapter<CourseAdapter.CourseView
 
         private CourseViewHolder(View courseView) {
             super(courseView);
-            courseTitleTxt = courseView.findViewById(R.id.courseTitleTxt);
+            courseTitleTxt = courseView.findViewById(R.id.termTitleTxt);
             courseDateTxt = courseView.findViewById(R.id.courseDateTxt);
             courseStatusTxt = courseView.findViewById(R.id.courseStatusTxt);
             instructorNameTxt = courseView.findViewById(R.id.instructorNameTxt);

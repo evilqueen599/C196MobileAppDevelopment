@@ -12,7 +12,7 @@
         android:layout_margin="40dp">
 
         <TextView
-            android:id="@+id/courseTitleTxt"
+            android:id="@+id/termTitleTxt"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentTop="true"
@@ -25,7 +25,7 @@
             android:id="@+id/courseDateTxt"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/courseTitleTxt"
+            android:layout_below="@+id/termTitleTxt"
             android:text="Line 2"
             android:textColor="@color/purple_700"
             android:textSize="15sp"

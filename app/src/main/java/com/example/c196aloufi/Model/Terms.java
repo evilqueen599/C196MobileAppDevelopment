@@ -15,6 +15,7 @@ public class Terms {
     private Date startDate;
     private Date endDate;
 
+
     @Override
     public String toString() {
         return "Terms{" +
