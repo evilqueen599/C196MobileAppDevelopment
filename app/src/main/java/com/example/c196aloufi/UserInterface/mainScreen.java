@@ -41,7 +41,6 @@ public class mainScreen extends AppCompatActivity {
         termAdapter.setTerms(terms);
 
 
-
         go.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
