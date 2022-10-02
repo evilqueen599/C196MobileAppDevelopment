@@ -36,4 +36,9 @@ public class AssessmentsList extends AppCompatActivity {
         Intent intent = new Intent(AssessmentsList.this, AddAssessment.class);
         startActivity(intent);
     }
+
+    public void onClickEditAssessment(View view) {
+        Intent intent = new Intent(AssessmentsList.this, AddAssessment.class);
+        startActivity(intent);
+    }
 }

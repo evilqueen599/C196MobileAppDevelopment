@@ -75,7 +75,7 @@
             android:layout_centerVertical="true"
             android:clickable="true"
             android:contentDescription='"Course Edit Button"'
-            android:onClick="onClickEditTerm"
+            android:onClick="onClickEditCourse"
             app:srcCompat="@drawable/ic_baseline_edit_24" />
 
     </RelativeLayout>

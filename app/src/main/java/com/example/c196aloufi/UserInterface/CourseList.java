@@ -36,9 +36,8 @@ public class CourseList extends AppCompatActivity {
         Intent intent = new Intent(CourseList.this, AddCourse.class);
         startActivity(intent);
     }
-
-    public void addCourseBackButton(View view) {
-        Intent intent = new Intent(CourseList.this, mainScreen.class);
+    public void onClickEditCourse(View view) {
+        Intent intent = new Intent(CourseList.this, AddCourse.class);
         startActivity(intent);
     }
 }
