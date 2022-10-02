@@ -78,7 +78,7 @@ public class TermAdapter extends RecyclerView.Adapter<TermAdapter.TermViewHolder
             holder.termTxt2.setText("No Terms Exist ");
         }
     }
-    public void setTerms(List<Terms> terms) {
+    public void setTerms(List<Terms>terms) {
         mterms = terms;
         notifyDataSetChanged();
     }
