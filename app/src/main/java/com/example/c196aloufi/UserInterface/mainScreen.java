@@ -11,6 +11,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.c196aloufi.Adapters.MainScreenTermAdapter;
 import com.example.c196aloufi.Adapters.TermAdapter;
 import com.example.c196aloufi.Database.AppRepo;
 import com.example.c196aloufi.Model.Terms;
@@ -31,10 +32,10 @@ public class mainScreen extends AppCompatActivity {
         final RadioButton assessRad = (RadioButton) findViewById(R.id.assessRadBtn);
         final Button go = (Button) findViewById(R.id.mainAddButton);
 
-        RecyclerView recyclerView = findViewById(R.id.termRecyclerView);
+        RecyclerView recyclerView = findViewById(R.id.mainRecyclerView);
         AppRepo appRepo = new AppRepo(getApplication());
         List<Terms> terms = appRepo.getAllTerms();
-        final TermAdapter termAdapter = new TermAdapter(this);
+        final MainScreenTermAdapter termAdapter = new MainScreenTermAdapter(this);
         recyclerView.setAdapter(termAdapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         termAdapter.setTerms(terms);
@@ -63,13 +64,14 @@ public class mainScreen extends AppCompatActivity {
         myTextView.setText("Term List");
         Button mainAddButton = (Button) findViewById(R.id.mainAddButton);
         mainAddButton.setText("View Terms");
-        RecyclerView recyclerView = findViewById(R.id.termRecyclerView);
+
+        RecyclerView recyclerView = findViewById(R.id.mainRecyclerView);
         AppRepo appRepo = new AppRepo(getApplication());
         List<Terms> terms = appRepo.getAllTerms();
-        final TermAdapter termAdapter = new TermAdapter(this);
-        recyclerView.setAdapter(termAdapter);
+        final MainScreenTermAdapter mainScreenTermAdapter = new MainScreenTermAdapter(this);
+        recyclerView.setAdapter(mainScreenTermAdapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
-        termAdapter.setTerms(terms);
+        mainScreenTermAdapter.setTerms(terms);
     }
 
     public void onClickCourses(View view) {

@@ -12,11 +12,11 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.c196aloufi.Model.Terms;
 import com.example.c196aloufi.R;
-import com.example.c196aloufi.UserInterface.DetailedTerm;
+import com.example.c196aloufi.UserInterface.mainScreen;
 
 import java.util.List;
 
-public class mainScreenTermAdapter extends RecyclerView.Adapter<mainScreenTermAdapter.MainTermViewHolder> {
+public class MainScreenTermAdapter extends RecyclerView.Adapter<MainScreenTermAdapter.MainTermViewHolder> {
 
     class MainTermViewHolder extends RecyclerView.ViewHolder {
         private final TextView termTxt;
@@ -31,7 +31,7 @@ public class mainScreenTermAdapter extends RecyclerView.Adapter<mainScreenTermAd
                 public void onClick(View v) {
                     int position = getAdapterPosition();
                     final Terms current = mterms.get(position);
-                    Intent intent = new Intent(context, DetailedTerm.class);
+                    Intent intent = new Intent(context, mainScreen.class);
                     intent.putExtra("id", current.getTermId());
                     intent.putExtra("termName", current.getTermName());
                     intent.putExtra("startDate", current.getStartDate());
@@ -45,20 +45,20 @@ public class mainScreenTermAdapter extends RecyclerView.Adapter<mainScreenTermAd
     private final Context context;
     private final LayoutInflater mInflator;
 
-    public mainScreenTermAdapter(Context context){
+    public MainScreenTermAdapter(Context context){
         mInflator = LayoutInflater.from(context);
         this.context=context;
     }
 
     @NonNull
     @Override
-    public mainScreenTermAdapter.MainTermViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View termView = mInflator.inflate(R.layout.term_item,parent, false);
-        return new mainScreenTermAdapter.MainTermViewHolder(termView);
+    public MainScreenTermAdapter.MainTermViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+        View termView = mInflator.inflate(R.layout.main_term_item,parent, false);
+        return new MainScreenTermAdapter.MainTermViewHolder(termView);
     }
 
     @Override
-    public void onBindViewHolder(@NonNull mainScreenTermAdapter.MainTermViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull MainScreenTermAdapter.MainTermViewHolder holder, int position) {
         if (mterms != null) {
             Terms current = mterms.get(position);
             String name = current.getTermName();
