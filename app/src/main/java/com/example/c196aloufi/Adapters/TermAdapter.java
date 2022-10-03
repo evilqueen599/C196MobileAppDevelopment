@@ -16,6 +16,8 @@ import com.example.c196aloufi.UserInterface.DetailedTerm;
 
 
 import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.Date;
 import java.util.List;
 
@@ -65,13 +67,13 @@ public class TermAdapter extends RecyclerView.Adapter<TermAdapter.TermViewHolder
     @Override
     public void onBindViewHolder(@NonNull TermAdapter.TermViewHolder holder, int position) {
         if (mterms != null) {
+            DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ISO_LOCAL_DATE;
             Terms current = mterms.get(position);
             String name = current.getTermName();
             holder.termTxt.setText(name);
-            Date startDate = current.getStartDate();
-            Date endDate = current.getEndDate();
-            SimpleDateFormat dt = new SimpleDateFormat("MM/dd/yyyy");
-            holder.termTxt2.setText(dt.format(startDate) + " - " +dt.format(endDate));
+            LocalDate startDate = current.getStartDate();
+            LocalDate endDate = current.getEndDate();
+            holder.termTxt2.setText((startDate.format(dateTimeFormatter)) + " to " + (endDate.format(dateTimeFormatter)));
 
         } else {
             holder.termTxt.setText("No Terms Exist");

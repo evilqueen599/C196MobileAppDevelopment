@@ -15,6 +15,8 @@ import com.example.c196aloufi.R;
 import com.example.c196aloufi.UserInterface.CourseList;
 
 import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.Date;
 import java.util.List;
 
@@ -68,14 +70,14 @@ public class AssessmentAdapter extends RecyclerView.Adapter<AssessmentAdapter.As
     @Override
     public void onBindViewHolder(@NonNull AssessmentAdapter.AssessmentViewHolder holder, int position) {
         if (massessments != null) {
+            DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ISO_LOCAL_DATE;
             Assessments current = massessments.get(position);
             String name = current.getAssessmentTitle();
             holder.assessmentTitleTxt.setText(name);
             String type =current.getAssessmentType();
             holder.assessmentTypeTxt.setText(type);
-            Date dueDate = current.getEndDate();
-            SimpleDateFormat dt = new SimpleDateFormat("MM/dd/yyyy");
-            holder.dueDateTxt.setText(dt.format(dueDate));
+            LocalDate dueDate = current.getEndDate();
+            holder.dueDateTxt.setText((dueDate.format(dateTimeFormatter)));
 
         } else {
             holder.assessmentTitleTxt.setText("No Assessments Exist");

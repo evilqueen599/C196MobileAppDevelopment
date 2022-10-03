@@ -16,6 +16,8 @@ import com.example.c196aloufi.UserInterface.CourseList;
 
 
 import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.Date;
 import java.util.List;
 
@@ -77,13 +79,13 @@ public class CourseAdapter extends RecyclerView.Adapter<CourseAdapter.CourseView
     @Override
     public void onBindViewHolder(@NonNull CourseAdapter.CourseViewHolder holder, int position) {
         if (mcourses != null) {
+            DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ISO_LOCAL_DATE;
             Courses current = mcourses.get(position);
             String name = current.getCourseName();
             holder.courseTitleTxt.setText(name);
-            Date startDate = current.getStartDate();
-            Date endDate = current.getEndDate();
-            SimpleDateFormat dt = new SimpleDateFormat("MM/dd/yyyy");
-            holder.courseDateTxt.setText(dt.format(startDate) + " - " +dt.format(endDate));
+            LocalDate startDate = current.getStartDate();
+            LocalDate endDate = current.getEndDate();
+            holder.courseDateTxt.setText((startDate.format(dateTimeFormatter)) + " - " +(endDate.format(dateTimeFormatter)));
             String status = current.getCourseStatus();
             holder.courseStatusTxt.setText(status);
             String instructorName = current.getInstructorName();

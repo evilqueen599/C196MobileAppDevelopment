@@ -12,6 +12,7 @@ import com.example.c196aloufi.Model.Courses;
 import com.example.c196aloufi.Model.Terms;
 import com.example.c196aloufi.R;
 
+import java.time.LocalDate;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.GregorianCalendar;
@@ -23,24 +24,18 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         AppRepo appRepo = new AppRepo(getApplication());
-        Terms terms = new Terms(1, "Final Term" , getDate(0), getDate(10));
+        Terms terms = new Terms(1, "Final Term", LocalDate.now(), LocalDate.now());
         appRepo.insert(terms);
-        Terms terms1 = new Terms(2, "Term 2" , getDate(5), getDate(15));
+        Terms terms1 = new Terms(2, "Term 2", LocalDate.now(), LocalDate.now());
         appRepo.insert(terms1);
-        Terms terms2 = new Terms(3, "Term 1" , getDate(10), getDate(20));
+        Terms terms2 = new Terms(3, "Term 1", LocalDate.now(), LocalDate.now());
         appRepo.insert(terms2);
         Courses courses = new Courses(1, "Application Development", "Test Instructor",
-                "testemail@test.com", "954-778-9008", "InProgress", getDate(0), getDate(10),"Finish this class ASAP");
+                "testemail@test.com", "954-778-9008", "InProgress", LocalDate.now(), LocalDate.now(), "Finish this class ASAP");
         appRepo.insert(courses);
-        Assessments assessments = new Assessments(1,"Final Project", getDate(0), "Practice Assessment", 1);
+        Assessments assessments = new Assessments(1, "Final Project", LocalDate.now(), "Practice Assessment", 1);
         appRepo.insert(assessments);
     }
-
-        private static Date getDate(int diff) {
-            GregorianCalendar cal = new GregorianCalendar();
-            cal.add(Calendar.MILLISECOND, diff);
-            return cal.getTime();
-        }
 
     public void enterButton(View view) {
         Intent intent = new Intent(MainActivity.this, mainScreen.class);
