@@ -9,6 +9,7 @@ import android.widget.Toast;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
+import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -33,16 +34,15 @@ public class DetailedTerm extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_detailed_term_list);
         RecyclerView recyclerView = findViewById(R.id.termRecyclerView);
+        recyclerView.setHasFixedSize(true);
+        DividerItemDecoration decoration = new DividerItemDecoration(this, DividerItemDecoration.VERTICAL);
+        recyclerView.addItemDecoration(decoration);
         AppRepo appRepo = new AppRepo(getApplication());
         List<Terms> terms = appRepo.getAllTerms();
         final TermAdapter termAdapter = new TermAdapter(this);
         recyclerView.setAdapter(termAdapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         termAdapter.setTerms(terms);
-        CardView cardView = findViewById(R.id.termsCardView);
-        ViewGroup.LayoutParams params = cardView.getLayoutParams();
-        params.height = params.width;
-        cardView.setLayoutParams(params);
 
     }
     public void onClickAddTerm(View view) {

@@ -10,6 +10,7 @@ import android.widget.RadioButton;
 import android.widget.TextView;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
+import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -39,16 +40,15 @@ public class mainScreen extends AppCompatActivity {
         final Button go = (Button) findViewById(R.id.mainAddButton);
 
         RecyclerView recyclerView = findViewById(R.id.mainRecyclerView);
+        recyclerView.setHasFixedSize(true);
+        DividerItemDecoration decoration = new DividerItemDecoration(this, DividerItemDecoration.VERTICAL);
+        recyclerView.addItemDecoration(decoration);
         AppRepo appRepo = new AppRepo(getApplication());
         List<Terms> terms = appRepo.getAllTerms();
         final MainScreenTermAdapter termAdapter = new MainScreenTermAdapter(this);
         recyclerView.setAdapter(termAdapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         termAdapter.setTerms(terms);
-        CardView cardView = findViewById(R.id.mainScreenCardView);
-        ViewGroup.LayoutParams params = cardView.getLayoutParams();
-        params.height = params.width;
-        cardView.setLayoutParams(params);
 
 
         go.setOnClickListener(new View.OnClickListener() {
