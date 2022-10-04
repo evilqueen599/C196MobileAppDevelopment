@@ -28,6 +28,8 @@ public class AddTerm extends AppCompatActivity {
 
     Terms terms;
 
+    Integer termId;
+
     String termTitle;
 
     LocalDate startDate;
@@ -77,8 +79,7 @@ public class AddTerm extends AppCompatActivity {
             if (isNull()) {
                 return;
             }
-            Integer newId = appRepo.getAllTerms().get(appRepo.getAllTerms().size() - 1).getTermId() +1;
-            terms = new Terms(newId, termTitle, startDate, endDate);
+            terms = new Terms(termId, termTitle, startDate, endDate);
             appRepo.insert(terms);
             Toast.makeText(AddTerm.this, "New Term Created.", Toast.LENGTH_SHORT).show();
             Intent intent = new Intent(AddTerm.this, DetailedTerm.class);
