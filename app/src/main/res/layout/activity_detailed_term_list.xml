@@ -12,12 +12,12 @@
         android:layout_height="0dp"
         android:layout_width="0dp"
         app:cardBackgroundColor="@color/cardview_light_background"
-        app:cardCornerRadius="8dp"
+        app:cardCornerRadius="30dp"
         app:cardElevation="10dp"
         app:cardMaxElevation="10dp"
         app:cardPreventCornerOverlap="true"
         app:cardUseCompatPadding="true"
-        app:layout_constraintBottom_toTopOf="@+id/addNewTermBtn"
+        app:layout_constraintBottom_toTopOf="@+id/addNewTermFab"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/detailedTermListTxt">
@@ -28,17 +28,22 @@
             />
     </androidx.cardview.widget.CardView>
 
-    <Button
-        android:id="@+id/addNewTermBtn"
-        android:layout_width="match_parent"
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/addNewTermFab"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:onClick="onClickAddTerm"
-        android:text="Add A New Term"
-        app:layout_constraintBottom_toBottomOf="@id/guidelineBottom"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/termsCardView" />
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentEnd="true"
+        android:clickable="true"
+        android:focusable="true"
+        android:onClick="onClickEditTerm"
+        app:fabSize="normal"
+        app:srcCompat="@drawable/ic_round_add_task_24"
+        app:layout_constraintBottom_toTopOf="@id/guidelineBottom"
+        app:layout_constraintEnd_toStartOf="@id/guidelineLeft"
+        app:layout_constraintTop_toBottomOf="@id/termsCardView"
+        app:layout_constraintStart_toEndOf="@id/guidelineRight"
+        />
 
     <TextView
         android:id="@+id/detailedTermListTxt"
