@@ -4,10 +4,12 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 
+import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.RadioButton;
 import android.widget.TextView;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -43,6 +45,10 @@ public class mainScreen extends AppCompatActivity {
         recyclerView.setAdapter(termAdapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         termAdapter.setTerms(terms);
+        CardView cardView = findViewById(R.id.mainScreenCardView);
+        ViewGroup.LayoutParams params = cardView.getLayoutParams();
+        params.height = params.width;
+        cardView.setLayoutParams(params);
 
 
         go.setOnClickListener(new View.OnClickListener() {
