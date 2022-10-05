@@ -36,7 +36,6 @@
         android:layout_alignParentEnd="true"
         android:clickable="true"
         android:focusable="true"
-        android:onClick="onClickEditTerm"
         app:fabSize="normal"
         app:srcCompat="@drawable/ic_baseline_add_circle_outline_24"
         app:layout_constraintBottom_toTopOf="@id/guidelineBottom"

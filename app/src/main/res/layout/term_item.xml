@@ -46,16 +46,5 @@
             android:onClick="onClickEditTerm"
             app:srcCompat="@drawable/ic_baseline_edit_24"
             android:focusable="true" />
-        <com.google.android.material.floatingactionbutton.FloatingActionButton
-            android:id="@+id/termDeleteFab"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/termEditFab"
-            android:layout_alignParentEnd="true"
-            android:clickable="true"
-            app:fabSize="mini"
-            android:onClick="onClickDeleteTerm"
-            app:srcCompat="@drawable/ic_baseline_delete_outline_24"
-            android:focusable="true" />
     </RelativeLayout>
 </androidx.cardview.widget.CardView>

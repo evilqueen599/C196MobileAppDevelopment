@@ -25,6 +25,10 @@ import java.util.List;
 
 public class TermAdapter extends RecyclerView.Adapter<TermAdapter.TermViewHolder> {
 
+    public Terms getTerm(int absoluteAdapterPosition) {
+        return mterms.get(absoluteAdapterPosition);
+    }
+
     class TermViewHolder extends RecyclerView.ViewHolder {
         private final TextView termTxt;
         private final TextView termTxt2;
