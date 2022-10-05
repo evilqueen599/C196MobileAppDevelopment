@@ -114,7 +114,7 @@
         android:id="@+id/mainScreenCardView"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        app:cardBackgroundColor="@color/cardview_light_background"
+        app:cardBackgroundColor="@color/teal_200"
         app:cardCornerRadius="30dp"
         app:cardElevation="10dp"
         app:cardMaxElevation="12dp"

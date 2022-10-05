@@ -4,7 +4,8 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    app:cardCornerRadius="4dp">
+    app:cardCornerRadius="50dp"
+    app:cardBackgroundColor="@color/purple_700">
 
         <RelativeLayout
             android:layout_width="match_parent"
@@ -18,7 +19,7 @@
                 android:layout_alignParentTop="true"
                 android:layout_centerHorizontal="true"
                 android:textAlignment="center"
-                android:textColor="@color/purple_700"
+                android:textColor="@color/white"
                 android:textSize="20sp"
                 android:textStyle="bold" />
 

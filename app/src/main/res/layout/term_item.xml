@@ -3,7 +3,8 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    app:cardCornerRadius="4dp"
+    app:cardCornerRadius="50dp"
+    app:cardBackgroundColor="@color/purple_700"
     >
 
     <RelativeLayout
@@ -17,7 +18,7 @@
             android:layout_height="wrap_content"
             android:layout_alignParentTop="true"
             android:text="Line 1"
-            android:textColor="@color/purple_700"
+            android:textColor="@color/white"
             android:textSize="20sp"
             android:textStyle="bold" />
 
@@ -30,7 +31,7 @@
             android:layout_marginTop="29dp"
             android:layout_below="@+id/termTxt"
             android:text="Line 2"
-            android:textColor="@color/purple_700"
+            android:textColor="@color/white"
             android:textSize="15sp"
             android:textStyle="bold" />
 
