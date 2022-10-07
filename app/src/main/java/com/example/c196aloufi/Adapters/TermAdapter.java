@@ -32,7 +32,6 @@ public class TermAdapter extends RecyclerView.Adapter<TermAdapter.TermViewHolder
     class TermViewHolder extends RecyclerView.ViewHolder {
         private final TextView termTxt;
         private final TextView termTxt2;
-        CardView termsCardView;
 
 
         private TermViewHolder(View termView) {

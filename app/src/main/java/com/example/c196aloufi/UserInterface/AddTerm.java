@@ -18,6 +18,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.example.c196aloufi.Database.AppRepo;
 import com.example.c196aloufi.Model.Terms;
 import com.example.c196aloufi.R;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
@@ -32,13 +33,13 @@ public class AddTerm extends AppCompatActivity {
 
     String termTitle;
 
-    LocalDate startDate;
+    static LocalDate startDate;
 
-    LocalDate endDate;
+    static LocalDate endDate;
 
     AppRepo appRepo;
 
-    EditText termTitleTxt;
+    static EditText termTitleTxt;
 
     Button startDatePickerButton;
 

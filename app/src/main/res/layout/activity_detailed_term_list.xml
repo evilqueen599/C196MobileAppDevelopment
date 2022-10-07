@@ -32,17 +32,17 @@
         android:id="@+id/addNewTermFab"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
         android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
         android:clickable="true"
         android:focusable="true"
+        android:onClick="onClickAddTerm"
         app:fabSize="normal"
-        app:srcCompat="@drawable/ic_baseline_add_circle_outline_24"
         app:layout_constraintBottom_toTopOf="@id/guidelineBottom"
         app:layout_constraintEnd_toStartOf="@id/guidelineLeft"
-        app:layout_constraintTop_toBottomOf="@id/termsCardView"
         app:layout_constraintStart_toEndOf="@id/guidelineRight"
-        />
+        app:layout_constraintTop_toBottomOf="@id/termsCardView"
+        app:srcCompat="@drawable/ic_baseline_add_circle_outline_24" />
 
     <TextView
         android:id="@+id/detailedTermListTxt"

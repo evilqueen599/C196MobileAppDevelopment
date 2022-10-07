@@ -1,5 +1,6 @@
 package com.example.c196aloufi.UserInterface;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -30,6 +31,7 @@ public class DetailedTerm extends AppCompatActivity {
 
     FloatingActionButton deleteTerm;
     AppRepo appRepo;
+    TermAdapter termAdapter;
     Terms terms;
     int termId;
 
@@ -56,9 +58,28 @@ public class DetailedTerm extends AppCompatActivity {
             @Override
             public void onSwiped(@NonNull RecyclerView.ViewHolder viewHolder, int direction) {
                 try {
-                    Terms deleteTerm = termAdapter.getTerm(viewHolder.getAbsoluteAdapterPosition());
-                    appRepo.delete(deleteTerm);
-                    Toast.makeText(DetailedTerm.this, "Term has been deleted.", Toast.LENGTH_SHORT).show();
+                    DialogInterface.OnClickListener termDeleteClickListener = new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            switch (which) {
+                                case DialogInterface.BUTTON_POSITIVE:
+                                    Terms deleteTerm = termAdapter.getTerm(viewHolder.getAbsoluteAdapterPosition());
+                                    appRepo.delete(deleteTerm);
+                                    Toast.makeText(DetailedTerm.this, "Term has been deleted.", Toast.LENGTH_SHORT).show();
+                                    break;
+
+                                    case DialogInterface.BUTTON_NEGATIVE:
+                                        Terms saveTerm = termAdapter.getTerm(viewHolder.getAbsoluteAdapterPosition());
+                                        appRepo.update(saveTerm);
+                                        termAdapter.notifyDataSetChanged();
+                                        Toast.makeText(DetailedTerm.this, "Term has not been deleted.", Toast.LENGTH_SHORT).show();
+                            }
+                        }
+                    };
+                    AlertDialog.Builder alert = new AlertDialog.Builder(DetailedTerm.this);
+                    alert.setMessage("Do you want to delete this term?").setPositiveButton("Yes", termDeleteClickListener)
+                            .setNegativeButton("No", termDeleteClickListener).show();
+
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
@@ -72,8 +93,7 @@ public class DetailedTerm extends AppCompatActivity {
     }
 
     public void onClickEditTerm(View view) {
-        Intent intent = new Intent(DetailedTerm.this, AddTerm.class);
-        startActivity(intent);
+
     }
 
 }

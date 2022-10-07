@@ -41,10 +41,10 @@
             android:layout_height="wrap_content"
             android:layout_alignParentTop="true"
             android:layout_alignParentEnd="true"
-            app:fabSize="mini"
             android:clickable="true"
+            android:focusable="true"
             android:onClick="onClickEditTerm"
-            app:srcCompat="@drawable/ic_baseline_edit_24"
-            android:focusable="true" />
+            app:fabSize="mini"
+            app:srcCompat="@drawable/ic_baseline_edit_24" />
     </RelativeLayout>
 </androidx.cardview.widget.CardView>
