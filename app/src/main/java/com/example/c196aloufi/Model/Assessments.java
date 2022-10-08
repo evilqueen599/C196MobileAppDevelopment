@@ -19,7 +19,7 @@ public class Assessments implements Parcelable {
     @ColumnInfo
     private String assessmentTitle;
     @ColumnInfo
-    private LocalDate endDate;
+    private String endDate;
     @ColumnInfo
     private String assessmentType;
     @ColumnInfo
@@ -37,7 +37,7 @@ public class Assessments implements Parcelable {
             courseId = in.readInt();
         }
 
-        endDate = LocalDate.parse(in.readString());
+        endDate = in.readString();
     }
 
     public static final Creator<Assessments> CREATOR = new Creator<Assessments>() {
@@ -79,11 +79,11 @@ public class Assessments implements Parcelable {
         this.assessmentTitle = assessmentTitle;
     }
 
-    public LocalDate getEndDate() {
+    public String getEndDate() {
         return endDate;
     }
 
-    public void setEndDate(LocalDate endDate) {
+    public void setEndDate(String endDate) {
         this.endDate = endDate;
     }
 
@@ -103,7 +103,7 @@ public class Assessments implements Parcelable {
         this.courseId = courseId;
     }
 
-    public Assessments(Integer assessmentId, String assessmentTitle, LocalDate endDate, String assessmentType, int courseId) {
+    public Assessments(Integer assessmentId, String assessmentTitle, String endDate, String assessmentType, int courseId) {
         this.assessmentId = assessmentId;
         this.assessmentTitle = assessmentTitle;
         this.endDate = endDate;
@@ -118,7 +118,6 @@ public class Assessments implements Parcelable {
 
     @Override
     public void writeToParcel(@NonNull Parcel dest, int flags) {
-        DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ISO_LOCAL_DATE;
         if(assessmentId == null) {
             dest.writeByte((byte) 0);
         }else {
@@ -132,7 +131,7 @@ public class Assessments implements Parcelable {
             dest.writeInt(courseId);
         }
         dest.writeString(assessmentTitle);
-        dest.writeString(endDate.format(dateTimeFormatter));
+        dest.writeString(endDate);
         dest.writeString(assessmentType);
         dest.writeInt(courseId);
     }

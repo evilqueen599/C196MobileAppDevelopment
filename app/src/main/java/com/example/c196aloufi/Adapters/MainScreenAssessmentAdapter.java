@@ -30,7 +30,7 @@ public class MainScreenAssessmentAdapter extends RecyclerView.Adapter<MainScreen
             assessmentView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    int position = getAdapterPosition();
+                    int position = getAbsoluteAdapterPosition();
                     final Assessments current = massessments.get(position);
                     Intent intent = new Intent(context, CourseList.class);
                     intent.putExtra("assessmentId", current.getAssessmentId());

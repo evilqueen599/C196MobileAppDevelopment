@@ -1,7 +1,9 @@
 package com.example.c196aloufi.Adapters;
 
+import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -10,6 +12,7 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.cardview.widget.CardView;
+import androidx.localbroadcastmanager.content.LocalBroadcastManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.c196aloufi.Model.Terms;
@@ -42,7 +45,7 @@ public class TermAdapter extends RecyclerView.Adapter<TermAdapter.TermViewHolder
             termView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    int position = getAdapterPosition();
+                    int position = getAbsoluteAdapterPosition();
                     final Terms current = mterms.get(position);
                     Intent intent = new Intent(context, DetailedTerm.class);
                     intent.putExtra("id", current.getTermId());
@@ -73,13 +76,12 @@ public class TermAdapter extends RecyclerView.Adapter<TermAdapter.TermViewHolder
     @Override
     public void onBindViewHolder(@NonNull TermAdapter.TermViewHolder holder, int position) {
         if (mterms != null) {
-            DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ISO_LOCAL_DATE;
             Terms current = mterms.get(position);
             String name = current.getTermName();
             holder.termTxt.setText(name);
-            LocalDate startDate = current.getStartDate();
-            LocalDate endDate = current.getEndDate();
-            holder.termTxt2.setText((startDate.format(dateTimeFormatter)) + " to " + (endDate.format(dateTimeFormatter)));
+            String startDate = current.getStartDate();
+            String endDate = current.getEndDate();
+            holder.termTxt2.setText((startDate) + " to " + (endDate));
 
         } else {
             holder.termTxt.setText("No Terms Exist");
@@ -97,4 +99,12 @@ public class TermAdapter extends RecyclerView.Adapter<TermAdapter.TermViewHolder
             return mterms.size();
         } else return 0;
     }
+    public Terms getSelectedTerm(int position) {
+        return mterms.get(position);
+    }
+
+    public interface onClickEditTermListener {
+        void onClickEditTermFab(int position);
+    }
+
 }

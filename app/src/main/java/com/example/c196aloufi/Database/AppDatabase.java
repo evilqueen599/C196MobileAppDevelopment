@@ -18,8 +18,7 @@ import com.example.c196aloufi.Model.Terms;
 
 import java.time.LocalDate;
 
-@Database(entities={Terms.class, Assessments.class, Courses.class}, version = 2, exportSchema = false)
-@TypeConverters({Converters.class})
+@Database(entities={Terms.class, Assessments.class, Courses.class}, version = 3, exportSchema = false)
 public abstract class AppDatabase extends RoomDatabase {
 
     public abstract TermDAO termDAO();

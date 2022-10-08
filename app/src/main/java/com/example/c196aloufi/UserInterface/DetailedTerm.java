@@ -5,6 +5,8 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -24,16 +26,25 @@ import com.example.c196aloufi.Model.Terms;
 import com.example.c196aloufi.R;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
+import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.ExecutionException;
 
-public class DetailedTerm extends AppCompatActivity {
+public class DetailedTerm extends AppCompatActivity implements TermAdapter.onClickEditTermListener {
 
-    FloatingActionButton deleteTerm;
     AppRepo appRepo;
     TermAdapter termAdapter;
     Terms terms;
     int termId;
+    FloatingActionButton editTermFab;
+    EditText termTitleTxt;
+    Button startDatePickerButton;
+    Button endDatePickerButton;
+    String termName;
+    String startDate;
+    String endDate;
+    private ArrayList<Terms> mterms = new ArrayList<>();
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -47,7 +58,7 @@ public class DetailedTerm extends AppCompatActivity {
         final TermAdapter termAdapter = new TermAdapter(this);
         recyclerView.setAdapter(termAdapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
-        termAdapter.setTerms(terms);
+        termAdapter.setTerms((ArrayList<Terms>) terms);
 
         new ItemTouchHelper(new ItemTouchHelper.SimpleCallback(0, ItemTouchHelper.LEFT | ItemTouchHelper.RIGHT) {
             @Override
@@ -92,8 +103,10 @@ public class DetailedTerm extends AppCompatActivity {
         startActivity(intent);
     }
 
-    public void onClickEditTerm(View view) {
-
+    @Override
+    public void onClickEditTermFab(int position) {
+        mterms.get(position);
+        Intent intent = new Intent(this, AddTerm.class);
+        startActivity(intent);
     }
-
 }

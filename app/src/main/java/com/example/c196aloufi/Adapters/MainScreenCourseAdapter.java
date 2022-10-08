@@ -28,7 +28,7 @@ public class MainScreenCourseAdapter extends RecyclerView.Adapter<MainScreenCour
             courseView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    int position = getAdapterPosition();
+                    int position = getAbsoluteAdapterPosition();
                     final Courses current = mcourses.get(position);
                     Intent intent = new Intent(context, CourseList.class);
                     intent.putExtra("courseId", current.getCourseId());

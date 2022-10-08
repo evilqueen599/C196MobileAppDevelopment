@@ -29,7 +29,7 @@ public class MainScreenTermAdapter extends RecyclerView.Adapter<MainScreenTermAd
             termView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    int position = getAdapterPosition();
+                    int position = getAbsoluteAdapterPosition();
                     final Terms current = mterms.get(position);
                     Intent intent = new Intent(context, mainScreen.class);
                     intent.putExtra("id", current.getTermId());

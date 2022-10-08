@@ -44,7 +44,7 @@ public class CourseAdapter extends RecyclerView.Adapter<CourseAdapter.CourseView
             courseView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    int position = getAdapterPosition();
+                    int position = getAbsoluteAdapterPosition();
                     final Courses current = mcourses.get(position);
                     Intent intent = new Intent(context, CourseList.class);
                     intent.putExtra("courseId", current.getCourseId());
@@ -79,13 +79,12 @@ public class CourseAdapter extends RecyclerView.Adapter<CourseAdapter.CourseView
     @Override
     public void onBindViewHolder(@NonNull CourseAdapter.CourseViewHolder holder, int position) {
         if (mcourses != null) {
-            DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ISO_LOCAL_DATE;
             Courses current = mcourses.get(position);
             String name = current.getCourseName();
             holder.courseTitleTxt.setText(name);
-            LocalDate startDate = current.getStartDate();
-            LocalDate endDate = current.getEndDate();
-            holder.courseDateTxt.setText((startDate.format(dateTimeFormatter)) + " - " +(endDate.format(dateTimeFormatter)));
+            String startDate = current.getStartDate();
+            String endDate = current.getEndDate();
+            holder.courseDateTxt.setText((startDate) + " - " +(endDate));
             String status = current.getCourseStatus();
             holder.courseStatusTxt.setText(status);
             String instructorName = current.getInstructorName();

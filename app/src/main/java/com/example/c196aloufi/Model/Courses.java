@@ -27,9 +27,9 @@ public class Courses implements Parcelable {
     @ColumnInfo
     private String courseStatus;
     @ColumnInfo
-    private LocalDate startDate;
+    private String startDate;
     @ColumnInfo
-    private LocalDate endDate;
+    private String endDate;
     @ColumnInfo
     private String courseNote;
 
@@ -120,19 +120,19 @@ public class Courses implements Parcelable {
         this.courseStatus = courseStatus;
     }
 
-    public LocalDate getStartDate() {
+    public String getStartDate() {
         return startDate;
     }
 
-    public void setStartDate(LocalDate startDate) {
+    public void setStartDate(String startDate) {
         this.startDate = startDate;
     }
 
-    public LocalDate getEndDate() {
+    public String getEndDate() {
         return endDate;
     }
 
-    public void setEndDate(LocalDate endDate) {
+    public void setEndDate(String endDate) {
         this.endDate = endDate;
     }
 
@@ -145,7 +145,7 @@ public class Courses implements Parcelable {
     }
 
     public Courses(Integer courseId, String courseName, String instructorName, String instructorEmail, String instructorPhone,
-                   String courseStatus, LocalDate startDate, LocalDate endDate, String courseNote) {
+                   String courseStatus, String startDate, String endDate, String courseNote) {
         this.courseId = courseId;
         this.courseName = courseName;
         this.instructorName = instructorName;

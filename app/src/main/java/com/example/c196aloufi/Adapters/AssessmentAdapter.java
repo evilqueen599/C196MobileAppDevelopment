@@ -39,7 +39,7 @@ public class AssessmentAdapter extends RecyclerView.Adapter<AssessmentAdapter.As
             courseView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    int position = getAdapterPosition();
+                    int position = getAbsoluteAdapterPosition();
                     final Assessments current = massessments.get(position);
                     Intent intent = new Intent(context, CourseList.class);
                     intent.putExtra("assessmentId", current.getAssessmentId());
@@ -70,14 +70,13 @@ public class AssessmentAdapter extends RecyclerView.Adapter<AssessmentAdapter.As
     @Override
     public void onBindViewHolder(@NonNull AssessmentAdapter.AssessmentViewHolder holder, int position) {
         if (massessments != null) {
-            DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ISO_LOCAL_DATE;
             Assessments current = massessments.get(position);
             String name = current.getAssessmentTitle();
             holder.assessmentTitleTxt.setText(name);
             String type =current.getAssessmentType();
             holder.assessmentTypeTxt.setText(type);
-            LocalDate dueDate = current.getEndDate();
-            holder.dueDateTxt.setText((dueDate.format(dateTimeFormatter)));
+            String dueDate = current.getEndDate();
+            holder.dueDateTxt.setText((dueDate));
 
         } else {
             holder.assessmentTitleTxt.setText("No Assessments Exist");

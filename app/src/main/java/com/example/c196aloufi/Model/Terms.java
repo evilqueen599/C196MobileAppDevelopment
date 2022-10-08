@@ -3,9 +3,6 @@ package com.example.c196aloufi.Model;
 import android.os.Parcel;
 import android.os.Parcelable;
 
-import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
-
 import androidx.annotation.NonNull;
 import androidx.room.ColumnInfo;
 import androidx.room.Entity;
@@ -19,9 +16,9 @@ public class Terms implements Parcelable {
     @ColumnInfo(name = "termName")
     public String termName;
     @ColumnInfo(name = "startDate")
-    public LocalDate startDate;
+    public String startDate;
     @ColumnInfo(name = "endDate")
-    public LocalDate endDate;
+    public String endDate;
 
     protected Terms(Parcel in) {
         if (in.readByte() == 0) {
@@ -50,8 +47,8 @@ public class Terms implements Parcelable {
         return "Terms{" +
                 "termId=" + termId +
                 ", termName='" + termName + '\'' +
-                ", startDate=" + startDate.format(DateTimeFormatter.ISO_LOCAL_DATE) +
-                ", endDate=" + endDate.format(DateTimeFormatter.ISO_LOCAL_DATE) +
+                ", startDate=" + startDate +
+                ", endDate=" + endDate +
                 '}';
     }
 
@@ -71,23 +68,23 @@ public class Terms implements Parcelable {
         this.termName = termName;
     }
 
-    public LocalDate getStartDate() {
+    public String getStartDate() {
         return startDate;
     }
 
-    public void setStartDate(LocalDate startDate) {
+    public void setStartDate(String startDate) {
         this.startDate = startDate;
     }
 
-    public LocalDate getEndDate() {
+    public String getEndDate() {
         return endDate;
     }
 
-    public void setEndDate(LocalDate endDate) {
+    public void setEndDate(String endDate) {
         this.endDate = endDate;
     }
 
-    public Terms(Integer termId, String termName, LocalDate startDate, LocalDate endDate) {
+    public Terms(Integer termId, String termName, String startDate, String endDate) {
         this.termId = termId;
         this.termName = termName;
         this.startDate = startDate;
@@ -101,7 +98,6 @@ public class Terms implements Parcelable {
 
     @Override
     public void writeToParcel(@NonNull Parcel dest, int flags) {
-        DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ISO_LOCAL_DATE;
         if (termId == null) {
             dest.writeByte((byte) 0);
         } else {
@@ -109,7 +105,7 @@ public class Terms implements Parcelable {
             dest.writeInt(termId);
         }
         dest.writeString(termName);
-        dest.writeString(startDate.format(dateTimeFormatter));
-        dest.writeString(endDate.format(dateTimeFormatter));
+        dest.writeString(startDate);
+        dest.writeString(endDate);
     }
 }
