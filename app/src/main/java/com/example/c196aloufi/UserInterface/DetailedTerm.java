@@ -27,11 +27,10 @@ import com.example.c196aloufi.R;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.time.LocalDate;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.ExecutionException;
 
-public class DetailedTerm extends AppCompatActivity implements TermAdapter.onClickEditTermListener {
+public class DetailedTerm extends AppCompatActivity {
 
     AppRepo appRepo;
     TermAdapter termAdapter;
@@ -44,7 +43,6 @@ public class DetailedTerm extends AppCompatActivity implements TermAdapter.onCli
     String termName;
     String startDate;
     String endDate;
-    private ArrayList<Terms> mterms = new ArrayList<>();
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -58,7 +56,7 @@ public class DetailedTerm extends AppCompatActivity implements TermAdapter.onCli
         final TermAdapter termAdapter = new TermAdapter(this);
         recyclerView.setAdapter(termAdapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
-        termAdapter.setTerms((ArrayList<Terms>) terms);
+        termAdapter.setTerms(terms);
 
         new ItemTouchHelper(new ItemTouchHelper.SimpleCallback(0, ItemTouchHelper.LEFT | ItemTouchHelper.RIGHT) {
             @Override
@@ -103,10 +101,12 @@ public class DetailedTerm extends AppCompatActivity implements TermAdapter.onCli
         startActivity(intent);
     }
 
-    @Override
-    public void onClickEditTermFab(int position) {
-        mterms.get(position);
-        Intent intent = new Intent(this, AddTerm.class);
+
+    public void onClickEditTerm(View view) {
+        Intent intent = new Intent(DetailedTerm.this, AddTerm.class);
+        intent.putExtra("termName",termName);
+        intent.putExtra("startDate", startDate);
+        intent.putExtra("endDate",endDate);
         startActivity(intent);
     }
 }

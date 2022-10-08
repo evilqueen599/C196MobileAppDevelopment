@@ -30,6 +30,7 @@ import com.example.c196aloufi.R;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeFormatterBuilder;
 import java.util.Calendar;
@@ -85,10 +86,10 @@ public class AddTerm extends AppCompatActivity {
         termTitleTxt = findViewById(R.id.termTitleTxt);
         initDatePicker();
         startDatePickerButton = findViewById(R.id.startDatePickerButton);
-        startDatePickerButton.setText(String.format(getTodaysDate(), TextFormatter.fullDateFormat));
+        startDatePickerButton.setText(getEndDate());
         initEndDatePicker();
         endDatePickerButton = findViewById(R.id.endDatePickerButton);
-        endDatePickerButton.setText(String.format(getEndDate(), TextFormatter.fullDateFormat));
+        endDatePickerButton.setText(getTodaysDate());
         addNewTerm();
     }
 
@@ -101,8 +102,8 @@ public class AddTerm extends AppCompatActivity {
                 return;
             }
 
-            startDate = getTodaysDate();
-            endDate = getEndDate();
+            startDate = startDatePickerButton.getText().toString();
+            endDate = endDatePickerButton.getText().toString();
 
             terms = new Terms(termId, termTitle, startDate, endDate);
             appRepo.insert(terms);
