@@ -13,7 +13,9 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.c196aloufi.Model.Terms;
 import com.example.c196aloufi.R;
+import com.example.c196aloufi.UserInterface.AddTerm;
 import com.example.c196aloufi.UserInterface.DetailedTerm;
+
 
 import java.util.List;
 
@@ -23,26 +25,31 @@ public class TermAdapter extends RecyclerView.Adapter<TermAdapter.TermViewHolder
         return mterms.get(absoluteAdapterPosition);
     }
 
-    class TermViewHolder extends RecyclerView.ViewHolder {
+    public void setTerms(List<Terms> terms) {
+        mterms = terms;
+        notifyDataSetChanged();
+    }
+
+    class TermViewHolder extends RecyclerView.ViewHolder  {
         private final TextView termTxt;
         private final TextView termTxt2;
 
 
-        private TermViewHolder(View termView) {
+        public TermViewHolder(View termView) {
             super(termView);
-            termTxt= termView.findViewById(R.id.termTxt);
+            termTxt = termView.findViewById(R.id.termTxt);
             termTxt2 = termView.findViewById(R.id.termTxt2);
-
             termView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     int position = getAbsoluteAdapterPosition();
                     final Terms current = mterms.get(position);
-                    Intent intent = new Intent(context, DetailedTerm.class);
+                    Intent intent = new Intent(context, AddTerm.class);
                     intent.putExtra("id", current.getTermId());
                     intent.putExtra("termName", current.getTermName());
                     intent.putExtra("startDate", current.getStartDate());
                     intent.putExtra("endDate", current.getEndDate());
+                    context.startActivity(intent);
                 }
             });
         }
@@ -52,17 +59,19 @@ public class TermAdapter extends RecyclerView.Adapter<TermAdapter.TermViewHolder
     private final Context context;
     private final LayoutInflater mInflator;
 
-    public TermAdapter(Context context){
+
+
+    public TermAdapter(Context context) {
         mInflator = LayoutInflater.from(context);
-        this.context=context;
-        }
+        this.context = context;
+    }
 
     @NonNull
     @Override
     public TermAdapter.TermViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View termView = mInflator.inflate(R.layout.term_item,parent, false);
+        View termView = mInflator.inflate(R.layout.term_item, parent, false);
         return new TermViewHolder(termView);
-        }
+    }
 
     @Override
     public void onBindViewHolder(@NonNull TermAdapter.TermViewHolder holder, int position) {
@@ -79,10 +88,6 @@ public class TermAdapter extends RecyclerView.Adapter<TermAdapter.TermViewHolder
             holder.termTxt2.setText("No Terms Exist ");
         }
     }
-    public void setTerms(List<Terms>terms) {
-        mterms = terms;
-        notifyDataSetChanged();
-    }
 
     @Override
     public int getItemCount() {
@@ -90,12 +95,4 @@ public class TermAdapter extends RecyclerView.Adapter<TermAdapter.TermViewHolder
             return mterms.size();
         } else return 0;
     }
-    public Terms getSelectedTerm(int position) {
-        return mterms.get(position);
-    }
-
-    public interface onClickEditTermListener {
-        void onClickEditTermFab(int position);
-    }
-
 }

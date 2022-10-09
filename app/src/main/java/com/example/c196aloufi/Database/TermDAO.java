@@ -10,6 +10,7 @@ import androidx.room.Update;
 
 import com.example.c196aloufi.Model.Terms;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Dao

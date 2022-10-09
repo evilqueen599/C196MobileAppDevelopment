@@ -27,22 +27,11 @@ import com.example.c196aloufi.R;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.ExecutionException;
 
-public class DetailedTerm extends AppCompatActivity {
-
-    AppRepo appRepo;
-    TermAdapter termAdapter;
-    Terms terms;
-    int termId;
-    FloatingActionButton editTermFab;
-    EditText termTitleTxt;
-    Button startDatePickerButton;
-    Button endDatePickerButton;
-    String termName;
-    String startDate;
-    String endDate;
+public class DetailedTerm extends AppCompatActivity  {
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -57,6 +46,7 @@ public class DetailedTerm extends AppCompatActivity {
         recyclerView.setAdapter(termAdapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         termAdapter.setTerms(terms);
+
 
         new ItemTouchHelper(new ItemTouchHelper.SimpleCallback(0, ItemTouchHelper.LEFT | ItemTouchHelper.RIGHT) {
             @Override
@@ -98,15 +88,6 @@ public class DetailedTerm extends AppCompatActivity {
 
     public void onClickAddTerm(View view) {
         Intent intent = new Intent(DetailedTerm.this, AddTerm.class);
-        startActivity(intent);
-    }
-
-
-    public void onClickEditTerm(View view) {
-        Intent intent = new Intent(DetailedTerm.this, AddTerm.class);
-        intent.putExtra("termName",termName);
-        intent.putExtra("startDate", startDate);
-        intent.putExtra("endDate",endDate);
         startActivity(intent);
     }
 }
