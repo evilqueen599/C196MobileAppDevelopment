@@ -23,7 +23,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        AppRepo appRepo = new AppRepo(getApplication());
+        //AppRepo appRepo = new AppRepo(getApplication());
        // Terms terms = new Terms(1, "Final Term", LocalDate.now(), LocalDate.now());
         //appRepo.insert(terms);
        // Terms terms1 = new Terms(2, "Term 2", ;

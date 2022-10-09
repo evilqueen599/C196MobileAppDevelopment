@@ -50,7 +50,7 @@ public class AddTerm extends AppCompatActivity {
 
     String endDate;
 
-    int editTermId;
+    Integer editTermId;
 
     String editTermTitle;
 
@@ -81,11 +81,12 @@ public class AddTerm extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_term);
         appRepo = new AppRepo(getApplication());
+        termId = getIntent().getIntExtra("termId", -1);
         editTermTitle = getIntent().getStringExtra("termName");
         editStartDate = getIntent().getStringExtra("startDate");
         editEndDate = getIntent().getStringExtra("endDate");
 
-        if (editTermTitle == null) {
+        if (termId == -1) {
             setUpView();
         } else {
             termTitleTxt = findViewById(R.id.termTitleTxt);
@@ -122,9 +123,9 @@ public class AddTerm extends AppCompatActivity {
             startDate = startDatePickerButton.getText().toString();
             endDate = endDatePickerButton.getText().toString();
 
-            if (editTermTitle == null) {
-                int newId = appRepo.getAllTerms().get(appRepo.getAllTerms().size() -1).getTermId() + 1;
-                terms = new Terms(newId, termTitle, startDate, endDate);
+            if (termId == -1) {
+                int newTermId = appRepo.getAllTerms().get(appRepo.getAllTerms().size() -1).getTermId() +1;
+                terms = new Terms(newTermId, termTitle, startDate, endDate);
                 appRepo.insert(terms);
                 Toast.makeText(AddTerm.this, "New Term Created.", Toast.LENGTH_SHORT).show();
                 Intent intent = new Intent(AddTerm.this, DetailedTerm.class);
