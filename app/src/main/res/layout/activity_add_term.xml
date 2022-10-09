@@ -81,12 +81,12 @@
         android:id="@+id/createBtn"
         android:layout_width="match_parent"
         android:layout_height="48dp"
+        android:onClick="createButton"
         android:text="Create"
         app:layout_constraintBottom_toTopOf="@+id/guidelineBottom"
         app:layout_constraintEnd_toStartOf="@+id/guidelineRight"
         app:layout_constraintStart_toStartOf="@id/guidelineLeft"
-        app:layout_constraintTop_toBottomOf="@+id/addTermCardView"
-         />
+        app:layout_constraintTop_toBottomOf="@+id/addTermCardView" />
 
     <TextView
         android:id="@+id/dueDate"

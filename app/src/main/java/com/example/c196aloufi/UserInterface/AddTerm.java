@@ -1,28 +1,48 @@
 package com.example.c196aloufi.UserInterface;
 
+
 import android.app.AlertDialog;
 import android.app.DatePickerDialog;
+import android.content.BroadcastReceiver;
+import android.content.Context;
 import android.content.Intent;
+import android.content.IntentFilter;
+import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import androidx.appcompat.app.AppCompatActivity;
 
+import androidx.annotation.RequiresApi;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.lifecycle.ViewModelProvider;
+import androidx.localbroadcastmanager.content.LocalBroadcastManager;
+import androidx.recyclerview.widget.RecyclerView;
+
+import com.example.c196aloufi.Adapters.TermAdapter;
+import com.example.c196aloufi.Adapters.TextFormatter;
 import com.example.c196aloufi.Database.AppRepo;
+import com.example.c196aloufi.Database.TermDAO;
 import com.example.c196aloufi.Model.Terms;
 import com.example.c196aloufi.R;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeFormatterBuilder;
 import java.util.Calendar;
-
+import java.util.Date;
+import java.util.Formatter;
+import java.util.List;
 
 public class AddTerm extends AppCompatActivity {
 
     Terms terms;
 
-    int termId;
+    Integer termId;
 
     String termTitle;
 
@@ -30,13 +50,13 @@ public class AddTerm extends AppCompatActivity {
 
     String endDate;
 
+    int editTermId;
+
     String editTermTitle;
 
     String editStartDate;
 
     String editEndDate;
-
-    int editTermId;
 
     AppRepo appRepo;
 
@@ -52,20 +72,31 @@ public class AddTerm extends AppCompatActivity {
 
     DatePickerDialog endDatePickerDialog;
 
+
+
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_term);
-        editTermId = getIntent().getIntExtra("termId", -1);
+        appRepo = new AppRepo(getApplication());
         editTermTitle = getIntent().getStringExtra("termName");
         editStartDate = getIntent().getStringExtra("startDate");
         editEndDate = getIntent().getStringExtra("endDate");
-        appRepo = new AppRepo(getApplication());
 
         if (editTermTitle == null) {
             setUpView();
         } else {
-           setUpEditView();
+            termTitleTxt = findViewById(R.id.termTitleTxt);
+            termTitleTxt.setText(editTermTitle);
+            startDatePickerButton = findViewById(R.id.startDatePickerButton);
+            startDatePickerButton.setText(editStartDate);
+            endDatePickerButton = findViewById(R.id.endDatePickerButton);
+            endDatePickerButton.setText(editEndDate);
+            initDatePicker();
+            initEndDatePicker();
+            addNewTerm();
         }
     }
 
@@ -80,17 +111,7 @@ public class AddTerm extends AppCompatActivity {
         addNewTerm();
     }
 
-    private void setUpEditView() {
-        termTitleTxt = findViewById(R.id.termTitleTxt);
-        termTitleTxt.setText(editTermTitle);
-        startDatePickerButton = findViewById(R.id.startDatePickerButton);
-        startDatePickerButton.setText(editStartDate);
-        initDatePicker();
-        endDatePickerButton = findViewById(R.id.endDatePickerButton);
-        endDatePickerButton.setText(editEndDate);
-        initEndDatePicker();
-        addNewTerm();
-    }
+
     private void addNewTerm() {
         createBtn = findViewById(R.id.createBtn);
         createBtn.setOnClickListener(v -> {
@@ -98,26 +119,28 @@ public class AddTerm extends AppCompatActivity {
             if (isNull()) {
                 return;
             }
-            termId = terms.getTermId();
             startDate = startDatePickerButton.getText().toString();
             endDate = endDatePickerButton.getText().toString();
-            if (editTermId == termId) {
-                terms = new Terms(termId, termTitle, startDate, startDate);
-                appRepo.update(terms);
-                Toast.makeText(AddTerm.this, "Term has been updated.",Toast.LENGTH_SHORT).show();
-                Intent intent = new Intent(AddTerm.this, DetailedTerm.class);
-                startActivity(intent);
 
-            }else {
-                int newId = appRepo.getAllTerms().get(appRepo.getAllTerms().size() - 1).getTermId() + 1;
+            if (editTermTitle == null) {
+                int newId = appRepo.getAllTerms().get(appRepo.getAllTerms().size() -1).getTermId() + 1;
                 terms = new Terms(newId, termTitle, startDate, endDate);
                 appRepo.insert(terms);
                 Toast.makeText(AddTerm.this, "New Term Created.", Toast.LENGTH_SHORT).show();
                 Intent intent = new Intent(AddTerm.this, DetailedTerm.class);
                 startActivity(intent);
             }
+            else {
+                terms = new Terms(termId, termTitle,startDate, endDate);
+                appRepo.update(terms);
+                Toast.makeText(AddTerm.this, "Term has been updated.",Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent(AddTerm.this, DetailedTerm.class);
+                startActivity(intent);
+                     }
+
         });
     }
+
     public boolean isNull() {
         if (termTitleTxt.getText().toString().isEmpty()) {
             Toast.makeText(this, "The new term must have a name.", Toast.LENGTH_SHORT).show();
