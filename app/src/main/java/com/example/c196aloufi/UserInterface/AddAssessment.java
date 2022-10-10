@@ -48,7 +48,7 @@ public class AddAssessment extends AppCompatActivity {
 
                 setContentView(R.layout.activity_add_assessment);
                 initDatePicker();
-                dueDateButton = findViewById(R.id.startDatePickerButton);
+                dueDateButton = findViewById(R.id.endAssessPickerButton);
                 dueDateButton.setText(getTodaysDate());
 
                 if (assessID == -1) {
@@ -64,7 +64,7 @@ public class AddAssessment extends AppCompatActivity {
         }
 
         private void setUpView() {
-                assessName = findViewById(R.id.assessNameTxt);
+                assessName = findViewById(R.id.assessNameTxt).toString();
                 initDatePicker();
                 endAssessPickerBtn = findViewById(R.id.endAssessPickerButton);
                 endAssessPickerBtn.setText(endDate);
@@ -100,14 +100,14 @@ public class AddAssessment extends AppCompatActivity {
         }
 
         public boolean isNull() {
-                if (termTitleTxt.getText().toString().isEmpty()) {
-                        Toast.makeText(this, "The new term must have a name.", Toast.LENGTH_SHORT).show();
+                if (assessNameTxt.getText().toString().isEmpty()) {
+                        Toast.makeText(this, "The new assessment must have a name.", Toast.LENGTH_SHORT).show();
                         return true;
-                } else if (getTodaysDate() == null) {
-                        Toast.makeText(this, "The new term must have a start date.", Toast.LENGTH_SHORT).show();
+                } else if (endDate == null) {
+                        Toast.makeText(this, "The new assessment must have a completion date.", Toast.LENGTH_SHORT).show();
                         return true;
-                } else if (getEndDate() == null) {
-                        Toast.makeText(this, "The new term must have an end date.", Toast.LENGTH_SHORT).show();
+                } else if (assessType == null) {
+                        Toast.makeText(this, "The new assessment must have a type.", Toast.LENGTH_SHORT).show();
                         return true;
                 } else return false;
         }
