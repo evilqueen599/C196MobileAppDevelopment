@@ -14,7 +14,6 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.c196aloufi.Model.Terms;
 import com.example.c196aloufi.R;
 import com.example.c196aloufi.UserInterface.AddTerm;
-import com.example.c196aloufi.UserInterface.DetailedTerm;
 
 
 import java.util.List;

@@ -3,40 +3,21 @@ package com.example.c196aloufi.UserInterface;
 
 import android.app.AlertDialog;
 import android.app.DatePickerDialog;
-import android.content.BroadcastReceiver;
-import android.content.Context;
 import android.content.Intent;
-import android.content.IntentFilter;
-import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
-
-import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.lifecycle.ViewModelProvider;
-import androidx.localbroadcastmanager.content.LocalBroadcastManager;
-import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.c196aloufi.Adapters.TermAdapter;
-import com.example.c196aloufi.Adapters.TextFormatter;
 import com.example.c196aloufi.Database.AppRepo;
-import com.example.c196aloufi.Database.TermDAO;
 import com.example.c196aloufi.Model.Terms;
 import com.example.c196aloufi.R;
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
-import java.time.LocalDate;
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
-import java.time.format.DateTimeFormatterBuilder;
 import java.util.Calendar;
-import java.util.Date;
-import java.util.Formatter;
-import java.util.List;
+
 
 public class AddTerm extends AppCompatActivity {
 
@@ -49,8 +30,6 @@ public class AddTerm extends AppCompatActivity {
     String startDate;
 
     String endDate;
-
-    Integer editTermId;
 
     String editTermTitle;
 

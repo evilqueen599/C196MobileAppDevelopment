@@ -6,28 +6,110 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.DatePicker;
+import android.widget.EditText;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.c196aloufi.Database.AppRepo;
+import com.example.c196aloufi.Model.Assessments;
+import com.example.c196aloufi.Model.Terms;
 import com.example.c196aloufi.R;
 
 import java.util.Calendar;
 
 public class AddAssessment extends AppCompatActivity {
         private DatePickerDialog datePickerDialog;
-
-
         private Button dueDateButton;
+        Integer assessID;
+        String assessName;
+        String assessType;
+        String endDate;
+        CheckBox oaBtn;
+        CheckBox paBtn;
+        EditText assessNameTxt;
+        Button endAssessPickerBtn;
+        Button addAssessBtn;
+
+        AppRepo appRepo;
+        Assessments assessments;
 
 
         @Override
         protected void onCreate(Bundle savedInstanceState) {
                 super.onCreate(savedInstanceState);
+                appRepo = new AppRepo(getApplication());
+                assessID = getIntent().getIntExtra("assessmentId", -1);
+                assessName = getIntent().getStringExtra("assessmentTitle");
+                assessType = getIntent().getStringExtra("assessmentType");
+                endDate = getIntent().getStringExtra("endDate");
+
                 setContentView(R.layout.activity_add_assessment);
                 initDatePicker();
                 dueDateButton = findViewById(R.id.startDatePickerButton);
                 dueDateButton.setText(getTodaysDate());
+
+                if (assessID == -1) {
+                        setUpView();
+                } else {
+                         = findViewById(R.id.assessNameTxt);
+                        assessNameTxt.setText(assessName);
+                        endAssessPickerBtn = findViewById(R.id.endAssessPickerButton);
+                        endAssessPickerBtn.setText(endDate);
+                        initDatePicker();
+                        addNewAssessment();
+                }
+        }
+
+        private void setUpView() {
+                assessName = findViewById(R.id.assessNameTxt);
+                initDatePicker();
+                endAssessPickerBtn = findViewById(R.id.endAssessPickerButton);
+                endAssessPickerBtn.setText(endDate);
+                addNewAssessment();
+        }
+
+        private void addNewAssessment() {
+                addAssessBtn = findViewById(R.id.addAssessmentBtn);
+                addAssessBtn.setOnClickListener(v -> {
+                        assessName = assessNameTxt.getText().toString();
+                        if (isNull()) {
+                                return;
+                        }
+                        endDate = endAssessPickerBtn.getText().toString();
+
+                        if (assessID == -1) {
+                                int newAssessId = appRepo.getAllAssessments().get(appRepo.getAllAssessments().size() -1).getAssessmentId() +1;
+                                assessments = new Assessments(newAssessId, assessName, endDate, assessType, null);
+                                appRepo.insert(assessments);
+                                Toast.makeText(AddAssessment.this, "New Assessment Created.", Toast.LENGTH_SHORT).show();
+                                Intent intent = new Intent(AddAssessment.this, AssessmentsList.class);
+                                startActivity(intent);
+                        }
+                        else {
+                                assessments = new Assessments(assessID, assessName, endDate, assessType, null);
+                                appRepo.update(assessments);
+                                Toast.makeText(AddAssessment.this, "Assessment has been updated.",Toast.LENGTH_SHORT).show();
+                                Intent intent = new Intent(AddAssessment.this, AssessmentsList.class);
+                                startActivity(intent);
+                        }
+
+                });
+        }
+
+        public boolean isNull() {
+                if (termTitleTxt.getText().toString().isEmpty()) {
+                        Toast.makeText(this, "The new term must have a name.", Toast.LENGTH_SHORT).show();
+                        return true;
+                } else if (getTodaysDate() == null) {
+                        Toast.makeText(this, "The new term must have a start date.", Toast.LENGTH_SHORT).show();
+                        return true;
+                } else if (getEndDate() == null) {
+                        Toast.makeText(this, "The new term must have an end date.", Toast.LENGTH_SHORT).show();
+                        return true;
+                } else return false;
         }
 
         private String getTodaysDate() {
@@ -90,10 +172,6 @@ public class AddAssessment extends AppCompatActivity {
                 datePickerDialog.show();
         }
 
-        public void onClickBack(View view) {
-                Intent intent = new Intent(AddAssessment.this, AssessmentsList.class);
-                startActivity(intent);
-        }
 }
 
 

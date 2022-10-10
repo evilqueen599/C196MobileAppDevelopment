@@ -11,6 +11,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.c196aloufi.Model.Assessments;
+import com.example.c196aloufi.Model.Terms;
 import com.example.c196aloufi.R;
 import com.example.c196aloufi.UserInterface.CourseList;
 
@@ -21,6 +22,15 @@ import java.util.Date;
 import java.util.List;
 
 public class AssessmentAdapter extends RecyclerView.Adapter<AssessmentAdapter.AssessmentViewHolder> {
+
+    public Assessments getAssessment(int absoluteAdapterPosition) {
+        return massessments.get(absoluteAdapterPosition);
+    }
+
+    public void setAssessments(List<Assessments> assessments) {
+        massessments = assessments;
+        notifyDataSetChanged();
+    }
 
     class AssessmentViewHolder extends RecyclerView.ViewHolder {
         private final TextView assessmentTitleTxt;
@@ -81,10 +91,6 @@ public class AssessmentAdapter extends RecyclerView.Adapter<AssessmentAdapter.As
         } else {
             holder.assessmentTitleTxt.setText("No Assessments Exist");
         }
-    }
-    public void setAssessments(List<Assessments> assessments) {
-        massessments = assessments;
-        notifyDataSetChanged();
     }
 
     @Override

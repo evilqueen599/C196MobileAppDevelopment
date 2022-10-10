@@ -6,21 +6,6 @@
     android:layout_height="match_parent"
     tools:context=".UserInterface.AddAssessment">
 
-    <Button
-        android:id="@+id/backButton"
-        android:layout_width="172dp"
-        android:layout_height="73dp"
-        android:layout_marginStart="117dp"
-        android:layout_marginTop="91dp"
-        android:layout_marginEnd="118dp"
-        android:layout_marginBottom="59dp"
-        android:onClick="onClickBack"
-        android:text="Back"
-        app:layout_constraintBottom_toBottomOf="@id/guidelineBottom"
-        app:layout_constraintEnd_toEndOf="@id/guidelineRight"
-        app:layout_constraintStart_toStartOf="@id/guidelineLeft"
-        app:layout_constraintTop_toBottomOf="@+id/guidelineTop"
-        app:layout_constraintVertical_bias="1.0" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guidelineTop"
@@ -119,7 +104,7 @@
         app:layout_constraintVertical_bias="0.452" />
 
     <Button
-        android:id="@+id/startDatePickerButton"
+        android:id="@+id/endAssessPickerButton"
         style="?android:spinnerStyle"
         android:layout_width="196dp"
         android:layout_height="49dp"
@@ -158,8 +143,8 @@
 
     <Button
         android:id="@+id/addAssessmentBtn"
-        android:layout_width="172dp"
-        android:layout_height="73dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         android:layout_marginStart="117dp"
         android:layout_marginTop="91dp"
         android:layout_marginEnd="118dp"
