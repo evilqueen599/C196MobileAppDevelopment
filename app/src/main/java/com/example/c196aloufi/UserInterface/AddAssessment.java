@@ -8,6 +8,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.RadioButton;
+import android.widget.RadioGroup;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -27,6 +28,7 @@ public class AddAssessment extends AppCompatActivity {
         String editAssessmentType;
         String editEndDate;
         String endDate;
+        RadioGroup radioGroup;
         RadioButton oaBtn;
         RadioButton paBtn;
         EditText assessNameTxt;
@@ -40,13 +42,11 @@ public class AddAssessment extends AppCompatActivity {
         protected void onCreate(Bundle savedInstanceState) {
                 super.onCreate(savedInstanceState);
                 setContentView(R.layout.activity_add_assessment);
-                initDatePicker();
                 appRepo = new AppRepo(getApplication());
                 assessmentId = getIntent().getIntExtra("assessmentId", -1);
                 editAssessmentName = getIntent().getStringExtra("assessmentTitle");
                 editAssessmentType = getIntent().getStringExtra("assessmentType");
                 editEndDate = getIntent().getStringExtra("endDate");
-
                 if (assessmentId == -1) {
                           setUpView();
                 } else {
@@ -61,10 +61,9 @@ public class AddAssessment extends AppCompatActivity {
 
        private void setUpView() {
                 assessNameTxt =findViewById(R.id.assessNameTxt);
-                endAssessPickerBtn.setText(getTodaysDate());
+                initDatePicker();
                 endAssessPickerBtn = findViewById(R.id.endAssessPickerButton);
                 endAssessPickerBtn.setText(getTodaysDate());
-                initDatePicker();
                 addNewAssessment();
         }
 
@@ -74,11 +73,6 @@ public class AddAssessment extends AppCompatActivity {
                         assessmentName = assessNameTxt.getText().toString();
                         if (isNull()) {
                                 return;
-                        }
-                        if (oaBtn.isChecked()) {
-                                assessmentType = "Objective Assessment";
-                        }else if (paBtn.isChecked()) {
-                                assessmentType = "Practice Assessment";
                         }
                         endDate = endAssessPickerBtn.getText().toString();
 
@@ -105,7 +99,7 @@ public class AddAssessment extends AppCompatActivity {
                 if (assessNameTxt.getText().toString().isEmpty()) {
                         Toast.makeText(this, "The new assessment must have a name.", Toast.LENGTH_SHORT).show();
                         return true;
-                } else if (endDate == null) {
+                } else if (getTodaysDate() == null) {
                         Toast.makeText(this, "The new assessment must have a completion date.", Toast.LENGTH_SHORT).show();
                         return true;
                 } else if (assessmentType == null) {
@@ -171,8 +165,12 @@ public class AddAssessment extends AppCompatActivity {
                 return "Jan";
         }
 
-        public void openStartDate(View view) {
+        public void openDueDate(View view) {
                 datePickerDialog.show();
+        }
+
+        public void getAssessType() {
+
         }
 }
 
