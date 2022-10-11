@@ -14,11 +14,6 @@ import com.example.c196aloufi.Model.Courses;
 import com.example.c196aloufi.R;
 import com.example.c196aloufi.UserInterface.CourseList;
 
-
-import java.text.SimpleDateFormat;
-import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
-import java.util.Date;
 import java.util.List;
 
 public class CourseAdapter extends RecyclerView.Adapter<CourseAdapter.CourseViewHolder> {
@@ -34,7 +29,7 @@ public class CourseAdapter extends RecyclerView.Adapter<CourseAdapter.CourseView
 
         private CourseViewHolder(View courseView) {
             super(courseView);
-            courseTitleTxt = courseView.findViewById(R.id.termTitleTxt);
+            courseTitleTxt = courseView.findViewById(R.id.courseTitleTxt);
             courseDateTxt = courseView.findViewById(R.id.courseDateTxt);
             courseStatusTxt = courseView.findViewById(R.id.courseStatusTxt);
             instructorNameTxt = courseView.findViewById(R.id.instructorNameTxt);

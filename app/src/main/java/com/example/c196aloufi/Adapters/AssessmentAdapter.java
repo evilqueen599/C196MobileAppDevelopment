@@ -11,14 +11,9 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.c196aloufi.Model.Assessments;
-import com.example.c196aloufi.Model.Terms;
 import com.example.c196aloufi.R;
-import com.example.c196aloufi.UserInterface.CourseList;
+import com.example.c196aloufi.UserInterface.AddAssessment;
 
-import java.text.SimpleDateFormat;
-import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
-import java.util.Date;
 import java.util.List;
 
 public class AssessmentAdapter extends RecyclerView.Adapter<AssessmentAdapter.AssessmentViewHolder> {
@@ -37,9 +32,7 @@ public class AssessmentAdapter extends RecyclerView.Adapter<AssessmentAdapter.As
         private final TextView assessmentTypeTxt;
         private final TextView dueDateTxt;
 
-
-
-        private AssessmentViewHolder(View courseView) {
+        public AssessmentViewHolder(View courseView) {
             super(courseView);
             assessmentTitleTxt = courseView.findViewById(R.id.assessmentTitleTxt);
             assessmentTypeTxt = courseView.findViewById(R.id.assessmentTypeTxt);
@@ -51,11 +44,13 @@ public class AssessmentAdapter extends RecyclerView.Adapter<AssessmentAdapter.As
                 public void onClick(View v) {
                     int position = getAbsoluteAdapterPosition();
                     final Assessments current = massessments.get(position);
-                    Intent intent = new Intent(context, CourseList.class);
+                    Intent intent = new Intent(context, AddAssessment.class);
                     intent.putExtra("assessmentId", current.getAssessmentId());
                     intent.putExtra("assessmentTitle", current.getAssessmentTitle());
                     intent.putExtra("assessmentType", current.getAssessmentType());
                     intent.putExtra("endDate", current.getEndDate());
+                    intent.putExtra("courseId", current.getCourseId());
+                    context.startActivity(intent);
                 }
             });
         }
@@ -74,7 +69,7 @@ public class AssessmentAdapter extends RecyclerView.Adapter<AssessmentAdapter.As
     @Override
     public AssessmentAdapter.AssessmentViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View assessmentView = mInflator.inflate(R.layout.assessment_item,parent, false);
-        return new AssessmentAdapter.AssessmentViewHolder(assessmentView);
+        return new AssessmentViewHolder(assessmentView);
     }
 
     @Override

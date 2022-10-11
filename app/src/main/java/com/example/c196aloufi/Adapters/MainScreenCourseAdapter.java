@@ -23,7 +23,7 @@ public class MainScreenCourseAdapter extends RecyclerView.Adapter<MainScreenCour
 
         private MainCourseViewHolder(View courseView) {
             super(courseView);
-            courseTitleTxt = courseView.findViewById(R.id.termTitleTxt);
+            courseTitleTxt = courseView.findViewById(R.id.courseTitleTxt);
 
             courseView.setOnClickListener(new View.OnClickListener() {
                 @Override

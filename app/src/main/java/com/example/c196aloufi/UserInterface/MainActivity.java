@@ -23,18 +23,14 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        //AppRepo appRepo = new AppRepo(getApplication());
-       // Terms terms = new Terms(1, "Final Term", LocalDate.now(), LocalDate.now());
-        //appRepo.insert(terms);
-       // Terms terms1 = new Terms(2, "Term 2", ;
-       // appRepo.insert(terms1);
-       // Terms terms2 = new Terms(3, "Term 1", LocalDate.now(), LocalDate.now());
-       // appRepo.insert(terms2);
-       // Courses courses = new Courses(1, "Application Development", "Test Instructor",
-                //"testemail@test.com", "954-778-9008", "InProgress", LocalDate.now(), LocalDate.now(), "Finish this class ASAP");
-       // appRepo.insert(courses);
-       // Assessments assessments = new Assessments(1, "Final Project", LocalDate.now(), "Practice Assessment", 1);
-       // appRepo.insert(assessments);
+        AppRepo appRepo = new AppRepo(getApplication());
+        Terms terms = new Terms(1, "Test Data","May 09 2022", "Dec 25 2022");
+        appRepo.insert(terms);
+        Courses courses = new Courses(1, "Application Development", "Test Instructor",
+                "testemail@test.com", "954-778-9008", "InProgress","Oct 26 2022", "Dec 26 2022", "Finish this class ASAP");
+       appRepo.insert(courses);
+       Assessments assessments = new Assessments(1, "Final Project","May 28 2023", "Practice Assessment", 1);
+       appRepo.insert(assessments);
     }
 
     public void enterButton(View view) {

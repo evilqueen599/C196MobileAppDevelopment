@@ -38,16 +38,6 @@
             android:textSize="15sp"
             android:textStyle="bold"/>
 
-        <com.google.android.material.floatingactionbutton.FloatingActionButton
-            android:id="@+id/assessmentEditFab"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentTop="true"
-            android:layout_alignParentRight="true"
-            android:clickable="true"
-            android:onClick="onClickEditAssessment"
-            app:srcCompat="@drawable/ic_baseline_edit_24" />
-
 
     </RelativeLayout>
 

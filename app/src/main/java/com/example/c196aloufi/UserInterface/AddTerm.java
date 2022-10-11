@@ -60,7 +60,7 @@ public class AddTerm extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_term);
         appRepo = new AppRepo(getApplication());
-        termId = getIntent().getIntExtra("termId", -1);
+        termId = getIntent().getIntExtra("termId", - 1);
         editTermTitle = getIntent().getStringExtra("termName");
         editStartDate = getIntent().getStringExtra("startDate");
         editEndDate = getIntent().getStringExtra("endDate");
@@ -68,7 +68,7 @@ public class AddTerm extends AppCompatActivity {
         if (termId == -1) {
             setUpView();
         } else {
-            termTitleTxt = findViewById(R.id.termTitleTxt);
+            termTitleTxt = findViewById(R.id.courseTitleTxt);
             termTitleTxt.setText(editTermTitle);
             startDatePickerButton = findViewById(R.id.startDatePickerButton);
             startDatePickerButton.setText(editStartDate);
@@ -81,7 +81,7 @@ public class AddTerm extends AppCompatActivity {
     }
 
     private void setUpView() {
-        termTitleTxt = findViewById(R.id.termTitleTxt);
+        termTitleTxt = findViewById(R.id.courseTitleTxt);
         initDatePicker();
         startDatePickerButton = findViewById(R.id.startDatePickerButton);
         startDatePickerButton.setText(getEndDate());

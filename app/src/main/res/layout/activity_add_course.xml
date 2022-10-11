@@ -12,7 +12,7 @@
         tools:context=".UserInterface.AddCourse">
 
         <EditText
-            android:id="@+id/termTitleTxt"
+            android:id="@+id/courseTitleTxt"
             android:layout_width="319dp"
             android:layout_height="51dp"
             android:layout_marginTop="30dp"

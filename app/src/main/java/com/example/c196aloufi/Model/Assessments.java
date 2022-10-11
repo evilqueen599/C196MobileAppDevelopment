@@ -95,15 +95,15 @@ public class Assessments implements Parcelable {
         this.assessmentType = assessmentType;
     }
 
-    public int getCourseId() {
+    public Integer getCourseId() {
         return courseId;
     }
 
-    public void setCourseId(int courseId) {
+    public void setCourseId(Integer courseId) {
         this.courseId = courseId;
     }
 
-    public Assessments(Integer assessmentId, String assessmentTitle, String endDate, String assessmentType, int courseId) {
+    public Assessments(Integer assessmentId, String assessmentTitle, String endDate, String assessmentType, Integer courseId) {
         this.assessmentId = assessmentId;
         this.assessmentTitle = assessmentTitle;
         this.endDate = endDate;

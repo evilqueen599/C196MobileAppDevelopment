@@ -15,16 +15,14 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.c196aloufi.Adapters.AssessmentAdapter;
-import com.example.c196aloufi.Adapters.TermAdapter;
 import com.example.c196aloufi.Database.AppRepo;
 import com.example.c196aloufi.Model.Assessments;
-import com.example.c196aloufi.Model.Terms;
 import com.example.c196aloufi.R;
 
 import java.util.List;
 
 public class AssessmentsList extends AppCompatActivity {
-    @Override
+
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_assessments_list);
@@ -77,9 +75,8 @@ public class AssessmentsList extends AppCompatActivity {
         }).attachToRecyclerView(recyclerView);
     }
 
-    public void addAssessBtn(View view) {
+    public void onClickAddAssessmentBtn(View view) {
         Intent intent = new Intent(AssessmentsList.this, AddAssessment.class);
         startActivity(intent);
-
     }
 }

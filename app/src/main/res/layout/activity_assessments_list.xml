@@ -8,15 +8,15 @@
 
     <androidx.cardview.widget.CardView
         android:id="@+id/assessmentsCardView"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
         app:cardBackgroundColor="@color/teal_200"
-        app:cardCornerRadius="20dp"
+        app:cardCornerRadius="30dp"
         app:cardElevation="10dp"
-        app:cardMaxElevation="12dp"
+        app:cardMaxElevation="10dp"
         app:cardPreventCornerOverlap="true"
         app:cardUseCompatPadding="true"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/addNewAssessButton"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
@@ -29,18 +29,21 @@
             android:layout_height="wrap_content" />
     </androidx.cardview.widget.CardView>
 
-    <Button
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/addNewAssessButton"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:onClick="addAssessBtn"
-        android:text="Add New Assessment"
-        app:layout_constraintBottom_toBottomOf="@+id/guidelineBottom"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom = "true"
+        android:clickable="true"
+        android:focusable="true"
+        android:onClick="onClickAddAssessmentBtn"
+        app:srcCompat="@drawable/ic_baseline_add_circle_outline_24"
+        app:layout_constraintBottom_toTopOf="@+id/guidelineBottom"
         app:layout_constraintEnd_toStartOf="@+id/guidelineRight"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/guidelineTop"
-        app:layout_constraintVertical_bias="1.0" />
+        app:layout_constraintStart_toEndOf="@id/guidelineLeft"
+        app:layout_constraintTop_toBottomOf="@+id/assessmentsCardView"
+         />
 
     <TextView
         android:id="@+id/assessListTxt"
