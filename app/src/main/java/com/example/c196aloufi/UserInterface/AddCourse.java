@@ -32,6 +32,7 @@ public class AddCourse extends AppCompatActivity {
         initEndDatePicker();
         endDateButton = findViewById(R.id.endDateButton);
         endDateButton.setText(getEndDate());
+
     }
 
     private String getTodaysDate() {
