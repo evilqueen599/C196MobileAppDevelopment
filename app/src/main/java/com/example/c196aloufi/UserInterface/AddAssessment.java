@@ -3,12 +3,15 @@ package com.example.c196aloufi.UserInterface;
 import android.app.AlertDialog;
 import android.app.DatePickerDialog;
 import android.content.Intent;
+import android.database.sqlite.SQLiteCursor;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
+import android.widget.Spinner;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -23,14 +26,12 @@ public class AddAssessment extends AppCompatActivity {
         private DatePickerDialog datePickerDialog;
         Integer assessmentId;
         String assessmentName;
-        String assessmentType;
         String editAssessmentName;
         String editAssessmentType;
         String editEndDate;
         String endDate;
-        RadioGroup radioGroup;
-        RadioButton oaBtn;
-        RadioButton paBtn;
+        String assessmentType;
+        Spinner assessmentTypeSelect;
         EditText assessNameTxt;
         Button endAssessPickerBtn;
         Button addAssessmentBtn;
@@ -54,8 +55,11 @@ public class AddAssessment extends AppCompatActivity {
                         assessNameTxt.setText(editAssessmentName);
                         endAssessPickerBtn = findViewById(R.id.endAssessPickerButton);
                         endAssessPickerBtn.setText(editEndDate);
+                        assessmentTypeSelect = findViewById(R.id.assessmentStatusBar);
+                        assessmentType = String.valueOf(assessmentTypeSelect.getSelectedItem());
                         initDatePicker();
                         addNewAssessment();
+
                 }
         }
 
@@ -64,6 +68,8 @@ public class AddAssessment extends AppCompatActivity {
                 initDatePicker();
                 endAssessPickerBtn = findViewById(R.id.endAssessPickerButton);
                 endAssessPickerBtn.setText(getTodaysDate());
+                assessmentTypeSelect = findViewById(R.id.assessmentStatusBar);
+                assessmentType = String.valueOf(assessmentTypeSelect.getSelectedItem());
                 addNewAssessment();
         }
 
@@ -77,15 +83,16 @@ public class AddAssessment extends AppCompatActivity {
                         endDate = endAssessPickerBtn.getText().toString();
 
 
+
                         if (assessmentId == -1) {
                                 int newAssessId = appRepo.getAllAssessments().get(appRepo.getAllAssessments().size() - 1).getAssessmentId() + 1;
-                                assessments = new Assessments(newAssessId, assessmentName, endDate, assessmentType, 0);
+                                assessments = new Assessments(newAssessId, assessmentName, endDate, assessmentTypeSelect.getSelectedItem().toString(), 0);
                                 appRepo.insert(assessments);
                                 Toast.makeText(AddAssessment.this, "New Assessment Created.", Toast.LENGTH_SHORT).show();
                                 Intent intent = new Intent(AddAssessment.this, AssessmentsList.class);
                                 startActivity(intent);
                         } else {
-                                assessments = new Assessments(assessmentId, assessmentName, endDate, assessmentType, 0);
+                                assessments = new Assessments(assessmentId, assessmentName, endDate, assessmentTypeSelect.getSelectedItem().toString(), 0);
                                 appRepo.update(assessments);
                                 Toast.makeText(AddAssessment.this, "Assessment has been updated.", Toast.LENGTH_SHORT).show();
                                 Intent intent = new Intent(AddAssessment.this, AssessmentsList.class);

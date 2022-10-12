@@ -6,4 +6,9 @@
     <item>Completed</item>
     <item>Dropped</item>
     </string-array>
+
+    <string-array name="assessmentSpinnerAdapter">
+        <item>Objective Assessment</item>
+        <item>Practice Assessment</item>
+    </string-array>
 </resources>
