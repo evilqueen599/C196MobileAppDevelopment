@@ -2,25 +2,30 @@ package com.example.c196aloufi.UserInterface;
 
 import android.app.AlertDialog;
 import android.app.DatePickerDialog;
+import android.app.Person;
 import android.content.Intent;
 import android.database.sqlite.SQLiteCursor;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.Spinner;
+import android.widget.SpinnerAdapter;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.c196aloufi.Adapters.AssessmentAdapter;
 import com.example.c196aloufi.Database.AppRepo;
 import com.example.c196aloufi.Model.Assessments;
 import com.example.c196aloufi.R;
 
 import java.util.Calendar;
+import java.util.ResourceBundle;
 
 public class AddAssessment extends AppCompatActivity {
         private DatePickerDialog datePickerDialog;
@@ -56,12 +61,18 @@ public class AddAssessment extends AppCompatActivity {
                         endAssessPickerBtn = findViewById(R.id.endAssessPickerButton);
                         endAssessPickerBtn.setText(editEndDate);
                         assessmentTypeSelect = findViewById(R.id.assessmentStatusBar);
-                        assessmentType = String.valueOf(assessmentTypeSelect.getSelectedItem());
                         initDatePicker();
                         addNewAssessment();
+                        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this, R.array.assessmentSpinnerAdapter, android.R.layout.simple_spinner_item);
+                        adapter.setDropDownViewResource(androidx.constraintlayout.widget.R.layout.support_simple_spinner_dropdown_item);
+                        assessmentTypeSelect.setAdapter(adapter);
+                        if (editAssessmentType != null) {
+                                int spinnerPosition = adapter.getPosition(editAssessmentType);
+                                assessmentTypeSelect.setSelection(spinnerPosition);
+                        }
+                }
 
                 }
-        }
 
        private void setUpView() {
                 assessNameTxt =findViewById(R.id.assessNameTxt);
@@ -81,6 +92,7 @@ public class AddAssessment extends AppCompatActivity {
                                 return;
                         }
                         endDate = endAssessPickerBtn.getText().toString();
+
 
 
 
