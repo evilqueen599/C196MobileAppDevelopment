@@ -88,23 +88,20 @@ public class AddAssessment extends AppCompatActivity {
                 addAssessmentBtn = findViewById(R.id.addAssessmentBtn);
                 addAssessmentBtn.setOnClickListener(v -> {
                         assessmentName = assessNameTxt.getText().toString();
+                        endDate = endAssessPickerBtn.getText().toString();
+                        assessmentType = assessmentTypeSelect.getSelectedItem().toString();
                         if (isNull()) {
                                 return;
                         }
-                        endDate = endAssessPickerBtn.getText().toString();
-
-
-
-
                         if (assessmentId == -1) {
                                 int newAssessId = appRepo.getAllAssessments().get(appRepo.getAllAssessments().size() - 1).getAssessmentId() + 1;
-                                assessments = new Assessments(newAssessId, assessmentName, endDate, assessmentTypeSelect.getSelectedItem().toString(), 0);
+                                assessments = new Assessments(newAssessId, assessmentName, endDate, assessmentType, 0);
                                 appRepo.insert(assessments);
                                 Toast.makeText(AddAssessment.this, "New Assessment Created.", Toast.LENGTH_SHORT).show();
                                 Intent intent = new Intent(AddAssessment.this, AssessmentsList.class);
                                 startActivity(intent);
                         } else {
-                                assessments = new Assessments(assessmentId, assessmentName, endDate, assessmentTypeSelect.getSelectedItem().toString(), 0);
+                                assessments = new Assessments(assessmentId, assessmentName, endDate, assessmentType, 0);
                                 appRepo.update(assessments);
                                 Toast.makeText(AddAssessment.this, "Assessment has been updated.", Toast.LENGTH_SHORT).show();
                                 Intent intent = new Intent(AddAssessment.this, AssessmentsList.class);
@@ -118,7 +115,7 @@ public class AddAssessment extends AppCompatActivity {
                 if (assessNameTxt.getText().toString().isEmpty()) {
                         Toast.makeText(this, "The new assessment must have a name.", Toast.LENGTH_SHORT).show();
                         return true;
-                } else if (getTodaysDate() == null) {
+                } else if (endDate == null) {
                         Toast.makeText(this, "The new assessment must have a completion date.", Toast.LENGTH_SHORT).show();
                         return true;
                 } else if (assessmentType == null) {
@@ -186,10 +183,6 @@ public class AddAssessment extends AppCompatActivity {
 
         public void openDueDate(View view) {
                 datePickerDialog.show();
-        }
-
-        public void getAssessType() {
-
         }
 }
 

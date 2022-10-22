@@ -10,38 +10,45 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.c196aloufi.Model.Assessments;
 import com.example.c196aloufi.Model.Courses;
 import com.example.c196aloufi.R;
+import com.example.c196aloufi.UserInterface.AddCourse;
 import com.example.c196aloufi.UserInterface.CourseList;
 
 import java.util.List;
 
 public class CourseAdapter extends RecyclerView.Adapter<CourseAdapter.CourseViewHolder> {
+    public Courses getCourses(int absoluteAdapterPosition) {
+        return mcourses.get(absoluteAdapterPosition);
+    }
 
     class CourseViewHolder extends RecyclerView.ViewHolder {
-        private final TextView courseTitleTxt;
+        private final TextView courseName;
         private final TextView courseDateTxt;
         private final TextView courseStatusTxt;
         private final TextView instructorNameTxt;
         private final TextView instructorPhoneTxt;
         private final TextView instructorEmailTxt;
+        private final TextView courseNoteTxt;
 
 
-        private CourseViewHolder(View courseView) {
+        public CourseViewHolder(View courseView) {
             super(courseView);
-            courseTitleTxt = courseView.findViewById(R.id.courseTitleTxt);
+            courseName = courseView.findViewById(R.id.courseTitleTxt);
             courseDateTxt = courseView.findViewById(R.id.courseDateTxt);
             courseStatusTxt = courseView.findViewById(R.id.courseStatusTxt);
             instructorNameTxt = courseView.findViewById(R.id.instructorNameTxt);
             instructorPhoneTxt = courseView.findViewById(R.id.instructorPhoneTxt);
             instructorEmailTxt = courseView.findViewById(R.id.instructorEmailAddressTxt);
+            courseNoteTxt = courseView.findViewById(R.id.courseNoteTxt);
 
             courseView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     int position = getAbsoluteAdapterPosition();
                     final Courses current = mcourses.get(position);
-                    Intent intent = new Intent(context, CourseList.class);
+                    Intent intent = new Intent(context, AddCourse.class);
                     intent.putExtra("courseId", current.getCourseId());
                     intent.putExtra("courseName", current.getCourseName());
                     intent.putExtra("startDate", current.getStartDate());
@@ -50,6 +57,8 @@ public class CourseAdapter extends RecyclerView.Adapter<CourseAdapter.CourseView
                     intent.putExtra("instructorName",current.getInstructorName());
                     intent.putExtra("instructorPhone", current.getInstructorPhone());
                     intent.putExtra("instructorEmail",current.getInstructorEmail());
+                    intent.putExtra("courseNote", current.getCourseNote());
+                    context.startActivity(intent);
                 }
             });
         }
@@ -76,7 +85,7 @@ public class CourseAdapter extends RecyclerView.Adapter<CourseAdapter.CourseView
         if (mcourses != null) {
             Courses current = mcourses.get(position);
             String name = current.getCourseName();
-            holder.courseTitleTxt.setText(name);
+            holder.courseName.setText(name);
             String startDate = current.getStartDate();
             String endDate = current.getEndDate();
             holder.courseDateTxt.setText((startDate) + " - " +(endDate));
@@ -90,7 +99,7 @@ public class CourseAdapter extends RecyclerView.Adapter<CourseAdapter.CourseView
             holder.instructorEmailTxt.setText(instructorEmail);
 
         } else {
-            holder.courseTitleTxt.setText("No Courses Exist");
+            holder.courseName.setText("No Courses Exist");
         }
     }
     public void setCourses(List<Courses> courses) {
