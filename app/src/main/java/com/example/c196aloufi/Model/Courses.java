@@ -32,6 +32,8 @@ public class Courses implements Parcelable {
     private String endDate;
     @ColumnInfo
     private String courseNote;
+    @ColumnInfo
+    private Integer termId;
 
     protected Courses(Parcel in) {
         if (in.readByte() == 0) {
@@ -43,6 +45,7 @@ public class Courses implements Parcelable {
         instructorPhone = in.readString();
         courseStatus = in.readString();
         courseNote = in.readString();
+        termId = in.readInt();
     }
 
     public static final Creator<Courses> CREATOR = new Creator<Courses>() {
@@ -69,6 +72,7 @@ public class Courses implements Parcelable {
                 ", startDate=" + startDate +
                 ", endDate=" + endDate +
                 ", courseNote='" + courseNote + '\'' +
+                ", termId='" + termId + '\'' +
                 '}';
     }
 
@@ -144,8 +148,12 @@ public class Courses implements Parcelable {
         this.courseNote = courseNote;
     }
 
+    public Integer getTermId() {return termId; }
+
+    public void setTermId(Integer termId) { this.termId = termId; }
+
     public Courses(Integer courseId, String courseName, String instructorName, String instructorEmail, String instructorPhone,
-                   String courseStatus, String startDate, String endDate, String courseNote) {
+                   String courseStatus, String startDate, String endDate, String courseNote, Integer termId) {
         this.courseId = courseId;
         this.courseName = courseName;
         this.instructorName = instructorName;
@@ -155,6 +163,7 @@ public class Courses implements Parcelable {
         this.startDate = startDate;
         this.endDate = endDate;
         this.courseNote = courseNote;
+        this.termId = termId;
     }
 
     @Override
@@ -176,5 +185,6 @@ public class Courses implements Parcelable {
         dest.writeString(instructorPhone);
         dest.writeString(courseStatus);
         dest.writeString(courseNote);
+        dest.writeInt(termId);
     }
 }

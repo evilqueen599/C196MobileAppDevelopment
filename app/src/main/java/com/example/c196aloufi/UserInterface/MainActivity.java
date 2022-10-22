@@ -27,7 +27,7 @@ public class MainActivity extends AppCompatActivity {
         Terms terms = new Terms(1, "Test Data","May 09 2022", "Dec 25 2022");
         appRepo.insert(terms);
         Courses courses = new Courses(1, "Application Development", "Test Instructor",
-                "testemail@test.com", "954-778-9008", "InProgress","Oct 26 2022", "Dec 26 2022", "Finish this class ASAP");
+                "testemail@test.com", "954-778-9008", "InProgress","Oct 26 2022", "Dec 26 2022", "Finish this class ASAP", 1);
        appRepo.insert(courses);
        Assessments assessments = new Assessments(1, "Final Project","May 28 2023", "Practice Assessment", 1);
        appRepo.insert(assessments);

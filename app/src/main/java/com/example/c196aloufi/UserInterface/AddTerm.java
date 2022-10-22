@@ -51,10 +51,6 @@ public class AddTerm extends AppCompatActivity {
 
     DatePickerDialog endDatePickerDialog;
 
-
-
-
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
