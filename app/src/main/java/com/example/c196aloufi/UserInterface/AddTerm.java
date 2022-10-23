@@ -11,12 +11,19 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.DividerItemDecoration;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.c196aloufi.Adapters.MainScreenCourseAdapter;
 import com.example.c196aloufi.Database.AppRepo;
+import com.example.c196aloufi.Model.Courses;
 import com.example.c196aloufi.Model.Terms;
 import com.example.c196aloufi.R;
 
+import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.List;
 
 
 public class AddTerm extends AppCompatActivity {
@@ -51,6 +58,12 @@ public class AddTerm extends AppCompatActivity {
 
     DatePickerDialog endDatePickerDialog;
 
+    List<Courses> assocCourses;
+
+    List<Courses> coursesInTerm;
+
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -60,6 +73,7 @@ public class AddTerm extends AppCompatActivity {
         editTermTitle = getIntent().getStringExtra("termName");
         editStartDate = getIntent().getStringExtra("startDate");
         editEndDate = getIntent().getStringExtra("endDate");
+
 
         if (termId == -1) {
             setUpView();
@@ -73,6 +87,7 @@ public class AddTerm extends AppCompatActivity {
             initDatePicker();
             initEndDatePicker();
             addNewTerm();
+            assocCourseList();
         }
     }
 
@@ -85,6 +100,25 @@ public class AddTerm extends AppCompatActivity {
         endDatePickerButton = findViewById(R.id.endDatePickerButton);
         endDatePickerButton.setText(getTodaysDate());
         addNewTerm();
+    }
+
+    private void assocCourseList() {
+        // sets up recyclerview
+        RecyclerView recyclerView = findViewById(R.id.courseViewRecyclerView);
+        recyclerView.setHasFixedSize(true);
+        DividerItemDecoration decoration = new DividerItemDecoration(this, DividerItemDecoration.VERTICAL);
+        recyclerView.addItemDecoration(decoration);
+        final MainScreenCourseAdapter courseAdapter= new MainScreenCourseAdapter(this);
+        recyclerView.setAdapter(courseAdapter);
+        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+        assocCourses = appRepo.getAllCourses();
+        coursesInTerm = new ArrayList<>();
+        for (Courses courses : assocCourses) {
+            if (courses.getTermId() == termId) {
+                coursesInTerm.add(courses);
+            }
+        }
+        courseAdapter.setCourses(coursesInTerm);
     }
 
 

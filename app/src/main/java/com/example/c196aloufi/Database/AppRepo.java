@@ -19,6 +19,8 @@ public class AppRepo {
     private List<Terms> mAllTerms;
     private List<Courses> mAllCourses;
     private List<Assessments> mAllAssessments;
+    private List<Courses> mAssociatedCourses;
+    private List<Assessments> mAssociatedAssessments;
 
 
     private static int NUMBER_OF_THREADS = 8;
@@ -129,6 +131,17 @@ public class AppRepo {
             e.printStackTrace();
         }
         return mAllAssessments;
+    }
+
+    public List<Assessments> getAssocAssess() {
+       databaseExecutor.execute(() -> {
+           mAssociatedAssessments = mAssessmentDAO.getAssocAssesments();
+       });
+       try {
+           Thread.sleep(1000);
+       }catch (InterruptedException e) {
+           e.printStackTrace();
+       }return mAssociatedAssessments;
     }
 
     public void insert(Assessments assessments) {

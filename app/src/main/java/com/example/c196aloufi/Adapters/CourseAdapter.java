@@ -10,15 +10,14 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.c196aloufi.Model.Assessments;
 import com.example.c196aloufi.Model.Courses;
 import com.example.c196aloufi.R;
 import com.example.c196aloufi.UserInterface.AddCourse;
-import com.example.c196aloufi.UserInterface.CourseList;
 
 import java.util.List;
 
 public class CourseAdapter extends RecyclerView.Adapter<CourseAdapter.CourseViewHolder> {
+
     public Courses getCourses(int absoluteAdapterPosition) {
         return mcourses.get(absoluteAdapterPosition);
     }

@@ -12,12 +12,20 @@ import android.widget.Spinner;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.DividerItemDecoration;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.c196aloufi.Adapters.MainScreenAssessmentAdapter;
+import com.example.c196aloufi.Adapters.MainScreenCourseAdapter;
 import com.example.c196aloufi.Database.AppRepo;
+import com.example.c196aloufi.Model.Assessments;
 import com.example.c196aloufi.Model.Courses;
 import com.example.c196aloufi.R;
 
+import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.List;
 
 public class AddCourse extends AppCompatActivity {
 
@@ -81,6 +89,10 @@ public class AddCourse extends AppCompatActivity {
 
     Courses courses;
 
+    List<Assessments> assocAssess;
+
+    List<Assessments> assessInCourse;
+
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_course);
@@ -94,6 +106,7 @@ public class AddCourse extends AppCompatActivity {
         editStartDate = getIntent().getStringExtra("startDate");
         editEndDate = getIntent().getStringExtra("endDate");
         editCourseStatus = getIntent().getStringExtra("courseStatus");
+
 
         if (courseId == -1) {
             setUpView();
@@ -123,6 +136,7 @@ public class AddCourse extends AppCompatActivity {
                 courseStatusBar.setSelection(spinnerPosition);
             }
             addCourse();
+            assocAssessments();
         }
 
     }
@@ -144,6 +158,24 @@ public class AddCourse extends AppCompatActivity {
         addCourse();
     }
 
+    private void assocAssessments() {
+        RecyclerView recyclerView = findViewById(R.id.assessViewRecyclerView);
+        recyclerView.setHasFixedSize(true);
+        DividerItemDecoration decoration = new DividerItemDecoration(this, DividerItemDecoration.VERTICAL);
+        recyclerView.addItemDecoration(decoration);
+        final MainScreenAssessmentAdapter assessAdapter= new MainScreenAssessmentAdapter(this);
+        recyclerView.setAdapter(assessAdapter);
+        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+        assocAssess = appRepo.getAllAssessments();
+        assessInCourse = new ArrayList<>();
+        for (Assessments assessments : assocAssess) {
+            if (assessments.getCourseId() == courseId) {
+                assessInCourse.add(assessments);
+            }
+        }
+        assessAdapter.setAssessments(assessInCourse);
+    }
+
     private void addCourse() {
         addCourseBtn = findViewById(R.id.addCourseBtn);
         addCourseBtn.setOnClickListener( v -> {
@@ -162,13 +194,13 @@ public class AddCourse extends AppCompatActivity {
             }
             if (courseId == -1) {
                 int newCourseId = appRepo.getAllCourses().get(appRepo.getAllCourses().size() - 1).getCourseId() +1;
-                courses = new Courses(newCourseId, courseName, instructorName, instructorEmail, instructorPhone, courseStatus, startDate, endDate, courseNote);
+                courses = new Courses(newCourseId, courseName, instructorName, instructorEmail, instructorPhone, courseStatus, startDate, endDate, courseNote, null);
                 appRepo.insert(courses);
                 Toast.makeText(AddCourse.this, "New Course Created.", Toast.LENGTH_SHORT).show();
                 Intent intent = new Intent(AddCourse.this, CourseList.class);
                 startActivity(intent);
             }else {
-                courses = new Courses(courseId, courseName, instructorName, instructorEmail, instructorPhone, courseStatus, startDate, endDate, courseNote);
+                courses = new Courses(courseId, courseName, instructorName, instructorEmail, instructorPhone, courseStatus, startDate, endDate, courseNote, null);
                 appRepo.update(courses);
                 Toast.makeText(AddCourse.this, "Course has been updated.", Toast.LENGTH_SHORT).show();
                 Intent intent = new Intent(AddCourse.this, CourseList.class);

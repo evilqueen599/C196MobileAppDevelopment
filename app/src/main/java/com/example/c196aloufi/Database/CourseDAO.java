@@ -9,6 +9,7 @@ import androidx.room.Update;
 
 import com.example.c196aloufi.Model.Courses;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Dao
