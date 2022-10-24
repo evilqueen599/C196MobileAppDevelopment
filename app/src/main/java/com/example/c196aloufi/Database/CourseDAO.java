@@ -1,5 +1,6 @@
 package com.example.c196aloufi.Database;
 
+import androidx.lifecycle.LiveData;
 import androidx.room.Dao;
 import androidx.room.Delete;
 import androidx.room.Insert;
@@ -25,5 +26,4 @@ public interface CourseDAO {
 
     @Query("SELECT * FROM courses ORDER BY courseId ASC")
     List<Courses> getAllCourses();
-
 }

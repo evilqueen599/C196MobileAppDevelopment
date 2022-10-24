@@ -43,15 +43,13 @@
         app:layout_constraintTop_toTopOf="@id/guidelineTop"
         app:layout_constraintVertical_bias="0.0" />
 
-    <Button
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/addCoursesBtn"
-        android:layout_width="139dp"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="136dp"
-        android:layout_marginTop="31dp"
-        android:layout_marginEnd="136dp"
-        android:layout_marginBottom="13dp"
-        android:text="Add Courses"
+        android:onClick="addCoursesToTerm"
+        android:src="@drawable/ic_baseline_class_24"
+        android:text="Add Courses to Term"
         app:layout_constraintBottom_toTopOf="@+id/guidelineBottom"
         app:layout_constraintEnd_toEndOf="@id/guidelineRight"
         app:layout_constraintStart_toStartOf="@id/guidelineLeft"

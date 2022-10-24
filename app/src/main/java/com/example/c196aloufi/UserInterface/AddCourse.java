@@ -41,6 +41,8 @@ public class AddCourse extends AppCompatActivity {
 
     private Integer courseId;
 
+    private Integer editTermId;
+
     private Spinner courseStatusBar;
 
     private EditText courseTitleTxt;
@@ -106,6 +108,7 @@ public class AddCourse extends AppCompatActivity {
         editStartDate = getIntent().getStringExtra("startDate");
         editEndDate = getIntent().getStringExtra("endDate");
         editCourseStatus = getIntent().getStringExtra("courseStatus");
+        editTermId = getIntent().getIntExtra("termId", -1);
 
 
         if (courseId == -1) {
@@ -194,13 +197,13 @@ public class AddCourse extends AppCompatActivity {
             }
             if (courseId == -1) {
                 int newCourseId = appRepo.getAllCourses().get(appRepo.getAllCourses().size() - 1).getCourseId() +1;
-                courses = new Courses(newCourseId, courseName, instructorName, instructorEmail, instructorPhone, courseStatus, startDate, endDate, courseNote, null);
+                courses = new Courses(newCourseId, courseName, instructorName, instructorEmail, instructorPhone, courseStatus, startDate, endDate, courseNote, editTermId);
                 appRepo.insert(courses);
                 Toast.makeText(AddCourse.this, "New Course Created.", Toast.LENGTH_SHORT).show();
                 Intent intent = new Intent(AddCourse.this, CourseList.class);
                 startActivity(intent);
             }else {
-                courses = new Courses(courseId, courseName, instructorName, instructorEmail, instructorPhone, courseStatus, startDate, endDate, courseNote, null);
+                courses = new Courses(courseId, courseName, instructorName, instructorEmail, instructorPhone, courseStatus, startDate, endDate, courseNote, editTermId);
                 appRepo.update(courses);
                 Toast.makeText(AddCourse.this, "Course has been updated.", Toast.LENGTH_SHORT).show();
                 Intent intent = new Intent(AddCourse.this, CourseList.class);

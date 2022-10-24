@@ -6,6 +6,7 @@ import android.app.DatePickerDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
@@ -15,11 +16,13 @@ import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.c196aloufi.Adapters.CoursePopUpAdapter;
 import com.example.c196aloufi.Adapters.MainScreenCourseAdapter;
 import com.example.c196aloufi.Database.AppRepo;
 import com.example.c196aloufi.Model.Courses;
 import com.example.c196aloufi.Model.Terms;
 import com.example.c196aloufi.R;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -54,6 +57,8 @@ public class AddTerm extends AppCompatActivity {
 
     Button createBtn;
 
+    FloatingActionButton addCoursesBtn;
+
     DatePickerDialog datePickerDialog;
 
     DatePickerDialog endDatePickerDialog;
@@ -62,6 +67,12 @@ public class AddTerm extends AppCompatActivity {
 
     List<Courses> coursesInTerm;
 
+    List<Courses> openCourses;
+
+    List<Courses> unassignedCourses;
+
+    CoursePopUpAdapter adapter;
+
 
 
     @Override
@@ -69,7 +80,8 @@ public class AddTerm extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_term);
         appRepo = new AppRepo(getApplication());
-        termId = getIntent().getIntExtra("termId", - 1);
+        addCoursesBtn = findViewById(R.id.addCoursesBtn);
+        termId = getIntent().getIntExtra("termId", -1);
         editTermTitle = getIntent().getStringExtra("termName");
         editStartDate = getIntent().getStringExtra("startDate");
         editEndDate = getIntent().getStringExtra("endDate");
@@ -108,7 +120,7 @@ public class AddTerm extends AppCompatActivity {
         recyclerView.setHasFixedSize(true);
         DividerItemDecoration decoration = new DividerItemDecoration(this, DividerItemDecoration.VERTICAL);
         recyclerView.addItemDecoration(decoration);
-        final MainScreenCourseAdapter courseAdapter= new MainScreenCourseAdapter(this);
+        final MainScreenCourseAdapter courseAdapter = new MainScreenCourseAdapter(this);
         recyclerView.setAdapter(courseAdapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         assocCourses = appRepo.getAllCourses();
@@ -133,20 +145,19 @@ public class AddTerm extends AppCompatActivity {
             endDate = endDatePickerButton.getText().toString();
 
             if (termId == -1) {
-                int newTermId = appRepo.getAllTerms().get(appRepo.getAllTerms().size() -1).getTermId() +1;
+                int newTermId = appRepo.getAllTerms().get(appRepo.getAllTerms().size() - 1).getTermId() + 1;
                 terms = new Terms(newTermId, termTitle, startDate, endDate);
                 appRepo.insert(terms);
                 Toast.makeText(AddTerm.this, "New Term Created.", Toast.LENGTH_SHORT).show();
                 Intent intent = new Intent(AddTerm.this, DetailedTerm.class);
                 startActivity(intent);
-            }
-            else {
-                terms = new Terms(termId, termTitle,startDate, endDate);
+            } else {
+                terms = new Terms(termId, termTitle, startDate, endDate);
                 appRepo.update(terms);
-                Toast.makeText(AddTerm.this, "Term has been updated.",Toast.LENGTH_SHORT).show();
+                Toast.makeText(AddTerm.this, "Term has been updated.", Toast.LENGTH_SHORT).show();
                 Intent intent = new Intent(AddTerm.this, DetailedTerm.class);
                 startActivity(intent);
-                     }
+            }
 
         });
     }
@@ -162,6 +173,53 @@ public class AddTerm extends AppCompatActivity {
             Toast.makeText(this, "The new term must have an end date.", Toast.LENGTH_SHORT).show();
             return true;
         } else return false;
+    }
+
+    public void addCoursesToTerm(View view) {
+        unassignedCourses = new ArrayList<>();
+        for (Courses courses : assocCourses) {
+            if (courses.getTermId() <= -1) {
+                unassignedCourses.add(courses);
+            }
+        }
+
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle("Add Course A Course To This Term");
+        builder.setMessage("Do you want to select an existing course to add to this term or create a new course for this term?");
+        builder.setIcon(R.drawable.ic_round_add_task_24);
+        builder.setPositiveButton("New Course", (dialog, id) -> {
+            dialog.dismiss();
+            Intent intent = new Intent(this, AddCourse.class);
+            intent.putExtra("termId", termId);
+            this.startActivity(intent);
+        });
+        builder.setNegativeButton("Existing Course",(dialog, id) -> {
+          if (unassignedCourses.size() >= 1) {
+              final CourseDropDownMenu courseMenu = new CourseDropDownMenu(this, unassignedCourses);
+              courseMenu.setHeight(WindowManager.LayoutParams.WRAP_CONTENT);
+              courseMenu.setWidth(getPxFromDisplay(250));
+              courseMenu.setOutsideTouchable(true);
+              courseMenu.setFocusable(true);
+              courseMenu.showAsDropDown(addCoursesBtn);
+              courseMenu.setSelectedCourseListener((position, courses) -> {
+                  courseMenu.dismiss();
+                  courses.setTermId(termId);
+                  overWriteCourse(courses, termId);
+              });
+          }else {
+              Toast.makeText(getApplicationContext(), "There are no unassigned courses. Please create a new course to add to this term.", Toast.LENGTH_SHORT).show();
+          }
+        });
+        AlertDialog dialog = builder.create();
+        dialog.show();
+    }
+    private void overWriteCourse(Courses courses, Integer termId) {
+        courses.setTermId(termId);
+        appRepo.update(courses);
+    }
+
+    private int getPxFromDisplay(int dp) {
+        return(int) (dp*getResources().getDisplayMetrics().density);
     }
 
     private String getTodaysDate() {
@@ -251,6 +309,4 @@ public class AddTerm extends AppCompatActivity {
 
     public void openEndDate(View view) {endDatePickerDialog.show();
     }
-
-
 }

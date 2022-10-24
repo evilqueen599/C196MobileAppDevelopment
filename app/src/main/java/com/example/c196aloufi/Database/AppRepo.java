@@ -2,6 +2,10 @@ package com.example.c196aloufi.Database;
 
 import android.app.Application;
 
+import androidx.annotation.NonNull;
+import androidx.lifecycle.LiveData;
+import androidx.lifecycle.MutableLiveData;
+
 import com.example.c196aloufi.Model.Assessments;
 import com.example.c196aloufi.Model.Courses;
 import com.example.c196aloufi.Model.Terms;
@@ -23,7 +27,8 @@ public class AppRepo {
     private List<Assessments> mAssociatedAssessments;
 
 
-    private static int NUMBER_OF_THREADS = 8;
+
+    private static int NUMBER_OF_THREADS = 12;
     static final ExecutorService databaseExecutor = Executors.newFixedThreadPool(NUMBER_OF_THREADS);
 
     public AppRepo(Application application) {
@@ -133,17 +138,6 @@ public class AppRepo {
         return mAllAssessments;
     }
 
-    public List<Assessments> getAssocAssess() {
-       databaseExecutor.execute(() -> {
-           mAssociatedAssessments = mAssessmentDAO.getAssocAssesments();
-       });
-       try {
-           Thread.sleep(1000);
-       }catch (InterruptedException e) {
-           e.printStackTrace();
-       }return mAssociatedAssessments;
-    }
-
     public void insert(Assessments assessments) {
         databaseExecutor.execute(() -> {
             mAssessmentDAO.insert(assessments);
@@ -175,5 +169,17 @@ public class AppRepo {
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
+    }
+    public void overWriteCourse(@NonNull Courses courses, Integer termId) {
+        courses.setTermId(termId);
+        databaseExecutor.execute(() -> {
+            mCourseDAO.update(courses);
+        });
+        try {
+            Thread.sleep(1000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+
     }
 }
