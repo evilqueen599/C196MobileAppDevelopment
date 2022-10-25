@@ -6,6 +6,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.view.WindowManager;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
@@ -25,6 +26,7 @@ import com.example.c196aloufi.Database.AppRepo;
 import com.example.c196aloufi.Model.Assessments;
 import com.example.c196aloufi.Model.Courses;
 import com.example.c196aloufi.R;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -41,6 +43,8 @@ public class AddCourse extends AppCompatActivity {
     private Button endDateButton;
 
     private Button addCourseBtn;
+
+    private FloatingActionButton addAssessmentsBtn;
 
     private Integer courseId;
 
@@ -99,6 +103,8 @@ public class AddCourse extends AppCompatActivity {
     List<Assessments> assocAssess;
 
     List<Assessments> assessInCourse;
+
+    List<Assessments> unassignedAssessments;
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -278,7 +284,47 @@ public class AddCourse extends AppCompatActivity {
         } else return false;
     }
 
-    private void addAssessmentToCourse()
+    private void addAssessmentToCourse(View view) {
+        unassignedAssessments = new ArrayList<>();
+        for (Assessments assessments : assocAssess) {
+            if (assessments.getCourseId() <= -1) {
+                unassignedAssessments.add(assessments);
+            }
+        }
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle("Add An Assessment To This Term");
+        builder.setMessage("Do you want to select an existing assessment to add to this term or create a new assessment for this term?");
+        builder.setIcon(R.drawable.ic_round_add_task_24);
+        builder.setPositiveButton("New Assessment",(dialog, id) -> {
+            dialog.dismiss();
+            Intent intent = new Intent(this, AddAssessment.class);
+            intent.putExtra("courseId", courseId);
+            this.startActivity(intent);
+        });
+        builder.setNegativeButton("Existing Assessment", (dialog, id) -> {
+            if (unassignedAssessments.size() >= 1) {
+                final AssessDropDownMenu assessMenu = new AssessDropDownMenu(this, unassignedAssessments);
+                assessMenu.setHeight(WindowManager.LayoutParams.WRAP_CONTENT);
+                assessMenu.setWidth(getPxFromDisplay(250));
+                assessMenu.setOutsideTouchable(true);
+                assessMenu.setFocusable(true);
+                assessMenu.showAsDropDown(addAssessmentsBtn);
+                assessMenu.setSelectedAssessListener((position, assessments) -> {
+                    assessInCourse.add(assessments);
+                    assessmentAdapter.notifyItemInserted(position);
+                    assessmentAdapter.setAssessments(assessInCourse);
+                    assessMenu.dismiss();
+                    assessments.setCourseId(courseId);
+                    overWriteAssessment(assessments, courseId);
+                    Toast.makeText(getApplicationContext(),"Assessment has been assigned to this course.", Toast.LENGTH_SHORT).show();
+                });
+            }else {
+                Toast.makeText(getApplicationContext(), "There are no unassigned assessments. Please create a new assessment to add to this course.",Toast.LENGTH_SHORT).show();
+            }
+        });
+        AlertDialog dialog = builder.create();
+        dialog.show();
+    }
 
     private void overWriteAssessment(Assessments assessments, Integer courseId) {
         assessments.setCourseId(courseId);
