@@ -3,6 +3,7 @@ package com.example.c196aloufi.UserInterface;
 
 import android.app.AlertDialog;
 import android.app.DatePickerDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -11,11 +12,14 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.DividerItemDecoration;
+import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.c196aloufi.Adapters.CourseAdapter;
 import com.example.c196aloufi.Adapters.CoursePopUpAdapter;
 import com.example.c196aloufi.Adapters.MainScreenCourseAdapter;
 import com.example.c196aloufi.Database.AppRepo;
@@ -67,11 +71,7 @@ public class AddTerm extends AppCompatActivity {
 
     List<Courses> coursesInTerm;
 
-    List<Courses> openCourses;
-
     List<Courses> unassignedCourses;
-
-    CoursePopUpAdapter adapter;
 
 
 
@@ -131,8 +131,43 @@ public class AddTerm extends AppCompatActivity {
             }
         }
         courseAdapter.setCourses(coursesInTerm);
-    }
 
+        new ItemTouchHelper(new ItemTouchHelper.SimpleCallback(0, ItemTouchHelper.LEFT | ItemTouchHelper.RIGHT) {
+            @Override
+            public boolean onMove(@NonNull RecyclerView recyclerView, @NonNull RecyclerView.ViewHolder viewHolder, @NonNull RecyclerView.ViewHolder target) {
+                return false;
+            }
+
+            @Override
+            public void onSwiped(@NonNull RecyclerView.ViewHolder viewHolder, int direction) {
+                try {
+                    DialogInterface.OnClickListener courseDeleteClickListener = new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            switch (which) {
+                                case DialogInterface.BUTTON_POSITIVE:
+                                    Courses courses = courseAdapter.getCourse(viewHolder.getAbsoluteAdapterPosition());
+                                    overWriteCourse(courses, -1);
+                                    courseAdapter.notifyDataSetChanged();
+                                    Toast.makeText(AddTerm.this, "Course has been removed from this term.", Toast.LENGTH_SHORT).show();
+                                    break;
+
+                                case DialogInterface.BUTTON_NEGATIVE:
+                                    courseAdapter.notifyDataSetChanged();
+                                    Toast.makeText(AddTerm.this, "Course has not been removed from this term.", Toast.LENGTH_SHORT).show();
+                            }
+                        }
+                    };
+                    androidx.appcompat.app.AlertDialog.Builder alert = new androidx.appcompat.app.AlertDialog.Builder(AddTerm.this);
+                    alert.setMessage("Do you want to remove this course from this term?").setPositiveButton("Yes", courseDeleteClickListener)
+                            .setNegativeButton("No", courseDeleteClickListener).show();
+
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+        }).attachToRecyclerView(recyclerView);
+    }
 
     private void addNewTerm() {
         createBtn = findViewById(R.id.createBtn);
@@ -205,6 +240,7 @@ public class AddTerm extends AppCompatActivity {
                   courseMenu.dismiss();
                   courses.setTermId(termId);
                   overWriteCourse(courses, termId);
+                  Toast.makeText(getApplicationContext(), "Course has been assigned to this term.", Toast.LENGTH_SHORT).show();
               });
           }else {
               Toast.makeText(getApplicationContext(), "There are no unassigned courses. Please create a new course to add to this term.", Toast.LENGTH_SHORT).show();
@@ -213,9 +249,26 @@ public class AddTerm extends AppCompatActivity {
         AlertDialog dialog = builder.create();
         dialog.show();
     }
+
     private void overWriteCourse(Courses courses, Integer termId) {
         courses.setTermId(termId);
         appRepo.update(courses);
+    }
+
+    public void onCourseSelected(int position, Courses courses) {
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle("Remove Course From Term");
+        builder.setMessage("This will not remove the course, only unassign it from this term.");
+        builder.setIcon(R.drawable.ic_baseline_delete_outline_24);
+        builder.setPositiveButton("Remove Course", (dialog, id) ->{
+            dialog.dismiss();
+            overWriteCourse(courses, -1);
+            MainScreenCourseAdapter mainScreenCourseAdapter = new MainScreenCourseAdapter(this);
+            mainScreenCourseAdapter.notifyDataSetChanged();
+        });
+        builder.setNegativeButton("Exit", (dialog, id) -> dialog.dismiss());
+        AlertDialog dialog = builder.create();
+        dialog.show();
     }
 
     private int getPxFromDisplay(int dp) {

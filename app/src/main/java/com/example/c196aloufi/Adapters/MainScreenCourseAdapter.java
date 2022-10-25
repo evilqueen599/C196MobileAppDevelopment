@@ -11,13 +11,21 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.c196aloufi.Model.Courses;
+import com.example.c196aloufi.Model.Terms;
 import com.example.c196aloufi.R;
 import com.example.c196aloufi.UserInterface.CourseList;
 
 import java.util.List;
 
 public class MainScreenCourseAdapter extends RecyclerView.Adapter<MainScreenCourseAdapter.MainCourseViewHolder> {
+
+    public Courses getCourse(int absoluteAdapterPosition) {
+        return mcourses.get(absoluteAdapterPosition);
+    }
+
     class MainCourseViewHolder extends RecyclerView.ViewHolder {
+
+
         private final TextView courseTitleTxt;
 
 

@@ -170,7 +170,7 @@ public class AppRepo {
             e.printStackTrace();
         }
     }
-    public void overWriteCourse(@NonNull Courses courses, Integer termId) {
+    public void overWriteCourse(Courses courses, Integer termId) {
         courses.setTermId(termId);
         databaseExecutor.execute(() -> {
             mCourseDAO.update(courses);
