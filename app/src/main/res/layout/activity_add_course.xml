@@ -285,8 +285,10 @@
             android:onClick="AddAssessmentToCourse"
             android:src="@drawable/ic_baseline_quiz_24"
             android:text="Add Assessment to Course"
-            tools:layout_editor_absoluteX="177dp"
-            tools:layout_editor_absoluteY="686dp" />
+            app:layout_constraintBottom_toTopOf="@+id/courseCardView"
+            app:layout_constraintEnd_toEndOf="@+id/guidelineRight"
+            app:layout_constraintStart_toStartOf="@id/guidelineLeft"
+            app:layout_constraintTop_toBottomOf="@+id/courseNoteTxt" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </ScrollView>

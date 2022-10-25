@@ -278,7 +278,7 @@ public class AddCourse extends AppCompatActivity {
         } else return false;
     }
 
-
+    private void addAssessmentToCourse()
 
     private void overWriteAssessment(Assessments assessments, Integer courseId) {
         assessments.setCourseId(courseId);
