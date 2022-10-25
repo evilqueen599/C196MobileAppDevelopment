@@ -2,6 +2,7 @@ package com.example.c196aloufi.UserInterface;
 
 import android.app.AlertDialog;
 import android.app.DatePickerDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -11,8 +12,10 @@ import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.DividerItemDecoration;
+import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -91,6 +94,8 @@ public class AddCourse extends AppCompatActivity {
 
     Courses courses;
 
+    MainScreenAssessmentAdapter assessmentAdapter;
+
     List<Assessments> assocAssess;
 
     List<Assessments> assessInCourse;
@@ -98,6 +103,7 @@ public class AddCourse extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_course);
+        assessmentAdapter = new MainScreenAssessmentAdapter(this);
         appRepo = new AppRepo(getApplication());
         courseId = getIntent().getIntExtra("courseId", -1);
         editCourseTitleTxt = getIntent().getStringExtra("courseName");
@@ -166,8 +172,7 @@ public class AddCourse extends AppCompatActivity {
         recyclerView.setHasFixedSize(true);
         DividerItemDecoration decoration = new DividerItemDecoration(this, DividerItemDecoration.VERTICAL);
         recyclerView.addItemDecoration(decoration);
-        final MainScreenAssessmentAdapter assessAdapter= new MainScreenAssessmentAdapter(this);
-        recyclerView.setAdapter(assessAdapter);
+        recyclerView.setAdapter(assessmentAdapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         assocAssess = appRepo.getAllAssessments();
         assessInCourse = new ArrayList<>();
@@ -176,7 +181,43 @@ public class AddCourse extends AppCompatActivity {
                 assessInCourse.add(assessments);
             }
         }
-        assessAdapter.setAssessments(assessInCourse);
+        assessmentAdapter.setAssessments(assessInCourse);
+
+        new ItemTouchHelper(new ItemTouchHelper.SimpleCallback(0, ItemTouchHelper.LEFT | ItemTouchHelper.RIGHT) {
+            @Override
+            public boolean onMove(@NonNull RecyclerView recyclerView, @NonNull RecyclerView.ViewHolder viewHolder, @NonNull RecyclerView.ViewHolder target) {
+                return false;
+            }
+
+            @Override
+            public void onSwiped(@NonNull RecyclerView.ViewHolder viewHolder, int direction) {
+                try {
+                    DialogInterface.OnClickListener assessDeleteClickListener = new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            switch (which) {
+                                case DialogInterface.BUTTON_POSITIVE:
+                                    Assessments assessments = assessmentAdapter.getAssessment(viewHolder.getAbsoluteAdapterPosition());
+                                    assessInCourse.remove(assessments);
+                                    assessmentAdapter.notifyItemRemoved(which);
+                                    assessmentAdapter.setAssessments(assessInCourse);
+                                    overWriteAssessment(assessments, -1);
+                                    Toast.makeText(AddCourse.this, "Assessment has been removed from this course.", Toast.LENGTH_SHORT).show();
+                                    break;
+
+                                case DialogInterface.BUTTON_NEGATIVE:
+                                    Toast.makeText(AddCourse.this, "Assessment has not been removed from this course.", Toast.LENGTH_SHORT).show();
+                            }
+                        }
+                    };
+                    androidx.appcompat.app.AlertDialog.Builder alert = new androidx.appcompat.app.AlertDialog.Builder(AddCourse.this);
+                    alert.setMessage("Do you want to remove this assessment from this course?").setPositiveButton("Yes", assessDeleteClickListener)
+                            .setNegativeButton("No", assessDeleteClickListener).show();
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+        }).attachToRecyclerView(recyclerView);
     }
 
     private void addCourse() {
@@ -222,19 +263,30 @@ public class AddCourse extends AppCompatActivity {
             Toast.makeText(this, "The new course must have a completion date.", Toast.LENGTH_SHORT).show();
             return true;
         }
-        else if (courseInstructorTxt == null) {
+        else if (courseInstructorTxt.getText().toString().isEmpty()) {
             Toast.makeText(this, "The new course must have an Instructor.", Toast.LENGTH_SHORT).show();
             return true;
-        }else if (instructorPhoneTxt == null) {
+        }else if (instructorPhoneTxt.getText().toString().isEmpty()) {
             Toast.makeText(this, "The new course must have an Instructor phone number.", Toast.LENGTH_SHORT).show();
             return true;
-        }else if (instructorEmailAddressTxt == null) {
+        }else if (instructorEmailAddressTxt.getText().toString().isEmpty()) {
             Toast.makeText(this, "The new course must have an Instructor email address.", Toast.LENGTH_SHORT).show();
             return true;
         } else if (courseStatusBar == null) {
             Toast.makeText(this, "The new course must have a status.", Toast.LENGTH_SHORT).show();
             return true;
         } else return false;
+    }
+
+
+
+    private void overWriteAssessment(Assessments assessments, Integer courseId) {
+        assessments.setCourseId(courseId);
+        appRepo.update(assessments);
+    }
+
+    private int getPxFromDisplay(int dp) {
+        return(int) (dp*getResources().getDisplayMetrics().density);
     }
 
     private String getTodaysDate() {

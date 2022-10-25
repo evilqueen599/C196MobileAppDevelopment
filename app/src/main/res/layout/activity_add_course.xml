@@ -87,26 +87,10 @@
             app:layout_constraintTop_toTopOf="@id/guidelineTop"
             app:layout_constraintVertical_bias="0.0" />
 
-        <Button
-            android:id="@+id/addAssessmentsBtn"
-            android:layout_width="236dp"
-            android:layout_height="48dp"
-            android:layout_marginStart="136dp"
-            android:layout_marginTop="31dp"
-            android:layout_marginEnd="136dp"
-            android:layout_marginBottom="13dp"
-            android:text="Add Assessments"
-            app:layout_constraintBottom_toTopOf="@+id/guidelineBottom"
-            app:layout_constraintEnd_toEndOf="@id/guidelineRight"
-            app:layout_constraintHorizontal_bias="0.504"
-            app:layout_constraintStart_toStartOf="@id/guidelineLeft"
-            app:layout_constraintTop_toBottomOf="@+id/guidelineTop"
-            app:layout_constraintVertical_bias="0.724" />
-
         <androidx.cardview.widget.CardView
             android:id="@+id/courseCardView"
-            android:layout_width="0dp"
-            android:layout_height="0dp"
+            android:layout_width="453dp"
+            android:layout_height="188dp"
             app:cardBackgroundColor="@color/teal_200"
             app:cardCornerRadius="30dp"
             app:cardElevation="10dp"
@@ -116,11 +100,14 @@
             app:layout_constraintBottom_toTopOf="@id/addCourseBtn"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/addAssessmentsBtn">
+            app:layout_constraintTop_toBottomOf="@id/addAssessmentsBtn"
+            app:layout_constraintVertical_bias="1.0">
+
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/assessViewRecyclerView"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"/>
+                android:layout_height="129dp" />
+
         </androidx.cardview.widget.CardView>
 
         <Button
@@ -290,6 +277,16 @@
             app:layout_constraintStart_toStartOf="@id/guidelineLeft"
             app:layout_constraintTop_toBottomOf="@+id/guidelineTop"
             app:layout_constraintVertical_bias="0.234" />
+
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/addAssessmentsBtn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:onClick="AddAssessmentToCourse"
+            android:src="@drawable/ic_baseline_quiz_24"
+            android:text="Add Assessment to Course"
+            tools:layout_editor_absoluteX="177dp"
+            tools:layout_editor_absoluteY="686dp" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </ScrollView>

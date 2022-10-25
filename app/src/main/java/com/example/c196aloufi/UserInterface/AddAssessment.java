@@ -20,6 +20,7 @@ import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.c196aloufi.Adapters.AssessmentAdapter;
+import com.example.c196aloufi.Adapters.MainScreenAssessmentAdapter;
 import com.example.c196aloufi.Database.AppRepo;
 import com.example.c196aloufi.Model.Assessments;
 import com.example.c196aloufi.R;
