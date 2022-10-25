@@ -56,9 +56,18 @@ public class CourseList extends AppCompatActivity {
                             switch (which) {
                                 case DialogInterface.BUTTON_POSITIVE:
                                     Courses deleteCourse = courseAdapter.getCourses(viewHolder.getAbsoluteAdapterPosition());
-                                    appRepo.delete(deleteCourse);
-                                    courseAdapter.onAttachedToRecyclerView(recyclerView);
-                                    Toast.makeText(CourseList.this, "Course has been deleted.", Toast.LENGTH_SHORT).show();
+                                    for(Assessments assessments : appRepo.getAllAssessments()) {
+                                        if (assessments.getCourseId() == courseAdapter.getCourses(viewHolder.getAbsoluteAdapterPosition()).getCourseId())
+                                            if (courseAdapter.getCourses(viewHolder.getAbsoluteAdapterPosition()).getCourseId() == assessments.getCourseId()) {
+                                                Toast.makeText(getApplicationContext(), " This course has assessments assigned to it and cannot be removed. Please remove associated assessments to proceed.", Toast.LENGTH_SHORT).show();
+                                                courseAdapter.notifyDataSetChanged();
+                                                return;
+                                            } else {
+                                                appRepo.delete(deleteCourse);
+                                                courseAdapter.onAttachedToRecyclerView(recyclerView);
+                                                Toast.makeText(CourseList.this, "Course has been deleted.", Toast.LENGTH_SHORT).show();
+                                            }
+                                    }
                                     break;
 
                                 case DialogInterface.BUTTON_NEGATIVE:
