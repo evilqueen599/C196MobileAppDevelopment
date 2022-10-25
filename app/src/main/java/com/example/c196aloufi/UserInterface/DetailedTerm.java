@@ -56,6 +56,7 @@ public class DetailedTerm extends AppCompatActivity  {
                                 case DialogInterface.BUTTON_POSITIVE:
                                     Terms deleteTerm = termAdapter.getTerm(viewHolder.getAbsoluteAdapterPosition());
                                     appRepo.delete(deleteTerm);
+                                    termAdapter.onAttachedToRecyclerView(recyclerView);
                                     Toast.makeText(DetailedTerm.this, "Term has been deleted.", Toast.LENGTH_SHORT).show();
                                     break;
 

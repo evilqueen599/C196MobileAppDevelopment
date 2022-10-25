@@ -73,12 +73,16 @@ public class AddTerm extends AppCompatActivity {
 
     List<Courses> unassignedCourses;
 
+    MainScreenCourseAdapter courseAdapter;
+
+
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_term);
+        courseAdapter = new MainScreenCourseAdapter(this);
         appRepo = new AppRepo(getApplication());
         addCoursesBtn = findViewById(R.id.addCoursesBtn);
         termId = getIntent().getIntExtra("termId", -1);
@@ -120,7 +124,6 @@ public class AddTerm extends AppCompatActivity {
         recyclerView.setHasFixedSize(true);
         DividerItemDecoration decoration = new DividerItemDecoration(this, DividerItemDecoration.VERTICAL);
         recyclerView.addItemDecoration(decoration);
-        final MainScreenCourseAdapter courseAdapter = new MainScreenCourseAdapter(this);
         recyclerView.setAdapter(courseAdapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         assocCourses = appRepo.getAllCourses();
@@ -147,13 +150,14 @@ public class AddTerm extends AppCompatActivity {
                             switch (which) {
                                 case DialogInterface.BUTTON_POSITIVE:
                                     Courses courses = courseAdapter.getCourse(viewHolder.getAbsoluteAdapterPosition());
+                                    coursesInTerm.remove(courses);
+                                    courseAdapter.notifyItemRemoved(which);
+                                    courseAdapter.setCourses(coursesInTerm);
                                     overWriteCourse(courses, -1);
-                                    courseAdapter.notifyDataSetChanged();
                                     Toast.makeText(AddTerm.this, "Course has been removed from this term.", Toast.LENGTH_SHORT).show();
                                     break;
 
                                 case DialogInterface.BUTTON_NEGATIVE:
-                                    courseAdapter.notifyDataSetChanged();
                                     Toast.makeText(AddTerm.this, "Course has not been removed from this term.", Toast.LENGTH_SHORT).show();
                             }
                         }
@@ -237,6 +241,9 @@ public class AddTerm extends AppCompatActivity {
               courseMenu.setFocusable(true);
               courseMenu.showAsDropDown(addCoursesBtn);
               courseMenu.setSelectedCourseListener((position, courses) -> {
+                  coursesInTerm.add(courses);
+                  courseAdapter.notifyItemInserted(position);
+                  courseAdapter.setCourses(coursesInTerm);
                   courseMenu.dismiss();
                   courses.setTermId(termId);
                   overWriteCourse(courses, termId);
@@ -253,22 +260,6 @@ public class AddTerm extends AppCompatActivity {
     private void overWriteCourse(Courses courses, Integer termId) {
         courses.setTermId(termId);
         appRepo.update(courses);
-    }
-
-    public void onCourseSelected(int position, Courses courses) {
-        AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        builder.setTitle("Remove Course From Term");
-        builder.setMessage("This will not remove the course, only unassign it from this term.");
-        builder.setIcon(R.drawable.ic_baseline_delete_outline_24);
-        builder.setPositiveButton("Remove Course", (dialog, id) ->{
-            dialog.dismiss();
-            overWriteCourse(courses, -1);
-            MainScreenCourseAdapter mainScreenCourseAdapter = new MainScreenCourseAdapter(this);
-            mainScreenCourseAdapter.notifyDataSetChanged();
-        });
-        builder.setNegativeButton("Exit", (dialog, id) -> dialog.dismiss());
-        AlertDialog dialog = builder.create();
-        dialog.show();
     }
 
     private int getPxFromDisplay(int dp) {

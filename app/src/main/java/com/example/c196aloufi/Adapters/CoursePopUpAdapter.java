@@ -44,6 +44,7 @@ public class CoursePopUpAdapter extends RecyclerView.Adapter<CoursePopUpAdapter.
             if (selectedCourseListener != null) {
                 selectedCourseListener.onCourseSelected(position, courses);
             }
+
         });
     }
 

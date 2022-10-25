@@ -23,8 +23,6 @@ public class AppRepo {
     private List<Terms> mAllTerms;
     private List<Courses> mAllCourses;
     private List<Assessments> mAllAssessments;
-    private List<Courses> mAssociatedCourses;
-    private List<Assessments> mAssociatedAssessments;
 
 
 
@@ -163,17 +161,6 @@ public class AppRepo {
     public void delete(Assessments assessments) {
         databaseExecutor.execute(() -> {
             mAssessmentDAO.delete(assessments);
-        });
-        try {
-            Thread.sleep(1000);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
-    }
-    public void overWriteCourse(Courses courses, Integer termId) {
-        courses.setTermId(termId);
-        databaseExecutor.execute(() -> {
-            mCourseDAO.update(courses);
         });
         try {
             Thread.sleep(1000);
