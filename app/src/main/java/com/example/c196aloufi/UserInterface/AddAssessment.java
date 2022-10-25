@@ -31,6 +31,7 @@ import java.util.ResourceBundle;
 public class AddAssessment extends AppCompatActivity {
         private DatePickerDialog datePickerDialog;
         Integer assessmentId;
+        Integer editCourseId;
         String assessmentName;
         String editAssessmentName;
         String editAssessmentType;
@@ -54,6 +55,7 @@ public class AddAssessment extends AppCompatActivity {
                 editAssessmentName = getIntent().getStringExtra("assessmentTitle");
                 editAssessmentType = getIntent().getStringExtra("assessmentType");
                 editEndDate = getIntent().getStringExtra("endDate");
+                editCourseId = getIntent().getIntExtra("courseId", -1);
                 if (assessmentId == -1) {
                           setUpView();
                 } else {
@@ -96,13 +98,13 @@ public class AddAssessment extends AppCompatActivity {
                         }
                         if (assessmentId == -1) {
                                 int newAssessId = appRepo.getAllAssessments().get(appRepo.getAllAssessments().size() - 1).getAssessmentId() + 1;
-                                assessments = new Assessments(newAssessId, assessmentName, endDate, assessmentType, 0);
+                                assessments = new Assessments(newAssessId, assessmentName, endDate, assessmentType, editCourseId);
                                 appRepo.insert(assessments);
                                 Toast.makeText(AddAssessment.this, "New Assessment Created.", Toast.LENGTH_SHORT).show();
                                 Intent intent = new Intent(AddAssessment.this, AssessmentsList.class);
                                 startActivity(intent);
                         } else {
-                                assessments = new Assessments(assessmentId, assessmentName, endDate, assessmentType, 0);
+                                assessments = new Assessments(assessmentId, assessmentName, endDate, assessmentType, editCourseId);
                                 appRepo.update(assessments);
                                 Toast.makeText(AddAssessment.this, "Assessment has been updated.", Toast.LENGTH_SHORT).show();
                                 Intent intent = new Intent(AddAssessment.this, AssessmentsList.class);

@@ -282,7 +282,7 @@
             android:id="@+id/addAssessmentsBtn"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:onClick="AddAssessmentToCourse"
+            android:onClick="addAssessmentToCourse"
             android:src="@drawable/ic_baseline_quiz_24"
             android:text="Add Assessment to Course"
             app:layout_constraintBottom_toTopOf="@+id/courseCardView"

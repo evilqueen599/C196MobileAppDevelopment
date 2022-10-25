@@ -111,6 +111,7 @@ public class AddCourse extends AppCompatActivity {
         setContentView(R.layout.activity_add_course);
         assessmentAdapter = new MainScreenAssessmentAdapter(this);
         appRepo = new AppRepo(getApplication());
+        addAssessmentsBtn = findViewById(R.id.addAssessmentsBtn);
         courseId = getIntent().getIntExtra("courseId", -1);
         editCourseTitleTxt = getIntent().getStringExtra("courseName");
         editInstructorTxt = getIntent().getStringExtra("instructorName");
@@ -284,7 +285,7 @@ public class AddCourse extends AppCompatActivity {
         } else return false;
     }
 
-    private void addAssessmentToCourse(View view) {
+    public void addAssessmentToCourse(View view) {
         unassignedAssessments = new ArrayList<>();
         for (Assessments assessments : assocAssess) {
             if (assessments.getCourseId() <= -1) {
@@ -423,5 +424,6 @@ public class AddCourse extends AppCompatActivity {
     public void openEndDate(View view) {
         endDatePickerDialog.show();
     }
+
 }
 
