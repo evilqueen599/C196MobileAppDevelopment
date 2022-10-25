@@ -298,30 +298,38 @@ public class AddCourse extends AppCompatActivity {
         builder.setMessage("Do you want to select an existing assessment to add to this term or create a new assessment for this term?");
         builder.setIcon(R.drawable.ic_round_add_task_24);
         builder.setPositiveButton("New Assessment",(dialog, id) -> {
-            dialog.dismiss();
-            Intent intent = new Intent(this, AddAssessment.class);
-            intent.putExtra("courseId", courseId);
-            this.startActivity(intent);
+            if (assessInCourse.size() < 5) {
+                dialog.dismiss();
+                Intent intent = new Intent(this, AddAssessment.class);
+                intent.putExtra("courseId", courseId);
+                this.startActivity(intent);
+            } else {
+                Toast.makeText(getApplicationContext(), "There are already five assessments assigned to this course.Remove an assessment if you wish to assign another.", Toast.LENGTH_SHORT).show();
+            }
         });
         builder.setNegativeButton("Existing Assessment", (dialog, id) -> {
-            if (unassignedAssessments.size() >= 1) {
-                final AssessDropDownMenu assessMenu = new AssessDropDownMenu(this, unassignedAssessments);
-                assessMenu.setHeight(WindowManager.LayoutParams.WRAP_CONTENT);
-                assessMenu.setWidth(getPxFromDisplay(250));
-                assessMenu.setOutsideTouchable(true);
-                assessMenu.setFocusable(true);
-                assessMenu.showAsDropDown(addAssessmentsBtn);
-                assessMenu.setSelectedAssessListener((position, assessments) -> {
-                    assessInCourse.add(assessments);
-                    assessmentAdapter.notifyItemInserted(position);
-                    assessmentAdapter.setAssessments(assessInCourse);
-                    assessMenu.dismiss();
-                    assessments.setCourseId(courseId);
-                    overWriteAssessment(assessments, courseId);
-                    Toast.makeText(getApplicationContext(),"Assessment has been assigned to this course.", Toast.LENGTH_SHORT).show();
-                });
+            if (assessInCourse.size() < 5) {
+                if (unassignedAssessments.size() >= 1) {
+                    final AssessDropDownMenu assessMenu = new AssessDropDownMenu(this, unassignedAssessments);
+                    assessMenu.setHeight(WindowManager.LayoutParams.WRAP_CONTENT);
+                    assessMenu.setWidth(getPxFromDisplay(250));
+                    assessMenu.setOutsideTouchable(true);
+                    assessMenu.setFocusable(true);
+                    assessMenu.showAsDropDown(addAssessmentsBtn);
+                    assessMenu.setSelectedAssessListener((position, assessments) -> {
+                        assessInCourse.add(assessments);
+                        assessmentAdapter.notifyItemInserted(position);
+                        assessmentAdapter.setAssessments(assessInCourse);
+                        assessMenu.dismiss();
+                        assessments.setCourseId(courseId);
+                        overWriteAssessment(assessments, courseId);
+                        Toast.makeText(getApplicationContext(), "Assessment has been assigned to this course.", Toast.LENGTH_SHORT).show();
+                    });
+                } else {
+                    Toast.makeText(getApplicationContext(), "There are no unassigned assessments. Please create a new assessment to add to this course.", Toast.LENGTH_SHORT).show();
+                }
             }else {
-                Toast.makeText(getApplicationContext(), "There are no unassigned assessments. Please create a new assessment to add to this course.",Toast.LENGTH_SHORT).show();
+                Toast.makeText(getApplicationContext(), "There are already five assessments assigned to this course.Remove an assessment if you wish to assign another.", Toast.LENGTH_SHORT).show();
             }
         });
         AlertDialog dialog = builder.create();
