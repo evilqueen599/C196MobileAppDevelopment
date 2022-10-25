@@ -158,6 +158,7 @@ public class AddTerm extends AppCompatActivity {
                                     break;
 
                                 case DialogInterface.BUTTON_NEGATIVE:
+                                    courseAdapter.notifyDataSetChanged();
                                     Toast.makeText(AddTerm.this, "Course has not been removed from this term.", Toast.LENGTH_SHORT).show();
                             }
                         }

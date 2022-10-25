@@ -53,6 +53,7 @@ public class AssessmentsList extends AppCompatActivity {
                                 case DialogInterface.BUTTON_POSITIVE:
                                     Assessments deleteAssessment = assessmentAdapter.getAssessment(viewHolder.getAbsoluteAdapterPosition());
                                     appRepo.delete(deleteAssessment);
+                                    assessmentAdapter.onAttachedToRecyclerView(recyclerView);
                                     Toast.makeText(AssessmentsList.this, "Assessment has been deleted.", Toast.LENGTH_SHORT).show();
                                     break;
 

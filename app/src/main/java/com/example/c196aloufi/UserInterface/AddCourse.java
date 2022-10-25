@@ -213,6 +213,7 @@ public class AddCourse extends AppCompatActivity {
                                     break;
 
                                 case DialogInterface.BUTTON_NEGATIVE:
+                                    assessmentAdapter.notifyDataSetChanged();
                                     Toast.makeText(AddCourse.this, "Assessment has not been removed from this course.", Toast.LENGTH_SHORT).show();
                             }
                         }

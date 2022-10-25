@@ -57,6 +57,7 @@ public class CourseList extends AppCompatActivity {
                                 case DialogInterface.BUTTON_POSITIVE:
                                     Courses deleteCourse = courseAdapter.getCourses(viewHolder.getAbsoluteAdapterPosition());
                                     appRepo.delete(deleteCourse);
+                                    courseAdapter.onAttachedToRecyclerView(recyclerView);
                                     Toast.makeText(CourseList.this, "Course has been deleted.", Toast.LENGTH_SHORT).show();
                                     break;
 
