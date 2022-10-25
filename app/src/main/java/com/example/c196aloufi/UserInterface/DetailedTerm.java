@@ -16,6 +16,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.c196aloufi.Adapters.TermAdapter;
 import com.example.c196aloufi.Database.AppRepo;
+import com.example.c196aloufi.Model.Courses;
 import com.example.c196aloufi.Model.Terms;
 import com.example.c196aloufi.R;
 
@@ -55,9 +56,18 @@ public class DetailedTerm extends AppCompatActivity  {
                             switch (which) {
                                 case DialogInterface.BUTTON_POSITIVE:
                                     Terms deleteTerm = termAdapter.getTerm(viewHolder.getAbsoluteAdapterPosition());
-                                    appRepo.delete(deleteTerm);
-                                    termAdapter.onAttachedToRecyclerView(recyclerView);
-                                    Toast.makeText(DetailedTerm.this, "Term has been deleted.", Toast.LENGTH_SHORT).show();
+                                    for(Courses course : appRepo.getAllCourses()) {
+                                        if (course.getTermId() == termAdapter.getTerm(viewHolder.getAbsoluteAdapterPosition()).getTermId())
+                                            if (termAdapter.getTerm(viewHolder.getAbsoluteAdapterPosition()).getTermId() == course.getTermId()) {
+                                                Toast.makeText(getApplicationContext(), " This Term has courses assigned to it and cannot be removed. Please remove associated courses to proceed.", Toast.LENGTH_SHORT).show();
+                                                termAdapter.notifyDataSetChanged();
+                                                return;
+                                            } else {
+                                                appRepo.delete(deleteTerm);
+                                                termAdapter.onAttachedToRecyclerView(recyclerView);
+                                                Toast.makeText(DetailedTerm.this, "Term has been deleted.", Toast.LENGTH_SHORT).show();
+                                            }
+                                    }
                                     break;
 
                                     case DialogInterface.BUTTON_NEGATIVE:
