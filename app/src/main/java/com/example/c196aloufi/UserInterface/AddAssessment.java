@@ -1,12 +1,8 @@
 package com.example.c196aloufi.UserInterface;
 
-import android.app.AlarmManager;
 import android.app.AlertDialog;
 import android.app.DatePickerDialog;
-import android.app.PendingIntent;
-import android.content.Context;
 import android.content.Intent;
-import android.os.Build;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -17,19 +13,19 @@ import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.Toast;
 
-import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.c196aloufi.Database.AppRepo;
 import com.example.c196aloufi.Model.Assessments;
 import com.example.c196aloufi.R;
-import com.example.c196aloufi.myBroadcastReceiver;
 
+import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.time.LocalDate;
 import java.util.Calendar;
-import java.util.Date;
 import java.util.Locale;
+
 
 public class AddAssessment extends AppCompatActivity {
         private DatePickerDialog datePickerDialog;
@@ -164,6 +160,9 @@ public class AddAssessment extends AppCompatActivity {
                                 return true;
 
                         case R.id.assess_start_date_notification:
+                                editStartDate = startAssessPickerBtn.getText().toString();
+                                DateFormat mStart = null;
+                                mStart = SimpleDateFormat.getDateInstance(Integer.parseInt(editStartDate), Locale.US);
 
 
                         case R.id.assess_due_date_notification:
