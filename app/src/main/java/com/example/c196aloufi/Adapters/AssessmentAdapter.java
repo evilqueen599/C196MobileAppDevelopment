@@ -31,11 +31,13 @@ public class AssessmentAdapter extends RecyclerView.Adapter<AssessmentAdapter.As
         private final TextView assessmentTitleTxt;
         private final TextView assessmentTypeTxt;
         private final TextView dueDateTxt;
+        private final TextView startDateTxt;
 
         public AssessmentViewHolder(View courseView) {
             super(courseView);
             assessmentTitleTxt = courseView.findViewById(R.id.assessmentTitleTxt);
             assessmentTypeTxt = courseView.findViewById(R.id.assessmentTypeTxt);
+            startDateTxt = courseView.findViewById(R.id.startTxt);
             dueDateTxt = courseView.findViewById(R.id.dueDateTxt);
 
 
@@ -48,6 +50,7 @@ public class AssessmentAdapter extends RecyclerView.Adapter<AssessmentAdapter.As
                     intent.putExtra("assessmentId", current.getAssessmentId());
                     intent.putExtra("assessmentTitle", current.getAssessmentTitle());
                     intent.putExtra("assessmentType", current.getAssessmentType());
+                    intent.putExtra("startDate", current.getStartDate());
                     intent.putExtra("endDate", current.getEndDate());
                     intent.putExtra("courseId", current.getCourseId());
                     context.startActivity(intent);
@@ -80,6 +83,8 @@ public class AssessmentAdapter extends RecyclerView.Adapter<AssessmentAdapter.As
             holder.assessmentTitleTxt.setText(name);
             String type =current.getAssessmentType();
             holder.assessmentTypeTxt.setText(type);
+            String start = current.getStartDate();
+            holder.startDateTxt.setText(start);
             String dueDate = current.getEndDate();
             holder.dueDateTxt.setText((dueDate));
         } else {

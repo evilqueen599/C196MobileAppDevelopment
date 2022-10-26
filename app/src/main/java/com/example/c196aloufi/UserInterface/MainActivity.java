@@ -18,6 +18,9 @@ import java.util.Date;
 import java.util.GregorianCalendar;
 
 public class MainActivity extends AppCompatActivity {
+
+    static int alertNum;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -29,8 +32,8 @@ public class MainActivity extends AppCompatActivity {
         Courses courses = new Courses(1, "Application Development", "Test Instructor",
                 "testemail@test.com", "954-778-9008", "InProgress","Oct 26 2022", "Dec 26 2022", "Finish this class ASAP", 1);
        appRepo.insert(courses);
-       Assessments assessments = new Assessments(1, "Final Project","May 28 2023", "Practice Assessment", 1);
-       appRepo.insert(assessments);
+      // Assessments assessments = new Assessments(1, "Final Project"," 28 2023", "Apr 28 2024", "Practice Assessment", 1);
+     //  appRepo.insert(assessments);
     }
 
     public void enterButton(View view) {

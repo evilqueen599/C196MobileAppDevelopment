@@ -33,10 +33,19 @@
             android:id="@+id/dueDateTxt"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_below="@+id/startTxt"
+            android:textColor="@color/white"
+            android:textSize="15sp"
+            android:textStyle="bold"/>
+        <TextView
+            android:id="@+id/startTxt"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:layout_below="@+id/assessmentTypeTxt"
             android:textColor="@color/white"
             android:textSize="15sp"
             android:textStyle="bold"/>
+
 
 
     </RelativeLayout>

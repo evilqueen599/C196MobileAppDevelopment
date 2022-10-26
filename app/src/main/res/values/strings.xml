@@ -2,5 +2,7 @@
     <string name="app_name">C196Aloufi</string>
     <string name="enter">Enter</string>
     <string name="gradcap">Book</string>
+    <string name="channel_name">thisChannel</string>
+    <string name="channel_description">thisDescription</string>
     <string name="term_scheduling_application">Term Scheduling Application</string>
 </resources>

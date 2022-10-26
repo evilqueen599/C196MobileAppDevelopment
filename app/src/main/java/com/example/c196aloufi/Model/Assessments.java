@@ -8,16 +8,14 @@ import androidx.room.ColumnInfo;
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 
-import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
-import java.util.Date;
-
 @Entity(tableName = "assessments")
 public class Assessments implements Parcelable {
     @PrimaryKey (autoGenerate = true)
     private Integer assessmentId;
     @ColumnInfo
     private String assessmentTitle;
+    @ColumnInfo
+    private String startDate;
     @ColumnInfo
     private String endDate;
     @ColumnInfo
@@ -57,6 +55,7 @@ public class Assessments implements Parcelable {
         return "Assessments{" +
                 "assessmentId=" + assessmentId +
                 ", assessmentTitle='" + assessmentTitle + '\'' +
+                ", startDate='" + startDate +
                 ", endDate=" + endDate +
                 ", assessmentType='" + assessmentType + '\'' +
                 ", courseId=" + courseId +
@@ -77,6 +76,12 @@ public class Assessments implements Parcelable {
 
     public void setAssessmentTitle(String assessmentTitle) {
         this.assessmentTitle = assessmentTitle;
+    }
+
+    public String getStartDate() {return startDate;}
+
+    public void setStartDate(String startDate) {
+        this.startDate = startDate;
     }
 
     public String getEndDate() {
@@ -103,9 +108,10 @@ public class Assessments implements Parcelable {
         this.courseId = courseId;
     }
 
-    public Assessments(Integer assessmentId, String assessmentTitle, String endDate, String assessmentType, Integer courseId) {
+    public Assessments(Integer assessmentId, String assessmentTitle, String startDate, String endDate, String assessmentType, Integer courseId) {
         this.assessmentId = assessmentId;
         this.assessmentTitle = assessmentTitle;
+        this.startDate = startDate;
         this.endDate = endDate;
         this.assessmentType = assessmentType;
         this.courseId = courseId;
@@ -131,6 +137,7 @@ public class Assessments implements Parcelable {
             dest.writeInt(courseId);
         }
         dest.writeString(assessmentTitle);
+        dest.writeString(startDate);
         dest.writeString(endDate);
         dest.writeString(assessmentType);
         dest.writeInt(courseId);
