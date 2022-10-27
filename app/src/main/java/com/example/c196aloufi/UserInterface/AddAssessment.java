@@ -177,7 +177,7 @@ public class AddAssessment extends AppCompatActivity {
                                 Long startTrigger = mStart.getTime();
                                 Intent intent1=new Intent(AddAssessment.this, MyBroadcastReceiver.class);
                                 intent1.putExtra("key","The start date of Assessment " + getIntent().getStringExtra("assessmentTitle") + " is " + getIntent().getStringExtra("startDate") + ".");
-                                PendingIntent startSender=PendingIntent.getBroadcast(AddAssessment .this, (1240000 + assessmentId),intent1,PendingIntent.FLAG_IMMUTABLE | PendingIntent.FLAG_UPDATE_CURRENT);
+                                PendingIntent startSender=PendingIntent.getBroadcast(AddAssessment .this, (1240000 + assessmentId),intent1,PendingIntent.FLAG_IMMUTABLE);
                                 AlarmManager alarmManager1=(AlarmManager) getSystemService(Context.ALARM_SERVICE);
                                 alarmManager1.set(AlarmManager.RTC_WAKEUP,startTrigger,startSender);
                                 Toast.makeText(AddAssessment.this, "Assessment start date notification enabled.", Toast.LENGTH_SHORT).show();

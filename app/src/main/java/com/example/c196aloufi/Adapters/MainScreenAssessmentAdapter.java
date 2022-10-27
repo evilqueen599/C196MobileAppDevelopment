@@ -24,11 +24,13 @@ public class MainScreenAssessmentAdapter extends RecyclerView.Adapter<MainScreen
 
     class MainScreenAssessmentViewHolder extends RecyclerView.ViewHolder {
         private final TextView assessmentTitleTxt;
+        private final TextView dueDateTxt;
 
 
         private MainScreenAssessmentViewHolder(View assessmentView) {
             super(assessmentView);
             assessmentTitleTxt = assessmentView.findViewById(R.id.assessmentTitleTxt);
+            dueDateTxt = assessmentView.findViewById(R.id.assessDueDateTxt);
 
 
             assessmentView.setOnClickListener(new View.OnClickListener() {
@@ -37,9 +39,7 @@ public class MainScreenAssessmentAdapter extends RecyclerView.Adapter<MainScreen
                     int position = getAbsoluteAdapterPosition();
                     final Assessments current = massessments.get(position);
                     Intent intent = new Intent(context, CourseList.class);
-                    intent.putExtra("assessmentId", current.getAssessmentId());
                     intent.putExtra("assessmentTitle", current.getAssessmentTitle());
-                    intent.putExtra("assessmentType", current.getAssessmentType());
                     intent.putExtra("endDate", current.getEndDate());
                 }
             });
@@ -68,6 +68,8 @@ public class MainScreenAssessmentAdapter extends RecyclerView.Adapter<MainScreen
             Assessments current = massessments.get(position);
             String name = current.getAssessmentTitle();
             holder.assessmentTitleTxt.setText(name);
+            String dueDate = current.getEndDate();
+            holder.dueDateTxt.setText(dueDate);
         } else {
             holder.assessmentTitleTxt.setText("No Assessments Exist");
         }

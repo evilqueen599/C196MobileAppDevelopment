@@ -1,8 +1,11 @@
 package com.example.c196aloufi.UserInterface;
 
 
+import android.app.AlarmManager;
 import android.app.AlertDialog;
 import android.app.DatePickerDialog;
+import android.app.PendingIntent;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
@@ -25,12 +28,16 @@ import com.example.c196aloufi.Adapters.MainScreenCourseAdapter;
 import com.example.c196aloufi.Database.AppRepo;
 import com.example.c196aloufi.Model.Courses;
 import com.example.c196aloufi.Model.Terms;
+import com.example.c196aloufi.MyBroadcastReceiver;
 import com.example.c196aloufi.R;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
+import java.util.Locale;
 
 
 public class AddTerm extends AppCompatActivity {
@@ -75,6 +82,10 @@ public class AddTerm extends AppCompatActivity {
 
     MainScreenCourseAdapter courseAdapter;
 
+    SimpleDateFormat formatter;
+
+    String format;
+
 
 
 
@@ -82,6 +93,9 @@ public class AddTerm extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_term);
+        getSupportActionBar().setDisplayShowHomeEnabled(true);
+        format = "MM/dd/yyyy";
+        formatter = new SimpleDateFormat(format, Locale.US);
         courseAdapter = new MainScreenCourseAdapter(this);
         appRepo = new AppRepo(getApplication());
         addCoursesBtn = findViewById(R.id.addCoursesBtn);
@@ -284,9 +298,44 @@ public class AddTerm extends AppCompatActivity {
                 startActivity(intent);
                 return true;
 
+            case R.id.termStartAlert:
+                editStartDate = startDatePickerButton.getText().toString();
+                Date mStart = null;
+                try {
+                    mStart = formatter.parse(editStartDate);
+                }catch (Exception e) {
+                    e.printStackTrace();
+                }
+                Long startTrigger = mStart.getTime();
+                Intent intent1=new Intent(AddTerm.this, MyBroadcastReceiver.class);
+                intent1.putExtra("key","The start date of Term " + getIntent().getStringExtra("termName") + " is " + getIntent().getStringExtra("startDate") + ".");
+                PendingIntent startSender=PendingIntent.getBroadcast(AddTerm .this, (1240000 + termId),intent1,PendingIntent.FLAG_IMMUTABLE);
+                AlarmManager alarmManager1=(AlarmManager) getSystemService(Context.ALARM_SERVICE);
+                alarmManager1.set(AlarmManager.RTC_WAKEUP,startTrigger,startSender);
+                Toast.makeText(AddTerm.this, "Term start date notification enabled.", Toast.LENGTH_SHORT).show();
+                return true;
+
+
+            case R.id.termEndAlert:
+                editEndDate = endDatePickerButton.getText().toString();
+                Date mEnd = null;
+                try {
+                    mEnd = formatter.parse(editEndDate);
+                }catch (Exception e) {
+                    e.printStackTrace();
+                }
+                Long endTrigger = mEnd.getTime();
+                Intent intent2=new Intent(AddTerm.this, MyBroadcastReceiver.class);
+                intent2.putExtra("key","The term " + getIntent().getStringExtra("termName") + " finishes today!");
+                PendingIntent endSender=PendingIntent.getBroadcast(AddTerm .this,(1250000 + termId),intent2,PendingIntent.FLAG_IMMUTABLE);
+                AlarmManager alarmManager2=(AlarmManager) getSystemService(Context.ALARM_SERVICE);
+                alarmManager2.set(AlarmManager.RTC_WAKEUP,endTrigger,endSender);
+                Toast.makeText(AddTerm.this, "Term end date notification enabled.", Toast.LENGTH_SHORT).show();
+                return true;
+
             case R.id.refreshPage:
-                Intent intent1 = new Intent(AddTerm.this, AddTerm.class);
-                startActivity(intent1);
+                Intent intent3 = new Intent(AddTerm.this, AddTerm.class);
+                startActivity(intent3);
                 return true;
         }
 
