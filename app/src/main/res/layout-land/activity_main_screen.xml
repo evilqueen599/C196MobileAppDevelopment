@@ -8,12 +8,8 @@
 
     <TextView
         android:id="@+id/termListTxt"
-        android:layout_width="297dp"
-        android:layout_height="50dp"
-        android:layout_marginStart="57dp"
-        android:layout_marginTop="15dp"
-        android:layout_marginEnd="57dp"
-        android:layout_marginBottom="44dp"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
         android:text="Term List"
         android:textAlignment="center"
         android:textSize="34sp"
@@ -26,9 +22,8 @@
 
     <RadioGroup
         android:id="@+id/radioGroup"
-        android:layout_width="411dp"
-        android:layout_height="77dp"
-        android:layout_marginBottom="20dp"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
         android:background="#673AB7"
         android:baselineAligned="true"
         android:checkedButton="@id/termRadBtn"
@@ -79,7 +74,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/mainScreenCardView"
         app:layout_constraintVertical_bias="0.981" />
 
     <androidx.constraintlayout.widget.Guideline
