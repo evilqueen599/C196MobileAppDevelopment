@@ -1,7 +1,10 @@
 package com.example.c196aloufi.UserInterface;
 
+import android.app.AlarmManager;
 import android.app.AlertDialog;
 import android.app.DatePickerDialog;
+import android.app.PendingIntent;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
@@ -26,12 +29,16 @@ import com.example.c196aloufi.Adapters.MainScreenAssessmentAdapter;
 import com.example.c196aloufi.Database.AppRepo;
 import com.example.c196aloufi.Model.Assessments;
 import com.example.c196aloufi.Model.Courses;
+import com.example.c196aloufi.MyBroadcastReceiver;
 import com.example.c196aloufi.R;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
+import java.util.Locale;
 
 public class AddCourse extends AppCompatActivity {
 
@@ -107,9 +114,16 @@ public class AddCourse extends AppCompatActivity {
 
     List<Assessments> unassignedAssessments;
 
+    SimpleDateFormat formatter;
+
+    String format;
+
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_course);
+        getSupportActionBar().setDisplayShowHomeEnabled(true);
+        format = "MM/dd/yyyy";
+        formatter = new SimpleDateFormat(format, Locale.US);
         assessmentAdapter = new MainScreenAssessmentAdapter(this);
         appRepo = new AppRepo(getApplication());
         addAssessmentsBtn = findViewById(R.id.addAssessmentsBtn);
@@ -363,6 +377,41 @@ public class AddCourse extends AppCompatActivity {
                 startActivity(intent);
                 return true;
 
+            case R.id.startDateAlert:
+                editStartDate = startDateButton.getText().toString();
+                Date mStart = null;
+                try {
+                    mStart = formatter.parse(editStartDate);
+                }catch (Exception e) {
+                    e.printStackTrace();
+                }
+                Long startTrigger = mStart.getTime();
+                Intent intent1=new Intent(AddCourse.this, MyBroadcastReceiver.class);
+                intent1.putExtra("key","The start date of Course " + getIntent().getStringExtra("courseName") + " is " + getIntent().getStringExtra("startDate") + ".");
+                PendingIntent startSender=PendingIntent.getBroadcast(AddCourse .this, (1240000 + courseId),intent1,PendingIntent.FLAG_IMMUTABLE);
+                AlarmManager alarmManager1=(AlarmManager) getSystemService(Context.ALARM_SERVICE);
+                alarmManager1.set(AlarmManager.RTC_WAKEUP,startTrigger,startSender);
+                Toast.makeText(AddCourse.this, "Assessment start date notification enabled.", Toast.LENGTH_SHORT).show();
+                return true;
+
+
+            case R.id.endDateAlert:
+                editEndDate = endDateButton.getText().toString();
+                Date mEnd = null;
+                try {
+                    mEnd = formatter.parse(editEndDate);
+                }catch (Exception e) {
+                    e.printStackTrace();
+                }
+                Long endTrigger = mEnd.getTime();
+                Intent intent2=new Intent(AddCourse.this, MyBroadcastReceiver.class);
+                intent2.putExtra("key","The course " + getIntent().getStringExtra("courseName") + " finishes today!");
+                PendingIntent endSender=PendingIntent.getBroadcast(AddCourse .this,(1250000 + courseId),intent2,PendingIntent.FLAG_IMMUTABLE);
+                AlarmManager alarmManager2=(AlarmManager) getSystemService(Context.ALARM_SERVICE);
+                alarmManager2.set(AlarmManager.RTC_WAKEUP,endTrigger,endSender);
+                Toast.makeText(AddCourse.this, "Assessment due date notification enabled.", Toast.LENGTH_SHORT).show();
+                return true;
+
             case R.id.shareCourseNotes:
                   Intent sendIntent = new Intent();
                   sendIntent.setAction(Intent.ACTION_SEND);
@@ -374,8 +423,8 @@ public class AddCourse extends AppCompatActivity {
                 return true;
 
             case R.id.refreshPage:
-                Intent intent1 = new Intent(AddCourse.this, AddCourse.class);
-                startActivity(intent1);
+                Intent intent3 = new Intent(AddCourse.this, AddCourse.class);
+                startActivity(intent3);
                 return true;
         }
         return super.onOptionsItemSelected(menuItem);

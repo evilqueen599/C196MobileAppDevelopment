@@ -5,6 +5,14 @@
         android:title="Go Back to Main Screen"
         android:orderInCategory="100"/>
     <item
+        android:id="@+id/TermStartAlert"
+        android:title="Set Start Date Alert"
+        android:orderInCategory="100"/>
+    <item
+        android:id="@+id/TermEndAlert"
+        android:title="Set End Date Alert"
+        android:orderInCategory="100"/>
+    <item
         android:id="@+id/refreshPage"
         android:title="Refresh This Page"
         android:orderInCategory="100"/>
