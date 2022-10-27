@@ -14,28 +14,30 @@ import android.widget.Toast;
 import androidx.annotation.RequiresApi;
 import androidx.core.app.NotificationCompat;
 
-public class myBroadcastReceiver extends BroadcastReceiver {
-    String channel_id="test";
+public class MyBroadcastReceiver extends BroadcastReceiver {
+    String channel_id = "test";
     static int notificationID;
 
     @RequiresApi(api = Build.VERSION_CODES.O)
     @Override
     public void onReceive(Context context, Intent intent) {
+        // TODO: This method is called when the BroadcastReceiver is receiving
         MediaPlayer mediaPlayer = MediaPlayer.create(context, Settings.System.DEFAULT_NOTIFICATION_URI);
         mediaPlayer.start();
         Toast.makeText(context, intent.getStringExtra("key"), Toast.LENGTH_LONG).show();
-        createNotificationChannel(context,channel_id);
-        Notification n = new NotificationCompat.Builder(context,channel_id)
+        createNotificationChannel(context, channel_id);
+        Notification n = new NotificationCompat.Builder(context, channel_id)
                 .setSmallIcon(R.drawable.ic_baseline_crisis_alert_24)
                 .setContentText(intent.getStringExtra("key"))
                 .setPriority(NotificationCompat.PRIORITY_DEFAULT)
                 .setContentTitle("Notification").build();
         NotificationManager manager = (NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE);
-        manager.notify(notificationID++,n);
+        manager.notify(notificationID++, n);
 
     }
+
     @RequiresApi(api = Build.VERSION_CODES.O)
-    private void createNotificationChannel(Context context, String CHANNEL_ID){
+    private void createNotificationChannel(Context context, String CHANNEL_ID) {
         CharSequence name = context.getResources().getString(R.string.channel_name);
         String description = context.getString(R.string.channel_description);
         int importance = NotificationManager.IMPORTANCE_DEFAULT;

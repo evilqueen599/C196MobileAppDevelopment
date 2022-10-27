@@ -3,6 +3,8 @@ package com.example.c196aloufi.UserInterface;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Toast;
 
@@ -92,5 +94,31 @@ public class CourseList extends AppCompatActivity {
     public void onClickAddCourse(View view) {
         Intent intent = new Intent(CourseList.this, AddCourse.class);
         startActivity(intent);
+    }
+
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.course_list_menu, menu);
+        return true;
+    }
+
+
+    public boolean onOptionsItemSelected(MenuItem menuItem) {
+        switch (menuItem.getItemId()) {
+            case android.R.id.home:
+                this.finish();
+                return true;
+
+            case R.id.homeScreen:
+                Intent intent = new Intent(CourseList.this, mainScreen.class);
+                startActivity(intent);
+                return true;
+
+            case R.id.refreshPage:
+                Intent intent1 = new Intent(CourseList.this, CourseList.class);
+                startActivity(intent1);
+                return true;
+        }
+
+        return super.onOptionsItemSelected(menuItem);
     }
 }

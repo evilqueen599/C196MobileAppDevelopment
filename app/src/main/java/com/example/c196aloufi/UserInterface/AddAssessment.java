@@ -6,7 +6,6 @@ import android.app.DatePickerDialog;
 import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
-import android.os.Build;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -17,19 +16,14 @@ import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.Toast;
 
-import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.example.c196aloufi.Adapters.TextFormatter;
 import com.example.c196aloufi.Database.AppRepo;
 import com.example.c196aloufi.Model.Assessments;
+import com.example.c196aloufi.MyBroadcastReceiver;
 import com.example.c196aloufi.R;
-import com.example.c196aloufi.myBroadcastReceiver;
 
-import java.text.DateFormat;
-import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.time.LocalDate;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.Locale;
@@ -181,8 +175,8 @@ public class AddAssessment extends AppCompatActivity {
                                         e.printStackTrace();
                                 }
                                 Long startTrigger = mStart.getTime();
-                                Intent intent1=new Intent(AddAssessment.this, myBroadcastReceiver.class);
-                                intent1.putExtra("key","The start date of Assessment " + getIntent().getStringExtra("assessmentTitle") + " is " + getIntent().getStringExtra("startDate"));
+                                Intent intent1=new Intent(AddAssessment.this, MyBroadcastReceiver.class);
+                                intent1.putExtra("key","The start date of Assessment " + getIntent().getStringExtra("assessmentTitle") + " is " + getIntent().getStringExtra("startDate") + ".");
                                 PendingIntent startSender=PendingIntent.getBroadcast(AddAssessment .this, (1240000 + assessmentId),intent1,PendingIntent.FLAG_IMMUTABLE | PendingIntent.FLAG_UPDATE_CURRENT);
                                 AlarmManager alarmManager1=(AlarmManager) getSystemService(Context.ALARM_SERVICE);
                                 alarmManager1.set(AlarmManager.RTC_WAKEUP,startTrigger,startSender);
@@ -199,7 +193,7 @@ public class AddAssessment extends AppCompatActivity {
                                         e.printStackTrace();
                                 }
                                 Long endTrigger = mEnd.getTime();
-                                Intent intent2=new Intent(AddAssessment.this, myBroadcastReceiver.class);
+                                Intent intent2=new Intent(AddAssessment.this, MyBroadcastReceiver.class);
                                 intent2.putExtra("key","The assessment " + getIntent().getStringExtra("assessmentTitle") + " is due today!");
                                 PendingIntent endSender=PendingIntent.getBroadcast(AddAssessment .this,(1250000 + assessmentId),intent2,PendingIntent.FLAG_IMMUTABLE);
                                 AlarmManager alarmManager2=(AlarmManager) getSystemService(Context.ALARM_SERVICE);

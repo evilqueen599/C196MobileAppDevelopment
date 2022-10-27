@@ -1,11 +1,8 @@
 package com.example.c196aloufi.UserInterface;
 
 
-import android.app.AlarmManager;
 import android.app.AlertDialog;
 import android.app.DatePickerDialog;
-import android.app.PendingIntent;
-import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
@@ -24,19 +21,15 @@ import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.c196aloufi.Adapters.CourseAdapter;
-import com.example.c196aloufi.Adapters.CoursePopUpAdapter;
 import com.example.c196aloufi.Adapters.MainScreenCourseAdapter;
 import com.example.c196aloufi.Database.AppRepo;
 import com.example.c196aloufi.Model.Courses;
 import com.example.c196aloufi.Model.Terms;
 import com.example.c196aloufi.R;
-import com.example.c196aloufi.myBroadcastReceiver;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.Date;
 import java.util.List;
 
 
@@ -289,6 +282,11 @@ public class AddTerm extends AppCompatActivity {
             case R.id.homeScreen:
                 Intent intent = new Intent(AddTerm.this, mainScreen.class);
                 startActivity(intent);
+                return true;
+
+            case R.id.refreshPage:
+                Intent intent1 = new Intent(AddTerm.this, AddTerm.class);
+                startActivity(intent1);
                 return true;
         }
 

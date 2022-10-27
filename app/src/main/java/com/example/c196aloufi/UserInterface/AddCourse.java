@@ -1,10 +1,7 @@
 package com.example.c196aloufi.UserInterface;
 
-import android.app.AlarmManager;
 import android.app.AlertDialog;
 import android.app.DatePickerDialog;
-import android.app.PendingIntent;
-import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
@@ -26,17 +23,14 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.c196aloufi.Adapters.MainScreenAssessmentAdapter;
-import com.example.c196aloufi.Adapters.MainScreenCourseAdapter;
 import com.example.c196aloufi.Database.AppRepo;
 import com.example.c196aloufi.Model.Assessments;
 import com.example.c196aloufi.Model.Courses;
 import com.example.c196aloufi.R;
-import com.example.c196aloufi.myBroadcastReceiver;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.Date;
 import java.util.List;
 
 public class AddCourse extends AppCompatActivity {
@@ -370,7 +364,18 @@ public class AddCourse extends AppCompatActivity {
                 return true;
 
             case R.id.shareCourseNotes:
+                  Intent sendIntent = new Intent();
+                  sendIntent.setAction(Intent.ACTION_SEND);
+                  sendIntent.putExtra(Intent.EXTRA_TEXT, (courseNoteTxt.getText().toString()));
+                  sendIntent.putExtra(Intent.EXTRA_TITLE, "Share Notes For " + courseTitleTxt.getText().toString());
+                  sendIntent.setType("text/plain");
+                  Intent shareIntent = Intent.createChooser(sendIntent, null);
+                  startActivity(shareIntent);
+                return true;
 
+            case R.id.refreshPage:
+                Intent intent1 = new Intent(AddCourse.this, AddCourse.class);
+                startActivity(intent1);
                 return true;
         }
         return super.onOptionsItemSelected(menuItem);
