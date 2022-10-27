@@ -14,10 +14,10 @@
         android:textAlignment="center"
         android:textSize="34sp"
         android:textStyle="bold"
-        app:layout_constraintBottom_toTopOf="@+id/guidelineTop"
+        app:layout_constraintBottom_toTopOf="@+id/mainScreenCardView"
         app:layout_constraintEnd_toEndOf="@id/guidelineRight"
         app:layout_constraintStart_toStartOf="@id/guidelineLeft"
-        app:layout_constraintTop_toBottomOf="@+id/guidelineBottom"
+        app:layout_constraintTop_toBottomOf="@+id/radioGroup"
         app:layout_constraintVertical_bias="0.138" />
 
     <RadioGroup
@@ -31,12 +31,11 @@
         android:clipToPadding="false"
         android:gravity="center"
         android:orientation="horizontal"
-        app:layout_constraintBottom_toTopOf="@+id/guidelineTop"
+        app:layout_constraintTop_toBottomOf="@+id/guidelineTop"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@id/guidelineBottom"
-        app:layout_constraintVertical_bias="0.0">
+        >
 
         <RadioButton
             android:id="@+id/termRadBtn"
@@ -72,10 +71,9 @@
         android:text="View Terms"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/mainScreenCardView"
-        app:layout_constraintVertical_bias="0.981" />
+         />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guidelineLeft"
