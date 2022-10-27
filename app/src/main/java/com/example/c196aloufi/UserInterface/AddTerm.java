@@ -307,9 +307,9 @@ public class AddTerm extends AppCompatActivity {
                     e.printStackTrace();
                 }
                 Long startTrigger = mStart.getTime();
-                Intent intent1=new Intent(AddTerm.this, MyBroadcastReceiver.class);
-                intent1.putExtra("key","The start date of Term " + getIntent().getStringExtra("termName") + " is " + getIntent().getStringExtra("startDate") + ".");
-                PendingIntent startSender=PendingIntent.getBroadcast(AddTerm .this, (1240000 + termId),intent1,PendingIntent.FLAG_IMMUTABLE);
+                Intent addTermIntent=new Intent(AddTerm.this, MyBroadcastReceiver.class);
+                addTermIntent.putExtra("key","The Term " + getIntent().getStringExtra("termName") + " starts today " + getIntent().getStringExtra("startDate"));
+                PendingIntent startSender=PendingIntent.getBroadcast(AddTerm .this, (1240000 + termId),addTermIntent,PendingIntent.FLAG_IMMUTABLE);
                 AlarmManager alarmManager1=(AlarmManager) getSystemService(Context.ALARM_SERVICE);
                 alarmManager1.set(AlarmManager.RTC_WAKEUP,startTrigger,startSender);
                 Toast.makeText(AddTerm.this, "Term start date notification enabled.", Toast.LENGTH_SHORT).show();
@@ -325,9 +325,9 @@ public class AddTerm extends AppCompatActivity {
                     e.printStackTrace();
                 }
                 Long endTrigger = mEnd.getTime();
-                Intent intent2=new Intent(AddTerm.this, MyBroadcastReceiver.class);
-                intent2.putExtra("key","The term " + getIntent().getStringExtra("termName") + " finishes today!");
-                PendingIntent endSender=PendingIntent.getBroadcast(AddTerm .this,(1250000 + termId),intent2,PendingIntent.FLAG_IMMUTABLE);
+                Intent endTermIntent=new Intent(AddTerm.this, MyBroadcastReceiver.class);
+                endTermIntent.putExtra("key","The term " + getIntent().getStringExtra("termName") + " finishes today!");
+                PendingIntent endSender=PendingIntent.getBroadcast(AddTerm .this,(1250000 + termId),endTermIntent,PendingIntent.FLAG_IMMUTABLE);
                 AlarmManager alarmManager2=(AlarmManager) getSystemService(Context.ALARM_SERVICE);
                 alarmManager2.set(AlarmManager.RTC_WAKEUP,endTrigger,endSender);
                 Toast.makeText(AddTerm.this, "Term end date notification enabled.", Toast.LENGTH_SHORT).show();

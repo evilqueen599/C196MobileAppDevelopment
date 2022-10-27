@@ -24,10 +24,6 @@ public class TermAdapter extends RecyclerView.Adapter<TermAdapter.TermViewHolder
         return mterms.get(absoluteAdapterPosition);
     }
 
-    public Terms getCourseId (Integer courseId) {
-        return mterms.get(courseId);
-    }
-
     public void setTerms(List<Terms> terms) {
         mterms = terms;
         notifyDataSetChanged();

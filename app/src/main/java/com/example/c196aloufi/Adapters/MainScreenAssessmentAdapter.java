@@ -11,7 +11,6 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.c196aloufi.Model.Assessments;
-import com.example.c196aloufi.Model.Courses;
 import com.example.c196aloufi.R;
 import com.example.c196aloufi.UserInterface.CourseList;
 

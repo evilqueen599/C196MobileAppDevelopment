@@ -11,7 +11,6 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.c196aloufi.Model.Courses;
-import com.example.c196aloufi.Model.Terms;
 import com.example.c196aloufi.R;
 import com.example.c196aloufi.UserInterface.CourseList;
 
@@ -39,14 +38,7 @@ public class MainScreenCourseAdapter extends RecyclerView.Adapter<MainScreenCour
                     int position = getAbsoluteAdapterPosition();
                     final Courses current = mcourses.get(position);
                     Intent intent = new Intent(context, CourseList.class);
-                    intent.putExtra("courseId", current.getCourseId());
                     intent.putExtra("courseName", current.getCourseName());
-                    intent.putExtra("startDate", current.getStartDate());
-                    intent.putExtra("endDate", current.getEndDate());
-                    intent.putExtra("courseStatus",current.getCourseStatus());
-                    intent.putExtra("instructorName",current.getInstructorName());
-                    intent.putExtra("instructorPhone", current.getInstructorPhone());
-                    intent.putExtra("instructorEmail",current.getInstructorEmail());
                 }
             });
         }

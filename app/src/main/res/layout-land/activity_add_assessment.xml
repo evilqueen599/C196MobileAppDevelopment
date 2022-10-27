@@ -32,10 +32,9 @@
         android:textAlignment="center"
         app:layout_constraintBottom_toTopOf="@+id/assessmentStatusBar"
         app:layout_constraintEnd_toEndOf="@id/guidelineRight"
-        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="@id/guidelineLeft"
         app:layout_constraintTop_toBottomOf="@+id/addAssessmentTxt"
-        app:layout_constraintVertical_bias="0.612" />
+        />
 
     <Button
         android:id="@+id/endAssessPickerButton"
@@ -97,10 +96,6 @@
         android:id="@+id/addAssessmentBtn"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="117dp"
-        android:layout_marginTop="91dp"
-        android:layout_marginEnd="118dp"
-        android:layout_marginBottom="59dp"
         android:text="Add Assessment"
         app:layout_constraintBottom_toBottomOf="@id/guidelineBottom"
         app:layout_constraintEnd_toEndOf="@id/guidelineRight"

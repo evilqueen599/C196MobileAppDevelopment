@@ -14,7 +14,6 @@ import com.example.c196aloufi.R;
 
 
 public class MainActivity extends AppCompatActivity {
-    public static int numAlert;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

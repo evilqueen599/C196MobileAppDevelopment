@@ -14,8 +14,6 @@ import com.example.c196aloufi.Model.Courses;
 import com.example.c196aloufi.R;
 import com.example.c196aloufi.UserInterface.AddCourse;
 
-import org.w3c.dom.Text;
-
 import java.util.List;
 
 public class CourseAdapter extends RecyclerView.Adapter<CourseAdapter.CourseViewHolder> {

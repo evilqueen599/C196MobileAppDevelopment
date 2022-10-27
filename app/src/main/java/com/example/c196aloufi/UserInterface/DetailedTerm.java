@@ -22,7 +22,6 @@ import com.example.c196aloufi.Model.Courses;
 import com.example.c196aloufi.Model.Terms;
 import com.example.c196aloufi.R;
 
-
 import java.util.List;
 
 

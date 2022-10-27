@@ -2,15 +2,11 @@ package com.example.c196aloufi.Database;
 
 import android.app.Application;
 
-import androidx.annotation.NonNull;
-import androidx.lifecycle.LiveData;
-import androidx.lifecycle.MutableLiveData;
 
 import com.example.c196aloufi.Model.Assessments;
 import com.example.c196aloufi.Model.Courses;
 import com.example.c196aloufi.Model.Terms;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;

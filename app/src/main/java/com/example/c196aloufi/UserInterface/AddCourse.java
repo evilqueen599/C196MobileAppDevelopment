@@ -386,12 +386,12 @@ public class AddCourse extends AppCompatActivity {
                     e.printStackTrace();
                 }
                 Long startTrigger = mStart.getTime();
-                Intent intent1=new Intent(AddCourse.this, MyBroadcastReceiver.class);
-                intent1.putExtra("key","The start date of Course " + getIntent().getStringExtra("courseName") + " is " + getIntent().getStringExtra("startDate") + ".");
-                PendingIntent startSender=PendingIntent.getBroadcast(AddCourse .this, (1240000 + courseId),intent1,PendingIntent.FLAG_IMMUTABLE);
+                Intent addCourseIntent=new Intent(AddCourse.this, MyBroadcastReceiver.class);
+                addCourseIntent.putExtra("key","The Course " + getIntent().getStringExtra("courseName") + " begins today " + getIntent().getStringExtra("startDate"));
+                PendingIntent startSender=PendingIntent.getBroadcast(AddCourse .this, (1280000 + courseId),addCourseIntent,PendingIntent.FLAG_IMMUTABLE);
                 AlarmManager alarmManager1=(AlarmManager) getSystemService(Context.ALARM_SERVICE);
                 alarmManager1.set(AlarmManager.RTC_WAKEUP,startTrigger,startSender);
-                Toast.makeText(AddCourse.this, "Assessment start date notification enabled.", Toast.LENGTH_SHORT).show();
+                Toast.makeText(AddCourse.this, "Course start date notification enabled.", Toast.LENGTH_SHORT).show();
                 return true;
 
 
@@ -404,12 +404,12 @@ public class AddCourse extends AppCompatActivity {
                     e.printStackTrace();
                 }
                 Long endTrigger = mEnd.getTime();
-                Intent intent2=new Intent(AddCourse.this, MyBroadcastReceiver.class);
-                intent2.putExtra("key","The course " + getIntent().getStringExtra("courseName") + " finishes today!");
-                PendingIntent endSender=PendingIntent.getBroadcast(AddCourse .this,(1250000 + courseId),intent2,PendingIntent.FLAG_IMMUTABLE);
+                Intent endIntent=new Intent(AddCourse.this, MyBroadcastReceiver.class);
+                endIntent.putExtra("key","The course " + getIntent().getStringExtra("courseName") + " finishes today!");
+                PendingIntent endSender=PendingIntent.getBroadcast(AddCourse .this,(1290000 + courseId),endIntent,PendingIntent.FLAG_IMMUTABLE);
                 AlarmManager alarmManager2=(AlarmManager) getSystemService(Context.ALARM_SERVICE);
                 alarmManager2.set(AlarmManager.RTC_WAKEUP,endTrigger,endSender);
-                Toast.makeText(AddCourse.this, "Assessment due date notification enabled.", Toast.LENGTH_SHORT).show();
+                Toast.makeText(AddCourse.this, "Course due date notification enabled.", Toast.LENGTH_SHORT).show();
                 return true;
 
             case R.id.shareCourseNotes:

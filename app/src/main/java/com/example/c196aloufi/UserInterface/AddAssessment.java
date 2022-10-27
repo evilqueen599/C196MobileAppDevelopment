@@ -175,9 +175,9 @@ public class AddAssessment extends AppCompatActivity {
                                         e.printStackTrace();
                                 }
                                 Long startTrigger = mStart.getTime();
-                                Intent intent1=new Intent(AddAssessment.this, MyBroadcastReceiver.class);
-                                intent1.putExtra("key","The start date of Assessment " + getIntent().getStringExtra("assessmentTitle") + " is " + getIntent().getStringExtra("startDate") + ".");
-                                PendingIntent startSender=PendingIntent.getBroadcast(AddAssessment .this, (1240000 + assessmentId),intent1,PendingIntent.FLAG_IMMUTABLE);
+                                Intent addAssessIntent = new Intent(AddAssessment.this, MyBroadcastReceiver.class);
+                                addAssessIntent.putExtra("key","The start date of Assessment " + getIntent().getStringExtra("assessmentTitle") + " is " + getIntent().getStringExtra("startDate") + ".");
+                                PendingIntent startSender=PendingIntent.getBroadcast(AddAssessment .this, (1260000 + assessmentId),addAssessIntent,PendingIntent.FLAG_IMMUTABLE);
                                 AlarmManager alarmManager1=(AlarmManager) getSystemService(Context.ALARM_SERVICE);
                                 alarmManager1.set(AlarmManager.RTC_WAKEUP,startTrigger,startSender);
                                 Toast.makeText(AddAssessment.this, "Assessment start date notification enabled.", Toast.LENGTH_SHORT).show();
@@ -193,9 +193,9 @@ public class AddAssessment extends AppCompatActivity {
                                         e.printStackTrace();
                                 }
                                 Long endTrigger = mEnd.getTime();
-                                Intent intent2=new Intent(AddAssessment.this, MyBroadcastReceiver.class);
-                                intent2.putExtra("key","The assessment " + getIntent().getStringExtra("assessmentTitle") + " is due today!");
-                                PendingIntent endSender=PendingIntent.getBroadcast(AddAssessment .this,(1250000 + assessmentId),intent2,PendingIntent.FLAG_IMMUTABLE);
+                                Intent endAssessIntent=new Intent(AddAssessment.this, MyBroadcastReceiver.class);
+                                endAssessIntent.putExtra("key","The assessment " + getIntent().getStringExtra("assessmentTitle") + " is due today!");
+                                PendingIntent endSender=PendingIntent.getBroadcast(AddAssessment .this,(1270000 + assessmentId),endAssessIntent,PendingIntent.FLAG_IMMUTABLE);
                                 AlarmManager alarmManager2=(AlarmManager) getSystemService(Context.ALARM_SERVICE);
                                 alarmManager2.set(AlarmManager.RTC_WAKEUP,endTrigger,endSender);
                                 Toast.makeText(AddAssessment.this, "Assessment due date notification enabled.", Toast.LENGTH_SHORT).show();

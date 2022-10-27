@@ -9,7 +9,6 @@ import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.c196aloufi.Adapters.CourseAdapter;
 import com.example.c196aloufi.Adapters.CoursePopUpAdapter;
 import com.example.c196aloufi.Model.Courses;
 import com.example.c196aloufi.R;

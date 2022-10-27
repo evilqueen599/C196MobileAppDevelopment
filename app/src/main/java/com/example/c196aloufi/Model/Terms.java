@@ -3,9 +3,6 @@ package com.example.c196aloufi.Model;
 import android.os.Parcel;
 import android.os.Parcelable;
 
-import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
-
 import androidx.annotation.NonNull;
 import androidx.room.ColumnInfo;
 import androidx.room.Entity;
