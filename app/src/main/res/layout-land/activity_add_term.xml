@@ -1,15 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".UserInterface.AddTerm">
+    android:layout_height="wrap_content">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        tools:context=".UserInterface.AddTerm">
 
     <EditText
         android:id="@+id/courseTitleTxt"
         android:layout_width="319dp"
-        android:layout_height="51dp"
+        android:layout_height="wrap_content"
         android:ems="10"
         android:hint="Enter Term Title"
         android:inputType="textShortMessage"
@@ -24,8 +28,8 @@
 
     <TextView
         android:id="@+id/addTermTxt"
-        android:layout_width="322dp"
-        android:layout_height="37dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:text="Add A New Term"
         android:textAlignment="center"
         android:textSize="20sp"
@@ -51,8 +55,8 @@
 
     <androidx.cardview.widget.CardView
         android:id="@+id/addTermCardView"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
+        android:layout_width="409dp"
+        android:layout_height="500dp"
         app:cardBackgroundColor="@color/teal_200"
         app:cardCornerRadius="30dp"
         app:cardElevation="10dp"
@@ -73,7 +77,7 @@
     <Button
         android:id="@+id/createBtn"
         android:layout_width="match_parent"
-        android:layout_height="48dp"
+        android:layout_height="wrap_content"
         android:onClick="createButton"
         android:text="Create"
         app:layout_constraintBottom_toTopOf="@+id/guidelineBottom"
@@ -165,3 +169,4 @@
         app:layout_constraintGuide_percent="0.98" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
+</ScrollView>
