@@ -1,11 +1,16 @@
 package com.example.c196aloufi.UserInterface;
 
 
+import android.app.AlarmManager;
 import android.app.AlertDialog;
 import android.app.DatePickerDialog;
+import android.app.PendingIntent;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.Button;
@@ -26,10 +31,12 @@ import com.example.c196aloufi.Database.AppRepo;
 import com.example.c196aloufi.Model.Courses;
 import com.example.c196aloufi.Model.Terms;
 import com.example.c196aloufi.R;
+import com.example.c196aloufi.myBroadcastReceiver;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 
 
@@ -267,6 +274,26 @@ public class AddTerm extends AppCompatActivity {
         return(int) (dp*getResources().getDisplayMetrics().density);
     }
 
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.term_menu, menu);
+        return true;
+    }
+
+
+    public boolean onOptionsItemSelected(MenuItem menuItem) {
+        switch (menuItem.getItemId()) {
+            case android.R.id.home:
+                this.finish();
+                return true;
+
+            case R.id.homeScreen:
+                Intent intent = new Intent(AddTerm.this, mainScreen.class);
+                startActivity(intent);
+                return true;
+        }
+
+        return super.onOptionsItemSelected(menuItem);
+    }
     private String getTodaysDate() {
         Calendar calendar = Calendar.getInstance();
         int year = calendar.get(Calendar.YEAR);
