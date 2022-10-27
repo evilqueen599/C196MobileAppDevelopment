@@ -33,7 +33,7 @@
         app:layout_constraintBottom_toTopOf="@+id/textView"
         app:layout_constraintEnd_toEndOf="@id/guidelineRight"
         app:layout_constraintStart_toStartOf="@id/guidelineLeft"
-        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/guidelineTop"
         app:tint="#5A3897"
         tools:ignore="ImageContrastCheck"
         tools:visibility="visible" />
