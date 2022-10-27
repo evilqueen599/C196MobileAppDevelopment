@@ -14,6 +14,8 @@ import com.example.c196aloufi.Model.Courses;
 import com.example.c196aloufi.R;
 import com.example.c196aloufi.UserInterface.AddCourse;
 
+import org.w3c.dom.Text;
+
 import java.util.List;
 
 public class CourseAdapter extends RecyclerView.Adapter<CourseAdapter.CourseViewHolder> {
@@ -25,6 +27,7 @@ public class CourseAdapter extends RecyclerView.Adapter<CourseAdapter.CourseView
     class CourseViewHolder extends RecyclerView.ViewHolder {
         private final TextView courseName;
         private final TextView courseDateTxt;
+        private final TextView endDateTxt;
         private final TextView courseStatusTxt;
         private final TextView instructorNameTxt;
         private final TextView instructorPhoneTxt;
@@ -36,6 +39,7 @@ public class CourseAdapter extends RecyclerView.Adapter<CourseAdapter.CourseView
             super(courseView);
             courseName = courseView.findViewById(R.id.courseTitleTxt);
             courseDateTxt = courseView.findViewById(R.id.courseDateTxt);
+            endDateTxt = courseView.findViewById(R.id.endDateTxt);
             courseStatusTxt = courseView.findViewById(R.id.courseStatusTxt);
             instructorNameTxt = courseView.findViewById(R.id.instructorNameTxt);
             instructorPhoneTxt = courseView.findViewById(R.id.instructorPhoneTxt);
@@ -88,7 +92,8 @@ public class CourseAdapter extends RecyclerView.Adapter<CourseAdapter.CourseView
             holder.courseName.setText(name);
             String startDate = current.getStartDate();
             String endDate = current.getEndDate();
-            holder.courseDateTxt.setText((startDate) + " - " +(endDate));
+            holder.courseDateTxt.setText("Start Date: " + startDate);
+            holder.endDateTxt.setText("End Date: " + endDate);
             String status = current.getCourseStatus();
             holder.courseStatusTxt.setText(status);
             String instructorName = current.getInstructorName();

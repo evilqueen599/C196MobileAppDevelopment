@@ -6,6 +6,6 @@ public class TextFormatter {
     public static String cardPattern = ("MM, dd, yyyy");
     private static String fullPattern = "MM/dd/yyyy";
     public static SimpleDateFormat cardDateFormat = new SimpleDateFormat(cardPattern);
-    public static SimpleDateFormat fullDateFormat = new SimpleDateFormat();
+    public static SimpleDateFormat fullDateFormat = new SimpleDateFormat(fullPattern);
 
 }

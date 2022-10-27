@@ -6,7 +6,9 @@ import android.app.NotificationManager;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
+import android.media.MediaPlayer;
 import android.os.Build;
+import android.provider.Settings;
 import android.widget.Toast;
 
 import androidx.annotation.RequiresApi;
@@ -19,11 +21,14 @@ public class myBroadcastReceiver extends BroadcastReceiver {
     @RequiresApi(api = Build.VERSION_CODES.O)
     @Override
     public void onReceive(Context context, Intent intent) {
+        MediaPlayer mediaPlayer = MediaPlayer.create(context, Settings.System.DEFAULT_NOTIFICATION_URI);
+        mediaPlayer.start();
         Toast.makeText(context, intent.getStringExtra("key"), Toast.LENGTH_LONG).show();
         createNotificationChannel(context,channel_id);
         Notification n = new NotificationCompat.Builder(context,channel_id)
                 .setSmallIcon(R.drawable.ic_baseline_crisis_alert_24)
                 .setContentText(intent.getStringExtra("key"))
+                .setPriority(NotificationCompat.PRIORITY_DEFAULT)
                 .setContentTitle("Notification").build();
         NotificationManager manager = (NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE);
         manager.notify(notificationID++,n);

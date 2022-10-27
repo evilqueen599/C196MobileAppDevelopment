@@ -1,8 +1,12 @@
 package com.example.c196aloufi.UserInterface;
 
+import android.app.AlarmManager;
 import android.app.AlertDialog;
 import android.app.DatePickerDialog;
+import android.app.PendingIntent;
+import android.content.Context;
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -13,17 +17,21 @@ import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.Toast;
 
+import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.c196aloufi.Adapters.TextFormatter;
 import com.example.c196aloufi.Database.AppRepo;
 import com.example.c196aloufi.Model.Assessments;
 import com.example.c196aloufi.R;
+import com.example.c196aloufi.myBroadcastReceiver;
 
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.util.Calendar;
+import java.util.Date;
 import java.util.Locale;
 
 
@@ -47,6 +55,8 @@ public class AddAssessment extends AppCompatActivity {
         Button addAssessmentBtn;
         AppRepo appRepo;
         Assessments assessments;
+        SimpleDateFormat formatter;
+        String format;
 
 
 
@@ -55,6 +65,8 @@ public class AddAssessment extends AppCompatActivity {
                 super.onCreate(savedInstanceState);
                 setContentView(R.layout.activity_add_assessment);
                 getSupportActionBar().setDisplayShowHomeEnabled(true);
+                format = "MM/dd/yyyy";
+                formatter = new SimpleDateFormat(format, Locale.US);
                 appRepo = new AppRepo(getApplication());
                 assessmentId = getIntent().getIntExtra("assessmentId", -1);
                 editAssessmentName = getIntent().getStringExtra("assessmentTitle");
@@ -148,6 +160,7 @@ public class AddAssessment extends AppCompatActivity {
                 return true;
         }
 
+
         public boolean onOptionsItemSelected(MenuItem menuItem) {
                 switch (menuItem.getItemId()) {
                         case android.R.id.home:
@@ -161,18 +174,41 @@ public class AddAssessment extends AppCompatActivity {
 
                         case R.id.assess_start_date_notification:
                                 editStartDate = startAssessPickerBtn.getText().toString();
-                                DateFormat mStart = null;
-                                mStart = SimpleDateFormat.getDateInstance(Integer.parseInt(editStartDate), Locale.US);
+                                Date mStart = null;
+                                try {
+                                        mStart = formatter.parse(editStartDate);
+                                }catch (Exception e) {
+                                        e.printStackTrace();
+                                }
+                                Long startTrigger = mStart.getTime();
+                                Intent intent1=new Intent(AddAssessment.this, myBroadcastReceiver.class);
+                                intent1.putExtra("key","The start date of Assessment " + getIntent().getStringExtra("assessmentTitle") + " is " + getIntent().getStringExtra("startDate"));
+                                PendingIntent startSender=PendingIntent.getBroadcast(AddAssessment .this, (1240000 + assessmentId),intent1,PendingIntent.FLAG_IMMUTABLE | PendingIntent.FLAG_UPDATE_CURRENT);
+                                AlarmManager alarmManager1=(AlarmManager) getSystemService(Context.ALARM_SERVICE);
+                                alarmManager1.set(AlarmManager.RTC_WAKEUP,startTrigger,startSender);
+                                Toast.makeText(AddAssessment.this, "Assessment start date notification enabled.", Toast.LENGTH_SHORT).show();
+                                return true;
 
 
                         case R.id.assess_due_date_notification:
+                                editEndDate = endAssessPickerBtn.getText().toString();
+                                Date mEnd = null;
+                                try {
+                                        mEnd = formatter.parse(editEndDate);
+                                }catch (Exception e) {
+                                        e.printStackTrace();
+                                }
+                                Long endTrigger = mEnd.getTime();
+                                Intent intent2=new Intent(AddAssessment.this, myBroadcastReceiver.class);
+                                intent2.putExtra("key","The assessment " + getIntent().getStringExtra("assessmentTitle") + " is due today!");
+                                PendingIntent endSender=PendingIntent.getBroadcast(AddAssessment .this,(1250000 + assessmentId),intent2,PendingIntent.FLAG_IMMUTABLE);
+                                AlarmManager alarmManager2=(AlarmManager) getSystemService(Context.ALARM_SERVICE);
+                                alarmManager2.set(AlarmManager.RTC_WAKEUP,endTrigger,endSender);
+                                Toast.makeText(AddAssessment.this, "Assessment due date notification enabled.", Toast.LENGTH_SHORT).show();
                                 return true;
-
                 }
                 return super.onOptionsItemSelected(menuItem);
         }
-
-
 
         private String getTodaysDate() {
                 Calendar calendar = Calendar.getInstance();
@@ -211,35 +247,7 @@ public class AddAssessment extends AppCompatActivity {
 
         private String makeDateString(int dayOfMonth, int month, int year) {
                 month = month + 1;
-                return getDateFormat(month) + " " + dayOfMonth + " " + year;
-        }
-
-        private String getDateFormat(int month) {
-                if (month == 1)
-                        return "Jan";
-                if (month == 2)
-                        return "Feb";
-                if (month == 3)
-                        return "Mar";
-                if (month == 4)
-                        return "Apr";
-                if (month == 5)
-                        return "May";
-                if (month == 6)
-                        return "Jun";
-                if (month == 7)
-                        return "Jul";
-                if (month == 8)
-                        return "Aug";
-                if (month == 9)
-                        return "Sep";
-                if (month == 10)
-                        return "Oct";
-                if (month == 11)
-                        return "Nov";
-                if (month == 12)
-                        return "Dec";
-                return "Jan";
+                return month + "/" + dayOfMonth + "/" + year;
         }
 
         public void openDueDate(View view) {

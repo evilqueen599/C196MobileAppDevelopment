@@ -84,9 +84,9 @@ public class AssessmentAdapter extends RecyclerView.Adapter<AssessmentAdapter.As
             String type =current.getAssessmentType();
             holder.assessmentTypeTxt.setText(type);
             String start = current.getStartDate();
-            holder.startDateTxt.setText(start);
+            holder.startDateTxt.setText("Start Date: " +start);
             String dueDate = current.getEndDate();
-            holder.dueDateTxt.setText((dueDate));
+            holder.dueDateTxt.setText("Due Date: " + dueDate);
         } else {
             holder.assessmentTitleTxt.setText("No Assessments Exist");
         }

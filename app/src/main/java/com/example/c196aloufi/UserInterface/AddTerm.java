@@ -313,45 +313,17 @@ public class AddTerm extends AppCompatActivity {
     }
     private String makeDateString(int dayOfMonth, int month, int year) {
         month = month + 1;
-        return getDateFormat(month) + " " + dayOfMonth + " " + year;
+        return month + "/" + dayOfMonth + "/" + year;
     }
 
     private String endDateString (int dayOfMonth, int month, int year) {
         month = month + 1;
-        return getDateFormat(month) + " " + dayOfMonth + " " + year;
-    }
-    private String getDateFormat(int month) {
-        if (month == 1)
-            return "Jan";
-        if (month == 2)
-            return "Feb";
-        if (month == 3)
-            return "Mar";
-        if (month == 4)
-            return "Apr";
-        if (month == 5)
-            return "May";
-        if (month == 6)
-            return "Jun";
-        if (month == 7)
-            return "Jul";
-        if (month == 8)
-            return "Aug";
-        if (month == 9)
-            return "Sep";
-        if (month == 10)
-            return "Oct";
-        if (month == 11)
-            return "Nov";
-        if (month ==12)
-            return "Dec";
-        return "Jan";
+        return month+ "/" + dayOfMonth + "/" + year;
     }
 
     public void openStartDate(View view) {
         datePickerDialog.show();
     }
 
-    public void openEndDate(View view) {endDatePickerDialog.show();
-    }
+    public void openEndDate(View view) {endDatePickerDialog.show(); }
 }
