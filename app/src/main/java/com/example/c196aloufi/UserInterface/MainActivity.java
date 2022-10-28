@@ -19,9 +19,9 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
+    //Test Data for help with initial view
         AppRepo appRepo = new AppRepo(getApplication());
-        Terms terms = new Terms(1, "Test Data","05/09/2022", "12/25/2022");
+        Terms terms = new Terms(1, "Test Data","08/09/2022", "12/25/2022");
         appRepo.insert(terms);
         Courses courses = new Courses(1, "Application Development", "Test Instructor",
                 "testemail@test.com", "954-778-9008", "InProgress","10/26/2022", "12/26/2022", "Finish this class ASAP", 1);
